@@ -1,0 +1,109 @@
+<style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+   
+  .button{
+    margin: 16px, 0;
+    display: flex;
+    margin: 32px auto;
+    padding: 0 16px;
+    max-width: 960px;
+  }
+  form {
+      border: 3px solid #f1f1f1;
+    }
+
+    .checkbox, input[type = "text"],select,textarea{
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+td{
+ 
+  text-align:center; 
+
+}
+
+    </style>
+
+
+<body>
+  <h1>Client Information</h1>
+  <form #f="ngForm">
+    
+    <div class="container">
+      <label for="cname"><b>Client</b></label>
+      <input type="text" placeholder="Enter Client Name"  [(ngModel)]="clientFields.name"  name="name" >
+
+      <label for="eng"><b>Engagement</b></label>
+      <input type="text" placeholder="Enter Engagement" [(ngModel)]="clientFields.engagement" name="engagement" >
+
+      <label for="code"><b>Client/Engagement code</b></label>
+      <input type="text" placeholder="Enter Client/Engagement code" [(ngModel)]="clientFields.code" name="code" >
+
+      <label for="bseg"><b>Business Segment</b></label>
+      <select name="bseg" [(ngModel)]="clientFields.bseg">
+        <option value="default"></option>
+        <option value="CBS-FIS">CBS-FIS</option>
+        <option value="CBS-Temenos">CBS-Temenos</option>
+        <option value="others">Others</option>
+        
+      </select>
+   
+
+      <label for="sys"><b>System</b></label>
+      <div class="sys" [(ngModel)]="clientFields.sys"> 
+      <table><tr>
+      <td width=100><input type="checkbox" name="retail" value="retail">Retail</td>
+      <td width=100><input type="checkbox" name="corporate" value="corporate">Corporate</td>
+      <td width=100> <input type="checkbox" name="payments" value="payments">Payments</td>
+      <td width=100><input type="checkbox" name="treasury" value="treasury">Treasury    </td>
+      <td width=100><input type="checkbox" name="invBanking" value="invBanking">Inv Banking</td>
+      <td width=150><input type="checkbox" name="wealthMgmt" value="wealthMgmt">Wealth Mgmt</td>
+      <td width=100> <input type="checkbox" name="islamic" value="Islamic">Islamic</td>
+      <td width=100> <input type="checkbox" name="others" value="others">Others</td>
+    </tr>
+    </table>
+  </div>
+
+      <label for="prj"><b>Project Methodology</b></label>
+      <input type="text" placeholder="WaterFall/Agile/Kanban/RAD" [(ngModel)]="clientFields.method" name="method" >
+
+      <label for="vert"><b>Banking Vertical</b></label>
+      <input type="text" placeholder="Enter Banking Vertical" [(ngModel)]="clientFields.vertical" name="vertical" >
+
+      <label for="own"><b>Owner</b></label>
+      <input type="text" placeholder="Enter Owner" [(ngModel)]="clientFields.owner" name="owner" >
+
+      <label for="email"><b>Email Id</b></label>
+      <input type="text" placeholder="Enter Email Id" [(ngModel)]="clientFields.email" name="email" >
+
+      <label for="brd"><b>BRD ID</b></label>
+      <input type="text" placeholder="Enter BRD Id" [(ngModel)]="clientFields.brd" name="brd" >
+
+      <label for="rem"><b>Remarks</b></label>
+      <textarea maxlenght=250 placeholder="Remarks" [(ngModel)]="clientFields.remarks" name="remarks" ></textarea>
+
+
+      
+
+    </div>
+
+    <div  style="background-color:#f1f1f1">
+      <table><tr>
+      <td width=300><button type="button" routerLink="/docrepo">Doc Repo</button></td>
+      <td width=300><input type="reset" ></td>
+      <td width=300><button type="button" routerLink="/folder">Cancel</button></td>
+     <td width=300><button type="button" routerLink="/project">Next</button></td>
+     <td width=300><button type="button" (click)="generatePdf()">Generate</button></td>
+    </tr>
+    </table>
+    </div>
+  </form>
+
+</body>

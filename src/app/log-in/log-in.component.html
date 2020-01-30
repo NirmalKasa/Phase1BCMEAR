@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .content {
+      display: flex;
+      margin: 32px auto;
+      padding: 0 16px;
+      max-width: 960px;
+      flex-direction: column;
+      align-items: center;
+      background-color: #2C2C2B;
+      color: white;
+    }
+
+    form {
+      border: 3px solid #f1f1f1;
+    }
+
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .resetbtn {
+      float: right;
+      background-color: #f44336;
+      width: auto;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      margin: 8px 0;
+    }
+
+    span.psw {
+
+      padding-top: 16px;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <span>
+      <h1>Welcome</h1>
+    </span>
+  </div>
+
+
+  <h2>Login </h2>
+
+  <form >
+
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <input type="submit" value="Login" routerLink="/folder">
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <input type="reset" class="resetbtn">
+      <span class="psw"> <a href="#">Forgot password?</a></span>
+    </div>
+  </form>
+
+</body>
+
+</html>

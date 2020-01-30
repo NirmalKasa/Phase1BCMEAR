@@ -1,0 +1,47 @@
+<style>
+.createfol {
+    
+  position: absolute; left: 0;
+  }
+
+  .tp-container { 
+   
+    float:left;
+}
+.tp-section {
+  
+  width: 100px;
+  height: 160px;
+  overflow: auto;
+  border: 1px solid #555;
+   
+}
+</style>
+<div><h2 float="center">Bank Clients</h2></div>
+
+<div class ="createfol">
+
+<mat-icon>create_new_folder</mat-icon> <button type="submit" routerLink="/client">Create new client</button>
+
+
+
+</div>
+
+
+<mat-sidenav-container class="tp-container ">
+  <mat-sidenav #sidenav mode="side" position="end">
+    <p>BANK DETAILS
+    </p><br>
+    <button type="button" routerLink="/docrepo">Doc Repo</button>
+  </mat-sidenav>
+
+  <mat-sidenav-content class ="tp-section">
+    
+    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">ABC</button></p>
+    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">DEF</button></p>
+    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">XYZ</button></p>
+    
+
+  
+  </mat-sidenav-content>
+</mat-sidenav-container>
