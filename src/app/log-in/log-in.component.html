@@ -33,28 +33,8 @@
       box-sizing: border-box;
     }
 
-    input[type="submit"] {
-      background-color: #4CAF50;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-    }
-
     button:hover {
       opacity: 0.8;
-    }
-
-    .resetbtn {
-      float: right;
-      background-color: #f44336;
-      width: auto;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      margin: 8px 0;
     }
 
     span.psw {
@@ -75,22 +55,22 @@
 
   <h2>Login </h2>
 
-  <form >
+  <form>
 
 
     <div class="container">
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input type="text" placeholder="Username" name="uname" [(ngModel)]="username" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <input type="submit" value="Login" routerLink="/folder">
-
+      <input type="password" placeholder="Password" name="psw" [(ngModel)]="password" required>
+      <div >
+        <button (click)="checkLogin()" class="btn btn-success text-left">Login</button>
+        <button type="reset" class="btn btn-danger text-right">Reset</button>
+      </div>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <input type="reset" class="resetbtn">
       <span class="psw"> <a href="#">Forgot password?</a></span>
     </div>
   </form>

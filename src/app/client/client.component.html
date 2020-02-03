@@ -59,7 +59,7 @@ td{
       <label for="sys"><b>System</b></label>
       <div class="sys" [(ngModel)]="clientFields.sys"> 
       <table><tr>
-      <td width=100><input type="checkbox" name="retail" value="retail">Retail</td>
+      <td width=100><input type="checkbox" name="retail" value="retail" >Retail</td>
       <td width=100><input type="checkbox" name="corporate" value="corporate">Corporate</td>
       <td width=100> <input type="checkbox" name="payments" value="payments">Payments</td>
       <td width=100><input type="checkbox" name="treasury" value="treasury">Treasury    </td>
@@ -99,8 +99,8 @@ td{
       <td width=300><button type="button" routerLink="/docrepo">Doc Repo</button></td>
       <td width=300><input type="reset" ></td>
       <td width=300><button type="button" routerLink="/folder">Cancel</button></td>
-     <td width=300><button type="button" routerLink="/project">Next</button></td>
-     <td width=300><button type="button" (click)="generatePdf()">Generate</button></td>
+     <td width=300><button type="button" (click)="updateSessionStorage()" routerLink="/project">Next</button></td>
+     
     </tr>
     </table>
     </div>
