@@ -1,109 +1,73 @@
-<style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-   
-  .button{
-    margin: 16px, 0;
-    display: flex;
-    margin: 32px auto;
-    padding: 0 16px;
-    max-width: 960px;
-  }
-  form {
-      border: 3px solid #f1f1f1;
-    }
+<app-header></app-header>
+<h3>Client Information</h3>
+<form #f="ngForm">
 
-    .checkbox, input[type = "text"],select,textarea{
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+  <div class="container">
+    <label for="cname"><b>Client Name</b></label>
+    <input type="text" placeholder=" Client Name" [(ngModel)]="clientFields.name" name="name">
 
-td{
- 
-  text-align:center; 
+    <label for="eng"><b>Engagement Name</b></label>
+    <input type="text" placeholder=" Engagement" [(ngModel)]="clientFields.engagement" name="engagement">
 
-}
+    <label for="code"><b>Engagement code</b></label>
+    <input type="text" placeholder=" Client/Engagement code" [(ngModel)]="clientFields.code" name="code">
 
-    </style>
+    <label for="sys"><b>System</b></label>
+    <select name="sys" [(ngModel)]="clientFields.sys">
+
+      <option value="CBS-FIS">CBS-FIS</option>
+      <option value="CBS-Temenos">CBS-Temenos</option>
+      <option value="others">Others</option>
+
+    </select>
 
 
-<body>
-  <h1>Client Information</h1>
-  <form #f="ngForm">
+    <label for="vertical"><b>Banking Vertical</b></label>
+    <select name="vertical" [(ngModel)]="clientFields.vertical">
+
+      <option value="retail">Retail</option>
+      <option value="corporate">Corporate</option>
+      <option value="payments">Payments</option>
+      <option value="treasury">Treasury</option>
+      <option value="invBanking">Inv Banking</option>
+      <option value="wealthMgmt">Wealth Mgmt</option>
+      <option value="Islamic">Islamic</option>
+      <option value="others">Others</option>
+
+    </select>
+
+    <label for="prj"><b>Project Methodology</b></label>
+    <select name="method" [(ngModel)]="clientFields.method">
+
+      <option value="waterfall">Waterfall</option>
+      <option value="agile">Agile</option>
+      <option value="others">Others</option>
+
+    </select>
+
+    <label for="partner"><b>Engagement Partner</b></label>
+    <input type="text" placeholder=" Engagement Partner" [(ngModel)]="clientFields.partner" name="partner">
+
+
+    <label for="manager"><b>Project Manager</b></label>
+    <input type="text" placeholder=" Project Manager" [(ngModel)]="clientFields.manager" name="manager">
+
+    <label for="rem"><b>Remarks</b></label>
+    <textarea maxlenght=250 placeholder=" Remarks" [(ngModel)]="clientFields.remarks" name="remarks"></textarea>
+
+
     
-    <div class="container">
-      <label for="cname"><b>Client</b></label>
-      <input type="text" placeholder="Enter Client Name"  [(ngModel)]="clientFields.name"  name="name" >
 
-      <label for="eng"><b>Engagement</b></label>
-      <input type="text" placeholder="Enter Engagement" [(ngModel)]="clientFields.engagement" name="engagement" >
-
-      <label for="code"><b>Client/Engagement code</b></label>
-      <input type="text" placeholder="Enter Client/Engagement code" [(ngModel)]="clientFields.code" name="code" >
-
-      <label for="bseg"><b>Business Segment</b></label>
-      <select name="bseg" [(ngModel)]="clientFields.bseg">
-        <option value="default"></option>
-        <option value="CBS-FIS">CBS-FIS</option>
-        <option value="CBS-Temenos">CBS-Temenos</option>
-        <option value="others">Others</option>
-        
-      </select>
-   
-
-      <label for="sys"><b>System</b></label>
-      <div class="sys" [(ngModel)]="clientFields.sys"> 
-      <table><tr>
-      <td width=100><input type="checkbox" name="retail" value="retail" >Retail</td>
-      <td width=100><input type="checkbox" name="corporate" value="corporate">Corporate</td>
-      <td width=100> <input type="checkbox" name="payments" value="payments">Payments</td>
-      <td width=100><input type="checkbox" name="treasury" value="treasury">Treasury    </td>
-      <td width=100><input type="checkbox" name="invBanking" value="invBanking">Inv Banking</td>
-      <td width=150><input type="checkbox" name="wealthMgmt" value="wealthMgmt">Wealth Mgmt</td>
-      <td width=100> <input type="checkbox" name="islamic" value="Islamic">Islamic</td>
-      <td width=100> <input type="checkbox" name="others" value="others">Others</td>
-    </tr>
-    </table>
   </div>
 
-      <label for="prj"><b>Project Methodology</b></label>
-      <input type="text" placeholder="WaterFall/Agile/Kanban/RAD" [(ngModel)]="clientFields.method" name="method" >
+  <div style="background-color:#f1f1f1">
+    <table>
+      <tr>
+        <td width=300><input class="btn btn-dark" type="reset"></td>
+        <td width=300><button class="btn btn-dark" type="button" routerLink="/folder">Previous</button></td>
+        <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage()" routerLink="/project">Next</button></td>
 
-      <label for="vert"><b>Banking Vertical</b></label>
-      <input type="text" placeholder="Enter Banking Vertical" [(ngModel)]="clientFields.vertical" name="vertical" >
-
-      <label for="own"><b>Owner</b></label>
-      <input type="text" placeholder="Enter Owner" [(ngModel)]="clientFields.owner" name="owner" >
-
-      <label for="email"><b>Email Id</b></label>
-      <input type="text" placeholder="Enter Email Id" [(ngModel)]="clientFields.email" name="email" >
-
-      <label for="brd"><b>BRD ID</b></label>
-      <input type="text" placeholder="Enter BRD Id" [(ngModel)]="clientFields.brd" name="brd" >
-
-      <label for="rem"><b>Remarks</b></label>
-      <textarea maxlenght=250 placeholder="Remarks" [(ngModel)]="clientFields.remarks" name="remarks" ></textarea>
-
-
-      
-
-    </div>
-
-    <div  style="background-color:#f1f1f1">
-      <table><tr>
-      <td width=300><button type="button" routerLink="/docrepo">Doc Repo</button></td>
-      <td width=300><input type="reset" ></td>
-      <td width=300><button type="button" routerLink="/folder">Cancel</button></td>
-     <td width=300><button type="button" (click)="updateSessionStorage()" routerLink="/project">Next</button></td>
-     
-    </tr>
+      </tr>
     </table>
-    </div>
-  </form>
-
-</body>
+  </div>
+</form>

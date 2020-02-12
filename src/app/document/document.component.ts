@@ -42,36 +42,30 @@ export class DocumentComponent implements OnInit {
           columns: [
             [{
               
-              text: 'Name : ' +this.clientFields.name,
+              text: 'Client Name : ' +this.clientFields.name,
               bold: true
               
             },
           {
-              text: 'Engagement : '+ this.clientFields.engagement
+              text: 'Engagement Name : '+ this.clientFields.engagement
             },
             {
-              text: 'Client/Engagement code : '+ this.clientFields.code
-            },
-            {
-              text: 'Business Segment : '+ this.clientFields.bseg
+              text: 'Engagement code : '+ this.clientFields.code
             },
             {
               text: 'System : '+ this.clientFields.sys
             },
             {
-              text: 'Project Methodology : '+this.clientFields.method
-            },
-            {
               text: 'Banking Vertical : '+this.clientFields.vertical
             },
             {
-              text: 'Owner : '+this.clientFields.owner
+              text: 'Project Methodology : '+this.clientFields.method
             },
             {
-              text: 'Email Id : '+this.clientFields.email
+              text: 'Enagagement Partner : '+this.clientFields.partner
             },
             {
-              text: 'BRD Id : ' +this.clientFields.brd
+              text: 'Project Manager : '+this.clientFields.manager
             },
             {
               text: 'Remarks : '+this.clientFields.remarks

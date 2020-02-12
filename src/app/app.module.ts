@@ -15,6 +15,24 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
 import { DocumentComponent } from './document/document.component';
+import { SignupComponent } from './signup/signup.component';
+import { ChangepwdComponent } from './changepwd/changepwd.component';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
+import { BrdComponent } from './brd/brd.component';
+import { FsdComponent } from './fsd/fsd.component';
+import { TsdComponent } from './tsd/tsd.component';
+import { RtmComponent } from './rtm/rtm.component';
+import { TestComponent } from './test/test.component';
+import { PreviewComponent } from './preview/preview.component';
+import { ReadmeComponent } from './readme/readme.component';
+import { HeaderLoginComponent } from './header-login/header-login.component';
+import { BrdDocsComponent } from './brd-docs/brd-docs.component';
+import { TrdDocsComponent } from './trd-docs/trd-docs.component';
+import { FsdDocsComponent } from './fsd-docs/fsd-docs.component';
+import { TsdDocsComponent } from './tsd-docs/tsd-docs.component';
+import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
+import { TestDocsComponent } from './test-docs/test-docs.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 
 
 @NgModule({
@@ -26,7 +44,25 @@ import { DocumentComponent } from './document/document.component';
     ClientComponent,
     DashboardComponent,
     ProjectComponent,
-    DocumentComponent
+    DocumentComponent,
+    SignupComponent,
+    ChangepwdComponent,
+    ForgotpwdComponent,
+    BrdComponent,
+    FsdComponent,
+    TsdComponent,
+    RtmComponent,
+    TestComponent,
+    PreviewComponent,
+    ReadmeComponent,
+    HeaderLoginComponent,
+    BrdDocsComponent,
+    TrdDocsComponent,
+    FsdDocsComponent,
+    TsdDocsComponent,
+    RtmDocsComponent,
+    TestDocsComponent,
+    ForgotPwdComponent
     
   ],
   imports: [

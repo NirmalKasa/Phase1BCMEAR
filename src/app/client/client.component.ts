@@ -32,13 +32,11 @@ export class ClientFields {
   name : string;
   engagement : string;
   code : string;
-  bseg : string;
   sys : string;
-  method : string;
   vertical : string;
-  owner : string;
-  email : string;
-  brd : string;
+  method : string;
+  partner : string;
+  manager : string;
   remarks : any;
 
 

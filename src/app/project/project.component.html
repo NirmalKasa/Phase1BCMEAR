@@ -1,52 +1,12 @@
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
+<app-header></app-header>
+  
+
+<h3>Project Details</h3>
 
 
-    form {
-        border: 3px solid #f1f1f1;
-    }
-
-    input {
-
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-
-    .radio {
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-
-    }
-
-    .analysis,
-    .development,
-    .testing {
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        padding: 12px 20px;
-        margin: 8px 0;
-
-    }
-
-    td {
-
-        text-align: center;
-
-    }
-</style>
-
-<h2>Project Details</h2>
-
-
-<body>
     <form>
         <div class="container">
-            <label for="phase"><b>Project Phase</b></label>
+            <label for="phase"><h5>Project Phase</h5></label>
             <div class="radio">
                 <table>
                     <tr>
@@ -57,15 +17,13 @@
                     </tr>
                 </table>
             </div>
-        <div class="analysis" *ngIf ="analysis.checked">
+            
+        <div class="analysis"*ngIf ="analysis.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=300><mat-radio-button name="analysisphase" value="BRD" #BRD>Business Requirement (BRD)</mat-radio-button>
+                    <td width=320><mat-radio-button name="analysisphase" value="BRD">Business Requirement (BRD)</mat-radio-button>
                     </td>
-                    <td width=300><mat-radio-button name="analysisphase" value="FSD" #FSD>Functional Specification 
-                        (FSD)</mat-radio-button></td>
-
                 </tr>
             </table>
         </div>
@@ -73,19 +31,19 @@
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=300><mat-radio-button name="devphase" value="TSD" #TSD>Technical Specification (TSD) </mat-radio-button></td>
-                    <td width=300><mat-radio-button name="devphase" value="RTM" #RTM>Requirement Traceability Matrix
-                        (RTM)</mat-radio-button></td>
-
+                    
+                    <td width=320><mat-radio-button name="devphase" value="FSD"  >Functional Specification (FSD)</mat-radio-button></td>
+                    <td width=300><mat-radio-button name="devphase" value="TSD" >Technical Specification (TSD) </mat-radio-button></td>
                 </tr>
             </table>
         </div>
 
-        <div class="testing" *ngIf="testing.checked">
+        <div class="testing"  *ngIf="testing.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=200><mat-radio-button name="testphase" value="test" #test>Test Scenarios</mat-radio-button></td>
+                    <td width=380><mat-radio-button name="testphase" value="RTM"  >Requirement Traceability Matrix (RTM)</mat-radio-button></td>
+                    <td width=300><mat-radio-button name="testphase" value="test"  >Test Scenario/Test Case </mat-radio-button></td>
 
 
                 </tr>
@@ -98,12 +56,11 @@
         </table>
         <table>
             <tr>
-                <td width=300><button type="button" routerLink="/client">Previous</button></td>
-                <td width=300><button type="button" routerLink="/folder">Cancel</button></td>
-                <td width=300><button type="button" routerLink="/document">Next</button></td>
+                <td width=300><button type="button" class="btn btn-dark" routerLink="/client">Previous</button></td>
+                <td width=300><button type="button" class="btn btn-dark" routerLink="/folder">Cancel</button></td>
+                <td width=300><button type="button"  class="btn btn-dark" routerLink="/brd">Next</button></td>
             </tr>
         </table>
         </div>
     </form>
-</body>
 

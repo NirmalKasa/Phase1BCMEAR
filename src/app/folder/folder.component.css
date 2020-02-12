@@ -1,0 +1,28 @@
+
+.createfol {
+    
+    position: absolute; left: 0;
+    }
+  
+    .tp-container { 
+     
+      float:left;
+  }
+  .tp-section {
+    
+    width: 100px;
+    height: 160px;
+    overflow: auto;
+    border: 1px solid #555;
+     
+  }
+  form {
+    
+    margin-top: 30px;
+   
+  }
+
+  h2{
+    margin-top: 100px;
+  }
+  

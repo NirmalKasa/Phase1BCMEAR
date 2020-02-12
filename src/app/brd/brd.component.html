@@ -1,0 +1,84 @@
+<app-header></app-header>
+<h3>Business Requirement</h3>
+
+<form #f="ngForm">
+    <div class="container">
+
+         <label for="module"><b>Module</b></label>
+        <input type="text" placeholder=" Module" [(ngModel)]="brdFields.module" name="Module">
+
+        <label for="intro"><b>Introduction</b></label>
+        <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="brdFields.intro" name="Introduction"></textarea>
+
+        <label for="purpose"><b>Purpose</b></label>
+        <textarea maxlenght=250 placeholder=" Purpose" [(ngModel)]="brdFields.purpose" name="Purpose"></textarea>
+
+        <label for="projectScope"><b>Project Scope</b></label>
+        <textarea maxlenght=250 placeholder=" Project Scope"  [(ngModel)]="brdFields.proj" name="ProjectScope"></textarea>
+
+        <label for="documentScope"><b>Document Scope</b></label>
+        <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="brdFields.doc" name="DocumentScope"></textarea>
+
+        <label for="relatedDoc"><b>Related Documents</b></label>
+        <input type="file" [(ngModel)]="brdFields.related">
+
+        <label for="acr"><b>Acronyms and Definitions</b></label>
+        <textarea maxlenght=250 placeholder=" Acronyms and Definitions"  [(ngModel)]="brdFields.acr" name="acr"></textarea>
+
+        <label for="proj"><b>Project Overview</b></label>
+        <textarea maxlenght=250 placeholder=" Project Overview" [(ngModel)]="brdFields.overview" name="proj"></textarea>
+
+        <label for="bus"><b>Business Objective</b></label>
+        <textarea maxlenght=250 placeholder=" Business Objective" [(ngModel)]="brdFields.obj" name="bus"></textarea>
+
+        <label for="busbk"><b>Business Background</b></label>
+        <textarea maxlenght=250 placeholder=" Business Background" [(ngModel)]="brdFields.bkg" name="busbk"></textarea>
+
+        <label for="func"><b>Current/Existing Functionality</b></label>
+        <textarea maxlenght=250 placeholder=" Current/Existing Functionality" [(ngModel)]="brdFields.current"  name="func"></textarea>
+        
+        <label for="efunc"><b>Expected/Proposed Functionality</b></label>
+        <textarea maxlenght=250 placeholder=" Expected/Proposed Functionality" [(ngModel)]="brdFields.expected" name="efunc"></textarea>
+
+        <label for="proc"><b>Process Workflow</b></label>
+        <textarea maxlenght=250 placeholder=" Process Workflow" [(ngModel)]="brdFields.workflow" name="proc"></textarea>
+
+        <label for="imp"><b>Impacted System (country specific if any)</b></label>
+        <textarea maxlenght=250 placeholder=" Impacted System (country specific if any)" [(ngModel)]="brdFields.impact" name="imp"></textarea>
+        
+        <label for="funreq"><b>Functional Requirements</b></label>
+        <textarea maxlenght=250 placeholder=" Functional Requirements"  [(ngModel)]="brdFields.funcreq" name="funreq"></textarea>
+
+        <label for="inscope"><b>In Scope</b></label>
+        <textarea maxlenght=250 placeholder=" InScope" [(ngModel)]="brdFields.inScope" name="inscope"></textarea>
+
+        <label for="outscope"><b>Out Of Scope</b></label>
+        <textarea maxlenght=250 placeholder=" Out Of Scope" [(ngModel)]="brdFields.outScope" name="outscope"></textarea>
+
+        <label for="reprot"><b>Reporting</b></label>
+        <textarea maxlenght=250 placeholder=" Reporting" [(ngModel)]="brdFields.report"  name="report"></textarea>
+        
+        <label for="asump"><b>Asumptions and Constraints</b></label>
+        <textarea maxlenght=250 placeholder=" Asumptions and Constraints" [(ngModel)]="brdFields.asumptions" name="asump"></textarea>
+
+        <label for="ref"><b>Reference</b></label>
+        <textarea maxlenght=250 placeholder=" Reference" [(ngModel)]="brdFields.ref" name="ref"></textarea>
+
+        <label for="app"><b>Appendix</b></label>
+        <textarea maxlenght=250 placeholder=" Appendix" [(ngModel)]="brdFields.app" name="app"></textarea>
+
+        <label for="rev"><b>Revision History</b></label>
+        <textarea maxlenght=250 placeholder=" Revision History" [(ngModel)]="brdFields.rev"  name="rev"></textarea>
+
+    </div>
+    <div style="background-color:#f1f1f1">
+        <table>
+          <tr>
+            <td width=300><input class="btn btn-dark" type="reset"></td>
+            <td width=300><button class="btn btn-dark" type="button" routerLink="/project">Previous</button></td>
+            <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage()"  routerLink="/preview">Preview</button></td>
+    
+          </tr>
+        </table>
+      </div>
+</form>

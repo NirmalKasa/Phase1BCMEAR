@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -6,11 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  phase:any;
+  
+  selection : any;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
+
+  navigate(){
+
+    if(this.selection=="BRD")
+    {
+      this.router.navigate(['/brd']);
+    }
+    
+
+  }
+
 
 }
