@@ -31,7 +31,7 @@ export class PreviewComponent implements OnInit {
     this.fileName = this.clientFields.name + '_' + this.brdFields.module + '_BRD.pdf';
     let doc = new jsPDF();
     doc.addHTML(this.pdfTable.nativeElement, function () {
-      doc.save(this.fileName);
+      doc.save("BRD.pdf");
     });
 
 
