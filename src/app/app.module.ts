@@ -33,6 +33,7 @@ import { TsdDocsComponent } from './tsd-docs/tsd-docs.component';
 import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
+import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
     TsdDocsComponent,
     RtmDocsComponent,
     TestDocsComponent,
-    ForgotPwdComponent
+    ForgotPwdComponent,
+    ClientdetailsComponent
     
   ],
   imports: [

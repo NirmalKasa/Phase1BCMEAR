@@ -21,6 +21,7 @@ import { FsdDocsComponent } from './fsd-docs/fsd-docs.component';
 import { TsdDocsComponent } from './tsd-docs/tsd-docs.component';
 import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
+import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
 
 
 
@@ -46,7 +47,8 @@ const routes: Routes = [
   {path:'tsddocs', component:TsdDocsComponent},
   {path:'rtmdocs', component:RtmDocsComponent},
   {path:'testdocs', component:TestDocsComponent},
-  {path:'forgotpwd', component:ForgotpwdComponent}
+  {path:'forgotpwd', component:ForgotpwdComponent},
+  {path:'clientdetails', component:ClientdetailsComponent}
 
 ];
 

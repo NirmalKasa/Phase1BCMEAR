@@ -7,6 +7,7 @@
         <h3>Business Requirements Document  <br> 
             (Functional Requirements Only)<br><br>
             {{clientFields.name}} - {{brdFields.module}}</h3>
+            <img    width="900"  height="600"  alt="EY Logo"    src="./assets/EYLOGO.jpg" /><br><br><br><br><br><br>
         <b>Document Revision History</b><br>
         <table class="prev">
             <tr class="prev">
@@ -19,37 +20,52 @@
             </tr>
             <tr>
                 <td class="prev">1</td>
-                <td class="prev"></td>
+                <td class="prev">{{todayDate | date:'shortDate'}}</td>
                 <td class="prev">Admin</td>
                 <td class="prev"></td>
                 <td class="prev"></td>
                 <td class="prev">{{brdFields.rev}}</td>
             </tr>
-        </table><br><br>
-        <b>Introduction</b><br><br>{{brdFields.intro}}<br><br>
-        <b>Purpose of the Document</b><br><br>{{brdFields.purpose}}<br><br>{{brdFields.doc}}<br><br>
-        <b>Intended Audience</b><br><br>The intended audience for this document is the users of the proposed system.<br><br>
-        <b>Project Background</b><br><br>{{brdFields.overview}}<br><br>{{brdFields.bkg}}<br><br>
-        <b>Business Goals/ Objectives</b><br><br>{{brdFields.obj}}<br><br>
-        <b>Business Process flows</b><br><br>{{brdFields.workflow}}<br><br>
-        <b>Existing business process</b><br><br>{{brdFields.current}}<br><br>
-        <b>Proposed business process</b><br><br>{{brdFields.expected}}<br><br>{{brdFields.impact}}<br><br>
-        <b>Key Assumptions</b><br><br>{{brdFields.asumptions}}<br><br>
-        <b>Project Scope</b><br><br>{{brdFields.inScope}}<br><br>{{brdFields.report}}<br><br>{{brdFields.outScope}}<br><br>
-        <b>Business Requirements</b><br><br>
+        </table><br><br><br><br><br><br>
+        <div class="container">
+        <div><b><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table of Contents</h5></b></div>
+        <table>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Introduction</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1 Purpose of the Document</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2 Intended Audience</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3 Project Background</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4 Business Goals/ Objectives</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5 Business Process flows	 </b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6 Key Assumptions		     </b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Project Scope</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Business Requirements</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. User Roles/Permission requirements</b></tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Risks</b>	</tr>
+            <tr><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Appendix</b></tr>
+        </table>
+    </div><br><br><br><br><br><br><br><br><br>
+        <b>1. Introduction</b><br><br>{{brdFields.intro}}<br><br>
+        <b>1.1 Purpose of the Document</b><br><br>{{brdFields.purpose}}<br><br>{{brdFields.doc}}<br><br>
+        <b>1.2 Intended Audience</b><br><br>The intended audience for this document is the users of the proposed system.<br><br>
+        <b>1.3 Project Background</b><br><br>{{brdFields.overview}}<br><br>{{brdFields.bkg}}<br><br>
+        <b>1.4 Business Goals/ Objectives</b><br><br>{{brdFields.obj}}<br><br>
+        <b>1.5 Business Process flows</b><br><br>{{brdFields.workflow}}<br><br>
+        <b>1.5.1 Existing business process</b><br><br>{{brdFields.current}}<br><br>
+        <b>1.5.2 Proposed business process</b><br><br>{{brdFields.expected}}<br><br>{{brdFields.impact}}<br><br>
+        <b>1.6 Key Assumptions</b><br><br>{{brdFields.asumptions}}<br><br>
+        <b>2. Project Scope</b><br><br>{{brdFields.inScope}}<br><br>{{brdFields.report}}<br><br>{{brdFields.outScope}}<br><br>
+        <b>3. Business Requirements</b><br><br>
         <table class="prev">
             <tr class="prev">
                 <th class="prev">ID</th>
-                <th class="prev">Requirement</th>
-                <th class="prev">Description</th>
+                <th class="prev">Req Description</th>
             </tr>
             <tr class="prev">
                 <td class="prev">1</td>
-                <td class="prev"></td>
                 <td class="prev">{{brdFields.funcreq}}</td>
             </tr>
         </table><br><br>
-        <b>User Roles/Permission requirements</b><br><br>EX: User roles and permission requirements are consistent are as mentioned below.
+        <b>4. User Roles/Permission requirements</b><br><br>EX: User roles and permission requirements are consistent are as mentioned below.
         Defined roles are<br>•	Administrator<br> •	Investigator<br>Access permissions to the integrated system are:<br>
         <table class="prev">
             <tr class="prev">
@@ -65,14 +81,14 @@
                 <td class="prev">Yes</td>
             </tr>   	  
     </table><br><br>
-    <b>Risks</b><br><br>These are the identified risk points which can have undesirable influence on project execution.<br>
+    <b>5. Risks</b><br><br>These are the identified risk points which can have undesirable influence on project execution.<br>
     Ex: <br>
     •	Incomplete/missing  business processes documentation <br>
     •	Accessibility to existing  system, technical documentation and associated data <br>
     •	Data privacy issues <br>
     •	Sign-off delays <br>
-    •	Delay in getting SOW approval for additional enhancement work might prevent implementation of the complete workflow. <br>
-    <b>Appendix</b><br><br>{{brdFields.app}}<br><br>{{brdFields.ref}}<br><br>{{brdFields.acr}}<br><br>{{brdFields.related}}<br>
+    •	Delay in getting SOW approval for additional enhancement work might prevent implementation of the complete workflow. <br><br>
+    <b>6. Appendix</b><br><br>{{brdFields.app}}<br><br>{{brdFields.ref}}<br><br>{{brdFields.acr}}<br><br><img *ngIf="brdFields.related" [src]="brdFields.related" class="img-thumbnail"><br>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-
+/* 
 .createfol {
     
     position: absolute; left: 0;
@@ -25,4 +25,44 @@
   h2{
     margin-top: 100px;
   }
-  
+   */
+
+   
+
+
+   form {
+    border: 3px solid #f1f1f1;
+    margin-top: 30px;
+}
+
+input {
+
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.radio {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+}
+
+.analysis,
+.development,
+.testing {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+}
+td{
+    text-align: center;
+}
+
+h3{
+margin-top: 100px;
+}

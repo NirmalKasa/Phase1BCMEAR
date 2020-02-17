@@ -1,19 +1,53 @@
 
 <app-header></app-header>
-
+<h3>Bank Clients</h3>
 <form >
-<div><h2 float="center">Bank Clients</h2></div>
+<div class="containder">
 
-<div class ="createfol">
+<mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
 
-<mat-icon>create_new_folder</mat-icon> <button type="submit" routerLink="/client">Create new client</button>
+<mat-radio-button  name="client" value="ABC" #ABC>ABC Bank   </mat-radio-button><br><br><br>
+<div *ngIf ="ABC.checked">
+
+  <table>
+    <tr>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+    </tr>
+</table><br><br><br>
+          
+</div>
+<mat-radio-button  name="client" value="XYZ" #XYZ>XYZ Bank   </mat-radio-button><br><br><br>
+<div *ngIf ="XYZ.checked">
+
+  <table>
+    <tr>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+    </tr>
+</table><br><br><br>
+          
+</div>
+<mat-radio-button  name="client" value="DEF" #DEF>DEF Bank   </mat-radio-button><br><br><br>
+<div *ngIf ="DEF.checked">
+
+  <table>
+    <tr>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
+        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+    </tr>
+</table><br><br><br>
+
+</div>
 
 
 
 </div>
 
 
-<mat-sidenav-container class="tp-container ">
+
+
+<!-- <mat-sidenav-container class="tp-container ">
   <mat-sidenav #sidenav mode="side" position="end">
     <p>BANK DETAILS
     </p><br>
@@ -29,5 +63,5 @@
 
   
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 </form>

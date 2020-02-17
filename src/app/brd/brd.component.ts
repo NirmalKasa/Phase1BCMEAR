@@ -27,7 +27,7 @@ export class BrdFields {
   purpose :string;
   proj : string;
   doc : string;
-  related : any;
+  related : string;
   acr : string;
   overview : string;
   obj : string;
