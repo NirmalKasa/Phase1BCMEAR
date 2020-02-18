@@ -34,7 +34,7 @@ export class PreviewComponent implements OnInit {
     let doc = new jsPDF();
     
     doc.addHTML(this.pdfTable.nativeElement, function () {
-      doc.save('BOFA_Client_BRD.pdf');
+      doc.save('BOFA_Changes for Interest Calculation_BRD.pdf');
     });
 
   }
