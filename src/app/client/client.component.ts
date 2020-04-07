@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientServices } from '../shared/client.service';
+
 
 
 @Component({
@@ -9,22 +11,24 @@ import { Component, OnInit } from '@angular/core';
 export class ClientComponent implements OnInit {
 
   clientFields = new ClientFields();
-  
 
-  
 
-  constructor() {
+  constructor(private clientServices: ClientServices) {
    }
 
   ngOnInit() {
   }
 
   updateSessionStorage(){
-   
-    sessionStorage.setItem('clientFields', JSON.stringify(this.clientFields)); 
+
+    sessionStorage.setItem('clientFields', JSON.stringify(this.clientFields));
   }
 
-  
+  saveClientDetails(){
+    console.log("client details=="+ JSON.stringify(this.clientFields));
+    this.clientServices.saveClientDetails(this.clientFields);
+    this.updateSessionStorage();
+  }
 
 }
 export class ClientFields {
@@ -38,6 +42,4 @@ export class ClientFields {
   partner : string;
   manager : string;
   remarks : any;
-
-
 }

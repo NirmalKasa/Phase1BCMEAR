@@ -6,7 +6,7 @@
 
 <mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
 
-<mat-radio-button  name="client" value="ABC" #ABC>ABC Bank   </mat-radio-button><br><br><br>
+<!-- <mat-radio-button  name="client" value="ABC" #ABC>ABC Bank   </mat-radio-button><br><br><br>
 <div *ngIf ="ABC.checked">
 
   <table>
@@ -15,7 +15,7 @@
         <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
     </tr>
 </table><br><br><br>
-          
+
 </div>
 <mat-radio-button  name="client" value="XYZ" #XYZ>XYZ Bank   </mat-radio-button><br><br><br>
 <div *ngIf ="XYZ.checked">
@@ -26,7 +26,7 @@
         <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
     </tr>
 </table><br><br><br>
-          
+
 </div>
 <mat-radio-button  name="client" value="DEF" #DEF>DEF Bank   </mat-radio-button><br><br><br>
 <div *ngIf ="DEF.checked">
@@ -38,30 +38,24 @@
     </tr>
 </table><br><br><br>
 
-</div>
-
-
+</div> -->
 
 </div>
+<div *ngIf="clientsList &&  clientsList.length > 0">
+      <div *ngFor="let client of clientsList; let i = index">
 
+            <mat-radio-button  [value]="client.name"  (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button><br><br><br>
+            <div *ngIf="clnt.checked">
+              <table>
+                <tr>
+                    <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
+                    <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]" >Client Details</button></td>
+                    <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+                </tr>
+            </table><br><br><br>
 
+      </div>
+</div>
+</div>
 
-
-<!-- <mat-sidenav-container class="tp-container ">
-  <mat-sidenav #sidenav mode="side" position="end">
-    <p>BANK DETAILS
-    </p><br>
-    <button type="button" routerLink="/docrepo">Doc Repo</button>
-  </mat-sidenav>
-
-  <mat-sidenav-content class ="tp-section">
-    
-    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">ABC</button></p>
-    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">DEF</button></p>
-    <p><mat-icon>folder</mat-icon> <button mat-button (click)="sidenav.toggle()">XYZ</button></p>
-    
-
-  
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
 </form>

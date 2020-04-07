@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ClientFields } from '../client/client.component';
+import { DocumentService } from '../shared/document.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -13,25 +14,28 @@ export class DocumentComponent implements OnInit {
 
   clientFields = new ClientFields();
 
-  constructor() { }
+  constructor(private documentService: DocumentService) { }
 
   ngOnInit() {
   }
 
   generatePdf(){
-    
+
     const documentDefinition = this.getDocumentDefinition();
     pdfMake.createPdf(documentDefinition).download();
+    console.log("savign the file from component");
+    this.documentService.saveClientDocument(pdfMake.createPdf(documentDefinition).getBlob(),"BRD","TCS");
+    console.log("savign the file from component end");
    }
 
    getDocumentDefinition() {
       this.clientFields = JSON.parse(sessionStorage.getItem('clientFields'));
       console.log("rahul" + this.clientFields);
-    
-    
+
+
     return {
       content: [
-        { 
+        {
           text: 'BUSINESS REQUIREMENT DOCUMENT (BRD)',
           bold: true,
           fontSize: 20,
@@ -41,10 +45,10 @@ export class DocumentComponent implements OnInit {
         {
           columns: [
             [{
-              
+
               text: 'Client Name : ' +this.clientFields.name,
               bold: true
-              
+
             },
           {
               text: 'Engagement Name : '+ this.clientFields.engagement

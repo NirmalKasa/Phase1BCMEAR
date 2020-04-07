@@ -1,16 +1,25 @@
 <app-header></app-header>
-<h2>ABC Bank</h2>
+<h2>
+  {{clientFields.name}}
+</h2>
 <form>
     <h4>BRD Documents</h4><br>
     <div>
-        <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br> 
+        <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br>
     </div>
-     
-    
-    <div class="container">
-    <div class="docs"><a href="#" >ABC_Customer_BRD_V0.1.pdf</a><mat-icon vertical-align="right">edit</mat-icon><mat-icon>delete</mat-icon></div>
-    <div class="docs"><a href="#" >ABC_Customer_BRD_V0.2.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div>
-    <div class="docs"><a href="#" >ABC_Customer_BRD_V0.3.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div><br><br>
+
+
+    <div class="container" *ngFor="let docs of brdDocs; let i= index">
+      <table width="400">
+        <tr>
+          <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
+          <td> <mat-icon vertical-align="center" (click)="onSelect(i)" style="cursor: pointer;">edit</mat-icon> </td>
+          <td> <mat-icon style="cursor: pointer;">delete</mat-icon></td>
+        </tr>
+      </table>
+    <!-- <div class="docs"><a href="#" >{{docs.fileName}}</a><mat-icon vertical-align="center">edit</mat-icon><mat-icon>delete</mat-icon></div> -->
+    <!-- <div class="docs"><a href="#" >ABC_Customer_BRD_V0.2.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div>
+    <div class="docs"><a href="#" >ABC_Customer_BRD_V0.3.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div><br><br> -->
     </div>
     <div style="background-color:#f1f1f1">
         <table>
@@ -19,6 +28,6 @@
           </tr>
         </table>
       </div>
-   
-      
+
+
 </form>

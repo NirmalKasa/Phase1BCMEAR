@@ -5,7 +5,7 @@ import { FolderComponent } from './folder/folder.component';
 import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProjectComponent } from './project/project.component';
-import { DocumentComponent } from './document/document.component';
+
 import { SignupComponent } from './signup/signup.component';
 import { ChangepwdComponent } from './changepwd/changepwd.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
@@ -22,12 +22,15 @@ import { TsdDocsComponent } from './tsd-docs/tsd-docs.component';
 import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
+import { FolderResolverService } from './folder/folder.resolver.service';
+import { ClientDetailResolver } from './clientdetails/clientdetails.resolver';
+import { DocumentComponent } from './document/document.component';
 
 
 
 const routes: Routes = [
   { path: '', component: LogInComponent },
-  { path: 'folder', component: FolderComponent },
+  { path: 'folder', component: FolderComponent,resolve: { clntsInfo: FolderResolverService } },
   { path: 'client', component: ClientComponent},
   { path: 'docrepo', component: DashboardComponent},
   { path: 'project', component: ProjectComponent},
@@ -48,7 +51,7 @@ const routes: Routes = [
   {path:'rtmdocs', component:RtmDocsComponent},
   {path:'testdocs', component:TestDocsComponent},
   {path:'forgotpwd', component:ForgotpwdComponent},
-  {path:'clientdetails', component:ClientdetailsComponent}
+  {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver}}
 
 ];
 

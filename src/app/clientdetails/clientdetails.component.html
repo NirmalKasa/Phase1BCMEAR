@@ -1,13 +1,13 @@
 <app-header></app-header>
-<h3>ABC Bank</h3>
+<h3>{{clientInfo.name}}</h3>
 <form>
 <div class="container">
-    <b>Engagement Name :</b> BCM Administration<br><br><br>
-    <b>Engagement code :</b> 37743787<br><br><br>
-    <b>System :</b> CBS-FIS<br><br><br>
-    <b>Banking Vertical :</b> Retail<br><br><br>
-    <b>Project Methodology :</b> Agile<br><br><br>
-    <b>Engagement Partner :</b> XXX<br><br><br>
-    <b>Project Manager :</b> Mr.Brut<br><br><br>
+    <b>Engagement Name :</b>{{clientInfo.engagement}}<br><br><br>
+    <b>Engagement code :</b> {{clientInfo.code}}<br><br><br>
+    <b>System :</b> {{clientInfo.sys}}<br><br><br>
+    <b>Banking Vertical :</b> {{clientInfo.vertical}}<br><br><br>
+    <b>Project Methodology :</b> {{clientInfo.method}}<br><br><br>
+    <b>Engagement Partner :</b> {{clientInfo.partner}}<br><br><br>
+    <b>Project Manager :</b> {{clientInfo.manager}}<br><br><br>
 </div>
 </form>

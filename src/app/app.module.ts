@@ -34,6 +34,7 @@ import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails.component'
     TestDocsComponent,
     ForgotPwdComponent,
     ClientdetailsComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,8 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails.component'
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

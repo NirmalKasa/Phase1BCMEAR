@@ -5,61 +5,61 @@
     <div class="container">
 
          <label for="module"><b>BRD Name</b></label>
-        <input type="text" placeholder=" BRD Name" [(ngModel)]="brdFields.module" name="Module">
+        <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module">
 
         <label for="intro"><b>Introduction</b></label>
-        <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="brdFields.intro" name="Introduction"></textarea>
+        <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="brdFields.introduction" name="introduction"></textarea>
 
         <label for="purpose"><b>Purpose</b></label>
-        <textarea maxlenght=250 placeholder=" Purpose" [(ngModel)]="brdFields.purpose" name="Purpose"></textarea>
+        <textarea maxlenght=250 placeholder=" Purpose" [(ngModel)]="brdFields.purpose" name="purpose"></textarea>
 
         <label for="projectScope"><b>Project Scope</b></label>
-        <textarea maxlenght=250 placeholder=" Project Scope"  [(ngModel)]="brdFields.proj" name="ProjectScope"></textarea>
+        <textarea maxlenght=250 placeholder=" Project Scope"  [(ngModel)]="brdFields.projectScope" name="projectScope"></textarea>
 
         <label for="documentScope"><b>Document Scope</b></label>
-        <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="brdFields.doc" name="DocumentScope"></textarea>
+        <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="brdFields.documentScope" name="documentScope"></textarea>
 
         <label for="relatedDoc"><b>Related Documents</b></label>
-        <input type="file" [(ngModel)]="brdFields.related">
+        <input type="file" [(ngModel)]="brdFields.relatedFiles" name="relatedFiles">
 
         <label for="acr"><b>Acronyms and Definitions</b></label>
         <textarea maxlenght=250 placeholder=" Acronyms and Definitions"  [(ngModel)]="brdFields.acr" name="acr"></textarea>
 
         <label for="proj"><b>Project Overview</b></label>
-        <textarea maxlenght=250 placeholder=" Project Overview" [(ngModel)]="brdFields.overview" name="proj"></textarea>
+        <textarea maxlenght=250 placeholder=" Project Overview" [(ngModel)]="brdFields.projectOverview" name="projectOverview"></textarea>
 
         <label for="bus"><b>Business Objective</b></label>
-        <textarea maxlenght=250 placeholder=" Business Objective" [(ngModel)]="brdFields.obj" name="bus"></textarea>
+        <textarea maxlenght=250 placeholder=" Business Objective" [(ngModel)]="brdFields.businessObjective" name="businessObjective"></textarea>
 
         <label for="busbk"><b>Business Background</b></label>
-        <textarea maxlenght=250 placeholder=" Business Background" [(ngModel)]="brdFields.bkg" name="busbk"></textarea>
+        <textarea maxlenght=250 placeholder=" Business Background" [(ngModel)]="brdFields.businessBackground" name="businessBackground"></textarea>
 
         <label for="func"><b>Current/Existing Functionality</b></label>
-        <textarea maxlenght=250 placeholder=" Current/Existing Functionality" [(ngModel)]="brdFields.current"  name="func"></textarea>
-        
+        <textarea maxlenght=250 placeholder=" Current/Existing Functionality" [(ngModel)]="brdFields.currentFunc"  name="currentFunc"></textarea>
+
         <label for="efunc"><b>Expected/Proposed Functionality</b></label>
-        <textarea maxlenght=250 placeholder=" Expected/Proposed Functionality" [(ngModel)]="brdFields.expected" name="efunc"></textarea>
+        <textarea maxlenght=250 placeholder=" Expected/Proposed Functionality" [(ngModel)]="brdFields.expeFunc" name="expeFunc"></textarea>
 
         <label for="proc"><b>Process Workflow</b></label>
-        <textarea maxlenght=250 placeholder=" Process Workflow" [(ngModel)]="brdFields.workflow" name="proc"></textarea>
+        <textarea maxlenght=250 placeholder=" Process Workflow" [(ngModel)]="brdFields.workflow" name="workflow"></textarea>
 
         <label for="imp"><b>Impacted System (country specific if any)</b></label>
-        <textarea maxlenght=250 placeholder=" Impacted System (country specific if any)" [(ngModel)]="brdFields.impact" name="imp"></textarea>
-        
+        <textarea maxlenght=250 placeholder=" Impacted System (country specific if any)" [(ngModel)]="brdFields.impact" name="impact"></textarea>
+
         <label for="funreq"><b>Functional Requirements</b></label>
-        <textarea maxlenght=250 placeholder=" Functional Requirements"  [(ngModel)]="brdFields.funcreq" name="funreq"></textarea>
+        <textarea maxlenght=250 placeholder=" Functional Requirements"  [(ngModel)]="brdFields.funcreq" name="funcreq"></textarea>
 
         <label for="inscope"><b>In Scope</b></label>
-        <textarea maxlenght=250 placeholder=" InScope" [(ngModel)]="brdFields.inScope" name="inscope"></textarea>
+        <textarea maxlenght=250 placeholder=" InScope" [(ngModel)]="brdFields.inScope" name="inScope"></textarea>
 
         <label for="outscope"><b>Out Of Scope</b></label>
-        <textarea maxlenght=250 placeholder=" Out Of Scope" [(ngModel)]="brdFields.outScope" name="outscope"></textarea>
+        <textarea maxlenght=250 placeholder=" Out Of Scope" [(ngModel)]="brdFields.outScope" name="outScope"></textarea>
 
         <label for="reprot"><b>Reporting</b></label>
         <textarea maxlenght=250 placeholder=" Reporting" [(ngModel)]="brdFields.report"  name="report"></textarea>
-        
+
         <label for="asump"><b>Asumptions and Constraints</b></label>
-        <textarea maxlenght=250 placeholder=" Asumptions and Constraints" [(ngModel)]="brdFields.asumptions" name="asump"></textarea>
+        <textarea maxlenght=250 placeholder=" Asumptions and Constraints" [(ngModel)]="brdFields.asumptions" name="asumptions"></textarea>
 
         <label for="ref"><b>Reference</b></label>
         <textarea maxlenght=250 placeholder=" Reference" [(ngModel)]="brdFields.ref" name="ref"></textarea>
@@ -76,8 +76,9 @@
           <tr>
             <td width=300><input class="btn btn-dark" type="reset"></td>
             <td width=300><button class="btn btn-dark" type="button" routerLink="/project">Previous</button></td>
+            <td width=300><button class="btn btn-dark" type="button" (click)="saveBrdDocument(f)">Save</button></td>
             <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage()"  routerLink="/preview">Preview</button></td>
-    
+
           </tr>
         </table>
       </div>
