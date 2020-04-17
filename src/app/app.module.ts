@@ -35,6 +35,8 @@ import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+
 
 
 @NgModule({
@@ -82,7 +84,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    PDFExportModule
   ],
   providers: [],
   bootstrap: [AppComponent]
