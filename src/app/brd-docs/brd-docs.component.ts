@@ -27,12 +27,24 @@ export class BrdDocsComponent implements OnInit {
     console.log("selected file==>"+index);
     this.route.navigate(['brd'],{queryParams:{id:index}})
   }
+  editBrd(clientName,fileName){
+    this.route.navigate(['brd'],{queryParams:{fileName:fileName}})
+ }
 
-  downloadPdf(pdfId : string){
-    console.log(pdfId);
-    this.documentService.downloadPDFDocument(pdfId).subscribe(data=>{
-      console.log(data);
-      console.log("download succes");
-    })
+  deleteBrd(clientName,fileName){
+    this.documentService.deleteBrdDocument(clientName,fileName).subscribe(
+      response =>{
+        console.log(response)
+       // this.route.navigate(['docrepo'])
+       this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
+        this.documentService.clientsBrdDocs = data.brdDocs;
+        if(this.documentService.clientsBrdDocs != undefined ){
+          console.log("brd docs available");
+          this.brdDocs  = this.documentService.clientsBrdDocs;
+          this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);
+        }
+      })
+      }
+    )
   }
 }

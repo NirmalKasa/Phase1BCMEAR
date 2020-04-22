@@ -1,7 +1,8 @@
 <app-header></app-header>
 <h2>Document Preview</h2>
+
+<kendo-pdf-export #pdf margin="1cm">
 <div class="pdfTable" id="pdfTable" #pdfTable>
-<
     <div class="container">
 
         <h3>Business Requirements Document  <br>
@@ -91,12 +92,21 @@
     <b>6. Appendix</b><br><br>{{brdFields.app}}<br><br>{{brdFields.ref}}<br><br>{{brdFields.acr}}<br><br><img *ngIf="brdFields.relatedFiles" [src]="brdFields.relatedFiles" class="img-thumbnail"><br>
     </div>
 </div>
+</kendo-pdf-export>
+<div class="row"  *ngIf="showMsg">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+          <strong>File Saved Successfully</strong>
 
+      </p>
+    </div>
+  </div>
 <div class="bttn" style="background-color:#f1f1f1">
     <table >
       <tr>
         <td width=300><button class="btn btn-dark" type="button" routerLink="/brd">Previous</button></td>
-        <td width=300><button class="btn btn-dark" type="button" (click)="downloadAsPDF()" >Generate Document</button></td>
+        <td width=300><button class="btn btn-dark" kendo-button (click)="writeToPDF(pdf)">Save Document</button></td>
+        <td width=300><button class="btn btn-dark" kendo-button (click)="pdf.saveAs(fileName)">Generate Document</button></td>
         <td width=300><button class="btn btn-dark" type="button"  routerLink="/folder">Exit</button></td>
 
       </tr>

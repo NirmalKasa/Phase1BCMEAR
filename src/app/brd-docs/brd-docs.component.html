@@ -8,14 +8,13 @@
         <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br>
     </div>
 
-
+git s
     <div class="container" *ngFor="let docs of brdDocs; let i= index">
       <table width="400">
         <tr>
           <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
-          <td> <mat-icon vertical-align="center" (click)="onSelect(i)" style="cursor: pointer;">edit</mat-icon> </td>
-          <td> <mat-icon vertical-align="center" (click)="downloadPdf(docs.pdfId)" style="cursor: pointer;">Download</mat-icon> </td>
-          <td> <mat-icon style="cursor: pointer;">delete</mat-icon></td>
+          <td> <mat-icon vertical-align="center" (click)="editBrd(clientFields.name,docs.fileName)" style="cursor: pointer;">edit</mat-icon> </td>
+          <td> <mat-icon style="cursor: pointer;" type="button" (click)="deleteBrd(clientFields.name,docs.fileName)">delete</mat-icon></td>
         </tr>
       </table>
     <!-- <div class="docs"><a href="#" >{{docs.fileName}}</a><mat-icon vertical-align="center">edit</mat-icon><mat-icon>delete</mat-icon></div> -->

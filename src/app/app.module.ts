@@ -35,6 +35,10 @@ import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material';
+
 
 
 @NgModule({
@@ -82,9 +86,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    PDFExportModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

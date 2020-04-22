@@ -53,7 +53,7 @@ const routes: Routes = [
   {path:'forgotpwd', component:ForgotpwdComponent},
   {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver}}
 
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
