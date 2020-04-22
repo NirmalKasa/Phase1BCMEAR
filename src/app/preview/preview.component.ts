@@ -5,6 +5,8 @@ import * as jsPDF from 'jspdf';
 import { PreviewService } from './preview.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { LocalStorageService } from '../shared/localstorage.service';
+import * as html2canvas from 'html2canvas';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -20,12 +22,13 @@ export class PreviewComponent implements OnInit {
   todayDate : Date = new Date();
   version : number =1 ;
 
-  constructor(private previewService: PreviewService) { }
+  constructor(private previewService: PreviewService,private localStorageServices :LocalStorageService) { }
 
   ngOnInit() {
 
-    this.clientFields = JSON.parse(sessionStorage.getItem('clientFields'));
-    this.brdFields = JSON.parse(sessionStorage.getItem('brdFields'));
+
+    this.clientFields = JSON.parse(this.localStorageServices.getClientDetails());
+    this.brdFields = JSON.parse(this.localStorageServices.getBrdDocsDetails());
     this.fileName = this.clientFields.name + "_" + this.brdFields.module + "_BRD.pdf";
 
     this.fileName = "test_BRD.pdf";
@@ -39,6 +42,8 @@ export class PreviewComponent implements OnInit {
   public downloadAsPDF() {
     console.log('down '+this.fileName);
     let doc = new jsPDF();
+   // console.log(this.pdfTable.nativeElement);
+
 
    doc.addHTML(this.pdfTable.nativeElement, function () {
      // doc.save('BOFA_Changes for Interest Calculation_BRD.pdf');
@@ -48,8 +53,12 @@ export class PreviewComponent implements OnInit {
 
   generatePdf(){
        let base64Data : any;
-     //  const pdfContent: Element = document.getElementById('pdfTable');
-      const documentDefinition = { content: 'This is a sample BRD document.' };
+       let pdfContent;
+      //  html2canvas(document.getElementById('pdfTable')).then(function(canvas) {
+      //     pdfContent = canvas.toDataURL();
+      // });
+
+      const documentDefinition = { content: 'test' };
     pdfMake.createPdf(documentDefinition).open();
   const pdfDocGenerator= pdfMake.createPdf(documentDefinition);
   this.fileName =  this.clientFields.name+"_BRD_V"+ this.version+".pdf";
@@ -60,7 +69,7 @@ export class PreviewComponent implements OnInit {
    // blobData = data;
    base64Data = data;
 
-    this.previewService.saveClientDocument(base64Data,"BRD",this.clientFields.name,this.fileName,this.brdFields);
+   // this.previewService.saveClientDocument(base64Data,"BRD",this.clientFields.name,this.fileName,this.brdFields);
   });
 
    }

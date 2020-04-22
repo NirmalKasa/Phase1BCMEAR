@@ -7,6 +7,7 @@ import { BrdFields } from '../brd/brd.component';
 
 const clientSaveDocumentUrl= 'http://localhost:8000/files/save-client-files';
 const clientFetchDocumentUrl= 'http://localhost:8000/clientdetails/';
+const downloadPDFDocumentUrl= 'http://localhost:8000/files/download-pdf-file/';
 @Injectable({providedIn:"root"})
 export class DocumentService {
 
@@ -36,7 +37,7 @@ export class DocumentService {
   fetchClientDocuments(name : string): Observable<any>{
     console.log("fetching client docs");
  const params = new HttpParams()
-  .set('client_name', name)
+      .set('client_name', name)
 
     const headers = { 'Content-Type': 'application/json' }
    return  this.http.get<any>(clientFetchDocumentUrl+name, {params, headers})
@@ -46,6 +47,11 @@ export class DocumentService {
     //     return data;
     //   }
     // )
+  }
+
+  downloadPDFDocument(pdfId : string){
+    console.log("pdf Id="+pdfId);
+    return  this.http.get(downloadPDFDocumentUrl+pdfId)
   }
 }
 

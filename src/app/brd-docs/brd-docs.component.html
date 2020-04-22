@@ -14,6 +14,7 @@
         <tr>
           <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
           <td> <mat-icon vertical-align="center" (click)="onSelect(i)" style="cursor: pointer;">edit</mat-icon> </td>
+          <td> <mat-icon vertical-align="center" (click)="downloadPdf(docs.pdfId)" style="cursor: pointer;">Download</mat-icon> </td>
           <td> <mat-icon style="cursor: pointer;">delete</mat-icon></td>
         </tr>
       </table>

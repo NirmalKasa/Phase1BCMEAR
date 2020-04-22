@@ -27,4 +27,12 @@ export class BrdDocsComponent implements OnInit {
     console.log("selected file==>"+index);
     this.route.navigate(['brd'],{queryParams:{id:index}})
   }
+
+  downloadPdf(pdfId : string){
+    console.log(pdfId);
+    this.documentService.downloadPDFDocument(pdfId).subscribe(data=>{
+      console.log(data);
+      console.log("download succes");
+    })
+  }
 }
