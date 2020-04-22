@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientFields } from '../client/client.component';
 
-const clientSaveUrl= 'http://localhost:8000/clientdetails/save-client';
-const clientFetchUrl= 'http://localhost:8000/clientdetails/';
+const clientSaveUrl= 'http://localhost:8081/clientdetails/save-client';
+const clientFetchUrl= 'http://localhost:8081/clientdetails/';
 
 @Injectable({providedIn:'root'})
 export class ClientServices {

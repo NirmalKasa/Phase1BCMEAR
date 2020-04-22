@@ -3,10 +3,25 @@
 
 <form #f="ngForm">
     <div class="container">
-
-         <label for="module"><b>BRD Name</b></label>
-        <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module">
-
+    
+      <table>
+        <tr>
+          <label for="module"><b>BRD Name</b></label>
+        </tr>
+        <tr>
+     <td style="width: 100%;">
+        
+      <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module" [readonly]="isReadonly" style="width: 100%;">
+      </td>
+      <td style="width: 10%;">
+        <div *ngIf ="isReadonly">
+          <mat-icon vertical-align="center" (click)="open(mymodal)" style="cursor: pointer;">edit</mat-icon> 
+          <!-- <button type="button" class="btn btn-dark" (click)="open(mymodal)">Edit</button> -->
+        </div>
+      </td>
+      </tr>
+        </table>
+ 
         <label for="intro"><b>Introduction</b></label>
         <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="brdFields.introduction" name="introduction"></textarea>
 
@@ -76,10 +91,26 @@
           <tr>
             <td width=300><input class="btn btn-dark" type="reset"></td>
             <td width=300><button class="btn btn-dark" type="button" routerLink="/project">Previous</button></td>
-            <td width=300><button class="btn btn-dark" type="button" (click)="saveBrdDocument(f)">Save</button></td>
-            <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage()"  routerLink="/preview">Preview</button></td>
+            <!-- <td width=300><button class="btn btn-dark" type="button" (click)="saveBrdDocument(f)">Save</button></td> -->
+            <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage(f)">Preview</button></td>
 
           </tr>
         </table>
       </div>
+
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure, You want to edit module name?
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button> -->
+           <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </ng-template>
 </form>

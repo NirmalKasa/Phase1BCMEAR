@@ -4,7 +4,7 @@ import { BrdFields } from '../brd/brd.component';
 
 
 //const clientSaveDocumentUrl= 'http://localhost:8000/files/saveClientFiles';  // for testing
-const saveClientBrdWithPDfUrl ='http://localhost:8000/brd-docs/save-brd-pdf';
+const saveClientBrdWithPDfUrl ='http://localhost:8081/brd-docs/save-brd-pdf';
 @Injectable({providedIn:"root"})
 export class PreviewService {
 

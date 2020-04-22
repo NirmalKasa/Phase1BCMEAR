@@ -18,6 +18,7 @@ export class PreviewComponent implements OnInit {
   fileName: string;
   todayDate: Date = new Date();
   version: number = 1;
+  showMsg: boolean = false;
 
   constructor(private previewService: PreviewService) { }
 
@@ -25,11 +26,18 @@ export class PreviewComponent implements OnInit {
 
     this.clientFields = JSON.parse(sessionStorage.getItem('clientFields'));
     this.brdFields = JSON.parse(sessionStorage.getItem('brdFields'));
+    this.fileName = this.brdFields.fileName;
+    if(this.fileName){
+      var res = this.fileName.split('.', 2);
+      res = res[0].split('_', 5);
+      console.log(+res[4] + 1)
+      this.version = +res[4] + 1
+    }
   }
 
   public writeToPDF(pdfComponent: any): void {
     let base64: any
-    this.fileName = this.clientFields.name + "_BRD_V" + this.version + ".pdf";
+    this.fileName = this.clientFields.name + "_BRD_"+this.brdFields.module+"_V_" + this.version + ".pdf";
     pdfComponent.export().then((group: Group) => {
       return exportPDF(group);
     }).then((dataUri: string) => {
@@ -37,6 +45,7 @@ export class PreviewComponent implements OnInit {
       console.log(base64);
       this.version += 1;
       this.previewService.saveClientDocument(base64, "BRD", this.clientFields.name, this.fileName, this.brdFields);  
+      this.showMsg= true;
     });
   }
 }

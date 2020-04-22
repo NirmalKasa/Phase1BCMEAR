@@ -1,18 +1,22 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams,HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,throwError } from 'rxjs';
 import { ClientFields } from '../client/client.component';
 import { BrdFields } from '../brd/brd.component';
+import { Router } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
 
+const clientSaveDocumentUrl= 'http://localhost:8081/files/save-client-files';
+const clientFetchDocumentUrl= 'http://localhost:8081/clientdetails/';
+const deleteBrdDocumentUrl = 'http://localhost:8081/brd-docs/delete-brd';
+const getBrdDocumentUrl ='http://localhost:8081/brd-docs/getBrdDoc'
 
-const clientSaveDocumentUrl= 'http://localhost:8000/files/save-client-files';
-const clientFetchDocumentUrl= 'http://localhost:8000/clientdetails/';
 @Injectable({providedIn:"root"})
 export class DocumentService {
 
 
   clientsBrdDocs : BrdFields[];
-  constructor(private http: HttpClient){
+  constructor(private httpClient: HttpClient,private router:Router){
 
   }
 
@@ -24,7 +28,7 @@ export class DocumentService {
       doc_type:document_type,
     }
     const headers = { 'Content-Type': 'application/json' }
-     this.http.post(clientSaveDocumentUrl,
+     this.httpClient.post(clientSaveDocumentUrl,
       data, {headers}
       ).subscribe(data => {
         console.log(data);
@@ -39,7 +43,7 @@ export class DocumentService {
   .set('client_name', name)
 
     const headers = { 'Content-Type': 'application/json' }
-   return  this.http.get<any>(clientFetchDocumentUrl+name, {params, headers})
+   return  this.httpClient.get<any>(clientFetchDocumentUrl+name, {params, headers})
     // .subscribe(
     //   data => {
     //     console.log(data);
@@ -47,6 +51,17 @@ export class DocumentService {
     //   }
     // )
   }
+
+  deleteBrdDocument(clientName :string, fileName:string): Observable<any>{
+     return this.httpClient.delete(`${deleteBrdDocumentUrl}/${clientName}/${fileName}`);
+  }
+
+  getBrdDocument(clientName :string, fileName:string): Observable<any>{
+    return this.httpClient.get(`${getBrdDocumentUrl}/${clientName}/${fileName}`);
+ }
+
+
+
 }
 
 
