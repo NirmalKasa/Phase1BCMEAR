@@ -8,7 +8,6 @@ import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../shared/localstorage.service';
 import { DocumentService } from '../shared/document.service';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DomSanitizer } from '@angular/platform-browser';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -24,28 +23,24 @@ export class BrdComponent implements OnInit {
   fileName: string;
   version: number = 1
   selectedId: number
-  isDuplicateModule: boolean = false
   isReadonly = false
   closeResult: string;
   moduleName :string;
   formBrdFields = new BrdFields();
-  relatedFiles :string;
-  selectedFile: string;
+  fileToUpload: string;
+  isDuplicate = false
+  brdDocs : BrdFields[]
   constructor(private previewService: PreviewService, private router: ActivatedRoute,
     private route: Router,
     private store: LocalStorageService,
     private documentService: DocumentService,
-    private modalService: NgbModal,
-    private sanitizer: DomSanitizer) { }
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.clientFields = JSON.parse(this.store.getClientDetails());
+    this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
     if (this.router.snapshot.queryParams['fileName']) {
       this.fileName = this.router.snapshot.queryParamMap.get('fileName');
-      //  console.log("selected id==>"+ this.selectedId)
-      //  this.brdFields =this.store.getBrdDocItembyIndex(this.selectedId);
-      //  console.log(this.brdFields);
-      //  this.fileName=this.brdFields.fileName
       var res = this.fileName.split('.', 2);
       res = res[0].split('_', 5);
       console.log(+res[4] + 1)
@@ -63,28 +58,19 @@ export class BrdComponent implements OnInit {
     }
   }
 
-  // url: any= '';
-  // onFileChanged(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
   
-  //     reader.onload = (event) => {
-  //       this.url = (<FileReader>event.target).result;
-  //   }
-
-  // }
-  // }
   updateSessionStorage(form: NgForm) {
-    this.formBrdFields = form.value;
-     
+    this.formBrdFields = form.value; 
     ///this.relatedFiles = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedFile));
      if(this.formBrdFields.module === this.moduleName){
       //this.brdFields = form.value;
     }else{
       this.brdFields.fileName = "";
     }
-    //this.brdFields.relatedFiles = this.selectedFile;
     sessionStorage.setItem('brdFields', JSON.stringify(this.brdFields));
+    if(!this.isReadonly){
+      this.isDuplicateModule(this.formBrdFields.module)
+    }
     this.route.navigate(['preview'])
   }
 
@@ -111,7 +97,17 @@ export class BrdComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
+  isDuplicateModule(moduleName) {
+    this.brdDocs.some(brdDoc =>{
+      if(brdDoc.module === moduleName && moduleName !== this.moduleName){
+        this.isDuplicate = true;
+        return true
+      }else{
+        this.isDuplicate = false;
+      }
+    });
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -140,7 +136,6 @@ export class BrdComponent implements OnInit {
 
   }
 }
-
 
 export class BrdFields {
   module: string;

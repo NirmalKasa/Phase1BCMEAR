@@ -10,8 +10,14 @@
         </tr>
         <tr>
      <td style="width: 100%;">
-        
-      <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module" [readonly]="isReadonly" style="width: 100%;">
+        <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module" [readonly]="isReadonly" style="width: 100%;" (change)="isDuplicateModule(brdFields.module)">
+     <div *ngIf = "isDuplicate">
+      <div class="col-xs-12">
+        <p class="alert alert-danger">
+            <strong>Brd Name already exist.</strong>
+        </p>
+      </div>
+     </div>
       </td>
       <td style="width: 10%;">
         <div *ngIf ="isReadonly">
@@ -35,7 +41,8 @@
         <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="brdFields.documentScope" name="documentScope"></textarea>
 
         <label for="relatedDoc"><b>Related Documents</b></label>
-        <input type="file" [(ngModel)]="brdFields.relatedFiles" name="relatedFiles">
+        <input type="file" [(ngModel)]="brdFields.relatedFiles" name="relatedFiles" (change)="handleFileInput($event)">
+        
 
         <label for="acr"><b>Acronyms and Definitions</b></label>
         <textarea maxlenght=250 placeholder=" Acronyms and Definitions"  [(ngModel)]="brdFields.acr" name="acr"></textarea>
@@ -106,7 +113,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Are you sure, You want to edit module name?
+          Are you sure, You want to edit Brd Name?
         </div>
         <div class="modal-footer">
           <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button> -->
