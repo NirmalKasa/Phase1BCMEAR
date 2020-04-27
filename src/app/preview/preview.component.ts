@@ -5,6 +5,7 @@ import { PreviewService } from './preview.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { exportPDF, Group, pdf } from '@progress/kendo-drawing';
+import { LocalStorageService } from '../shared/localstorage.service';
 
 @Component({
   selector: 'app-preview',
@@ -20,11 +21,11 @@ export class PreviewComponent implements OnInit {
   version: number = 1;
   showMsg: boolean = false;
 
-  constructor(private previewService: PreviewService) { }
+  constructor(private previewService: PreviewService, private store :LocalStorageService) { }
 
   ngOnInit() {
 
-    this.clientFields = JSON.parse(sessionStorage.getItem('clientFields'));
+    this.clientFields = JSON.parse(this.store.getClientDetails());
     this.brdFields = JSON.parse(sessionStorage.getItem('brdFields'));
     this.fileName = this.brdFields.fileName;
     if(this.fileName){
