@@ -3,25 +3,25 @@
 
 <form #f="ngForm">
     <div class="container">
-    
+
       <table>
         <tr>
           <label for="module"><b>BRD Name</b></label>
         </tr>
         <tr>
      <td style="width: 100%;">
-        
+
       <input type="text" placeholder="BRD Name" [(ngModel)]="brdFields.module" name="module" [readonly]="isReadonly" style="width: 100%;">
       </td>
       <td style="width: 10%;">
         <div *ngIf ="isReadonly">
-          <mat-icon vertical-align="center" (click)="open(mymodal)" style="cursor: pointer;">edit</mat-icon> 
+          <mat-icon vertical-align="center" (click)="open(mymodal)" style="cursor: pointer;">edit</mat-icon>
           <!-- <button type="button" class="btn btn-dark" (click)="open(mymodal)">Edit</button> -->
         </div>
       </td>
       </tr>
         </table>
- 
+
         <label for="intro"><b>Introduction</b></label>
         <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="brdFields.introduction" name="introduction"></textarea>
 
@@ -35,7 +35,7 @@
         <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="brdFields.documentScope" name="documentScope"></textarea>
 
         <label for="relatedDoc"><b>Related Documents</b></label>
-        <input type="file" [(ngModel)]="brdFields.relatedFiles" name="relatedFiles">
+        <input type="file" [(ngModel)]="brdFields.relatedFiles" (change)="getFileContent($event)" name="relatedFiles">
 
         <label for="acr"><b>Acronyms and Definitions</b></label>
         <textarea maxlenght=250 placeholder=" Acronyms and Definitions"  [(ngModel)]="brdFields.acr" name="acr"></textarea>

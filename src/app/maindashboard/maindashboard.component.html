@@ -1,0 +1,62 @@
+
+<div *ngIf="isLoading">
+  <p> Loading ....</p>
+</div>
+<div>
+  <mat-accordion multi="false">
+    <mat-expansion-panel *ngFor="let d of clientsList;let i=index;">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        {{d.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <p style="margin-left: auto;">Client Info</p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="panel-content">
+        <div >
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="padding-left: 65px;">
+                  <a (click)="doNavigate('brddocs',i)"> BRD </a>
+            </li>
+            <li class="list-group-item" style="padding-left: 65px;">
+                   <a (click)="doNavigate('brddocs',i)">FSD</a>
+            </li>
+            <li class="list-group-item" style="padding-left: 65px;">
+              <a (click)="doNavigate('brddocs',i)"> Template </a>
+        </li>
+        <li class="list-group-item" style="padding-left: 65px;">
+               <a (click)="doNavigate('brddocs',i)">FRD</a>
+        </li>
+
+          </ul>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<!--
+<br/><br/>
+<mat-accordion displayMode="flat" multi class="mat-table" multi="false" (click)="mep.expanded = !mep.expanded">
+
+
+  <mat-expansion-panel #mep="matExpansionPanel"
+                       *ngFor="let d of clientsList">
+      <mat-expansion-panel-header>
+          <span class="mat-cell" (click)="mep.expanded = !mep.expanded">
+              <mat-icon class="icon" *ngIf="!mep.expanded">expand_more</mat-icon>
+              <mat-icon class="icon" *ngIf="mep.expanded">expand_less</mat-icon>
+          </span>
+          <span  class="mat-cell">{{d.name}}</span>
+      </mat-expansion-panel-header>
+      <div *ngFor="let item of listItems">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="padding-left: 65px;"><a href="#" routerLink="">{{item}}</a></li>
+      </ul>
+      </div>
+  </mat-expansion-panel>
+
+</mat-accordion> -->
+
+

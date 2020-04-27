@@ -5,7 +5,6 @@ import { PreviewService } from './preview.service';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { exportPDF, Group, pdf } from '@progress/kendo-drawing';
-import { LocalStorageService } from '../shared/localstorage.service';
 
 @Component({
   selector: 'app-preview',
@@ -21,7 +20,7 @@ export class PreviewComponent implements OnInit {
   version: number = 1;
   showMsg: boolean = false;
 
-  constructor(private previewService: PreviewService,private localStorageServices :LocalStorageService) { }
+  constructor(private previewService: PreviewService) { }
 
   ngOnInit() {
 
@@ -34,6 +33,7 @@ export class PreviewComponent implements OnInit {
       console.log(+res[4] + 1)
       this.version = +res[4] + 1
     }
+    console.log(this.fileName);
   }
 
   public writeToPDF(pdfComponent: any): void {

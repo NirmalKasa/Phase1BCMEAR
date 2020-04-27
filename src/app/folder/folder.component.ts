@@ -21,7 +21,7 @@ export class FolderComponent implements OnInit {
 
   selectedclient(index : number) {
     console.log("client selected ==>"+this.clientsList[index].name)
-    sessionStorage.setItem('clientFields', JSON.stringify(this.clientsList[index]));
+    //sessionStorage.setItem('clientFields', JSON.stringify(this.clientsList[index]));
     this.localStorageService.setClientDetails(this.clientsList[index]);
 
   }

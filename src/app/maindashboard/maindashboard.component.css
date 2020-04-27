@@ -1,0 +1,23 @@
+.md-dashboard {
+  margin-top: 100px;
+}
+/* Accordion with height 600px and panel content width of 400px each */
+.mat-accordion {
+  display: block;
+  transform-origin: top right ;
+  /*transform: rotate(-90deg) translateX(-600px);  rotate and position it; translateX value corresponds to panel height */
+  width: 400px; /* this will be the height of the accordion (inversed due to rotation) */
+  cursor: pointer;
+}
+
+.mat-expansion-panel {
+  max-height: 250px; /* this will be the width of the panel (inversed due to rotation) */
+}
+
+.panel-content {
+  transform-origin: top right;
+ /* transform: rotate(90deg);  rotate back */
+ /* margin-left: 100%;  position it */
+  height: 600px; /* real height of the content */
+  width: 400px; /* real width of the content */
+}

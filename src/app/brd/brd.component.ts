@@ -59,15 +59,29 @@ export class BrdComponent implements OnInit {
       )
       this.isReadonly = true;
     } else {
-      console.log("creating new BRD doc"); 
+      console.log("creating new BRD doc");
     }
+  }
+
+  getFileContent(event :any){
+    var selectedFile = event.target.files[0]
+    console.log(event);
+    var file = event.target.files[0]
+    let reader = new FileReader();
+    reader.addEventListener("load", function () {
+      var dataString = reader.result;
+   }, false);
+   reader.readAsDataURL(file);
+   console.log(reader);
+ //  reader.readAsArrayBuffer(file);
+
   }
 
   // url: any= '';
   // onFileChanged(event) {
   //   if (event.target.files && event.target.files[0]) {
   //     var reader = new FileReader();
-  
+
   //     reader.onload = (event) => {
   //       this.url = (<FileReader>event.target).result;
   //   }
@@ -76,7 +90,7 @@ export class BrdComponent implements OnInit {
   // }
   updateSessionStorage(form: NgForm) {
     this.formBrdFields = form.value;
-     
+
     ///this.relatedFiles = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedFile));
      if(this.formBrdFields.module === this.moduleName){
       //this.brdFields = form.value;
@@ -111,7 +125,7 @@ export class BrdComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

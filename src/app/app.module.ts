@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from "@angular/forms";
 
 
-import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule, MatFormFieldControl, } from '@angular/material';
+import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule, MatFormFieldControl, MatExpansionModule, } from '@angular/material';
 import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
@@ -38,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material';
+import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 
 
 
@@ -69,7 +70,8 @@ import { MatDialog } from '@angular/material';
     RtmDocsComponent,
     TestDocsComponent,
     ForgotPwdComponent,
-    ClientdetailsComponent
+    ClientdetailsComponent,
+    MaindashboardComponent
 
   ],
   imports: [
@@ -88,7 +90,8 @@ import { MatDialog } from '@angular/material';
     MatInputModule,
     HttpClientModule,
     PDFExportModule,
-    NgbModule
+    NgbModule,
+    MatExpansionModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent]

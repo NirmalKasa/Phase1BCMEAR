@@ -1,61 +1,35 @@
 
 <app-header></app-header>
-<h3>Bank Clients</h3>
-<form >
-<div class="containder">
 
-<mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
+<div class="row topalign">
+  <div class="col-md-4">
+    <!-- <h3><p>maindashboard links!</p></h3> -->
+    <app-maindashboard></app-maindashboard>
+  </div>
+  <div class="col-md-4" >
 
-<!-- <mat-radio-button  name="client" value="ABC" #ABC>ABC Bank   </mat-radio-button><br><br><br>
-<div *ngIf ="ABC.checked">
+      <h3>Bank Clients</h3>
+      <form >
+      <div class="containder">
 
-  <table>
-    <tr>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
-    </tr>
-</table><br><br><br>
-
-</div>
-<mat-radio-button  name="client" value="XYZ" #XYZ>XYZ Bank   </mat-radio-button><br><br><br>
-<div *ngIf ="XYZ.checked">
-
-  <table>
-    <tr>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
-    </tr>
-</table><br><br><br>
-
-</div>
-<mat-radio-button  name="client" value="DEF" #DEF>DEF Bank   </mat-radio-button><br><br><br>
-<div *ngIf ="DEF.checked">
-
-  <table>
-    <tr>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails">Client Details</button></td>
-        <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
-    </tr>
-</table><br><br><br>
-
-</div> -->
-
-</div>
-<div *ngIf="clientsList &&  clientsList.length > 0">
-      <div *ngFor="let client of clientsList; let i = index">
-
-            <mat-radio-button  [value]="client.name"  (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button><br><br><br>
-            <div *ngIf="clnt.checked">
-              <table>
-                <tr>
-                    <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
-                    <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]" >Client Details</button></td>
-                    <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
-                </tr>
-            </table><br><br><br>
-
+      <mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
       </div>
-</div>
-</div>
+      <div *ngIf="clientsList &&  clientsList.length > 0">
+            <div *ngFor="let client of clientsList; let i = index">
 
-</form>
+                  <mat-radio-button  [value]="client.name"  (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button><br><br><br>
+                  <div *ngIf="clnt.checked">
+                    <table>
+                      <tr>
+                          <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
+                          <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]" >Client Details</button></td>
+                          <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+                      </tr>
+                  </table><br><br><br>
+
+            </div>
+      </div>
+      </div>
+
+      </form>
+</div>

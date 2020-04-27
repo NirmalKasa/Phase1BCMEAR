@@ -25,11 +25,13 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails.component'
 import { FolderResolverService } from './folder/folder.resolver.service';
 import { ClientDetailResolver } from './clientdetails/clientdetails.resolver';
 import { DocumentComponent } from './document/document.component';
+import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 
 
 
 const routes: Routes = [
   { path: '', component: LogInComponent },
+  { path: 'maindashboard', component: MaindashboardComponent },
   { path: 'folder', component: FolderComponent,resolve: { clntsInfo: FolderResolverService } },
   { path: 'client', component: ClientComponent},
   { path: 'docrepo', component: DashboardComponent},

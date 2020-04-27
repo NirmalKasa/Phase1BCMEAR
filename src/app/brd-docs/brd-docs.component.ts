@@ -13,14 +13,16 @@ import { Router } from '@angular/router';
 export class BrdDocsComponent implements OnInit {
 
   brdDocs : BrdFields[]
-  clientFields : ClientFields
+  clientFields : ClientFields;
+  isLoading : boolean
   constructor(private documentService : DocumentService, private store : LocalStorageService,
     private route : Router) { }
 
   ngOnInit() {
      this.clientFields = JSON.parse(this.store.getClientDetails());
-    this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
-    console.log("in brd docs=="+this.brdDocs);
+     this.fetchClientDocuments()
+    // this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
+    // console.log("in brd docs=="+this.brdDocs);
   }
 
   onSelect(index : number){
@@ -46,5 +48,25 @@ export class BrdDocsComponent implements OnInit {
       })
       }
     )
+  }
+
+  fetchClientDocuments(){
+    this.isLoading = true
+    this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
+      console.log(data);
+      this.documentService.clientsBrdDocs = data.brdDocs;
+      this.brdDocs = data.brdDocs;
+      this.isLoading= false;
+      // not req to store in localstorage, added db calls instead.
+      if(this.documentService.clientsBrdDocs != undefined ){
+        console.log("set the client brd docs")
+        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
+      }
+      console.log( this.documentService.clientsBrdDocs )
+    },
+    error=> {
+        console.log("there is an error");
+        
+    })
   }
 }
