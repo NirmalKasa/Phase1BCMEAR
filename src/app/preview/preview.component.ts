@@ -34,11 +34,11 @@ export class PreviewComponent implements OnInit {
       this.version = +res[4] + 1
     }
     console.log(this.fileName);
+    this.fileName = this.clientFields.name + "_BRD_"+this.brdFields.module+"_V_" + this.version + ".pdf";
   }
 
   public writeToPDF(pdfComponent: any): void {
     let base64: any
-    this.fileName = this.clientFields.name + "_BRD_"+this.brdFields.module+"_V_" + this.version + ".pdf";
     pdfComponent.export().then((group: Group) => {
       return exportPDF(group);
     }).then((dataUri: string) => {

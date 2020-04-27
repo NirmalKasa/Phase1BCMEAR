@@ -3,6 +3,7 @@ import { ClientServices } from '../shared/client.service';
 import { ClientFields } from '../client/client.component';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../shared/localstorage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-maindashboard',
@@ -19,10 +20,10 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.isLoading= true;
-    this.subscription = setInterval(() => { 
-                     this.fetchClientListDetails(); 
-                }, 500);
-    
+    this.subscription = setInterval(() => {
+                     this.fetchClientListDetails();
+                }, 1000);
+
   }
   doNavigate(routeurl: string, index : number){
     console.log("client index="+index);
@@ -32,8 +33,9 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
 
   fetchClientListDetails(){
     this.clientsList = this.clientServices.clientsList
+
     this.isLoading= false;
-    console.log("data from client services=="+this.clientsList)
+
     this.clearSubscription();
   }
 
