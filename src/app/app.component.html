@@ -1,5 +1,13 @@
 
 
 <div class="contentt" role="main">
-
+    <div  class="row" >
+        <nav class="navbar navbar-light">
+            <ol class="nav nav-tabs" class="nav justify-content-start">
+                <li *ngFor="let item of currentOrderMappingUrls | keyvalue " >
+                    <a routerLink={{item.value[0]}} class="nav-link navbar-brand mb-0 h1" routerLinkActive><u>{{item.value[1]}}</u><b>></b> </a>
+                </li>
+            </ol>
+            </nav>
+      </div>
 <router-outlet></router-outlet>
