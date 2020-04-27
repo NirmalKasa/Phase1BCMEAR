@@ -87,6 +87,37 @@ export class BrdComponent implements OnInit {
   toggleReadOnly() {
    this.isReadonly = !this.isReadonly;
   }
+  url:any;
+  handleFileInput(event) {
+  // if (event.target.files && event.target.files[0]) {
+  //   var reader = new FileReader();
+
+  //   reader.onload = (event: ProgressEvent) => {
+  //     this.url = (<FileReader>event.target).result;
+  //     console.log("in handle fileinput :"+this.url);
+  //     this.sanitizer.bypassSecurityTrustUrl(this.url);
+  //   }
+  //   reader.readAsDataURL(event.target.files[0]);
+  // }
+  this.fileToUpload = event.target.files[0].name
+  var selectedFile = event.target.files[0]
+  console.log(event);
+  var file = event.target.files[0]
+  let reader = new FileReader();
+  reader.addEventListener("load", function () {
+    var dataString = reader.result;
+    //this.url = reader.result as string;
+    console.log(dataString);
+ }, false);
+   //this.sanitizer.bypassSecurityTrustUrl(file)
+  // this.sanitizer.bypassSecurityTrustResourceUrl(file);
+ // this.brdFields.relatedFiles = this.fileToUpload;
+//  this.sanitizer.bypassSecurityTrustResourceUrl(file)
+ reader.readAsDataURL(file);
+ console.log(reader);
+ 
+}
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -129,14 +160,13 @@ export class BrdComponent implements OnInit {
       // console.log(data);
       // blobData = data;
       base64Data = data;
-
       this.previewService.saveClientDocument(base64Data, "BRD", this.clientFields.name, this.fileName, this.brdFields);
       this.route.navigate(['docrepo'])
     });
 
   }
 }
-
+  
 export class BrdFields {
   module: string;
   introduction: string;
