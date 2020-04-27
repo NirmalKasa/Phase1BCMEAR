@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 
 <div class="row topalign">
@@ -6,30 +5,43 @@
     <!-- <h3><p>maindashboard links!</p></h3> -->
     <app-maindashboard></app-maindashboard>
   </div>
-  <div class="col-md-4" >
+  <div class="col-md-7">
 
-      <h3>Bank Clients</h3>
-      <form >
-      <div class="containder">
+    <table>
+      <tr>
+        <td width=500 class="client">
+          <h3>Bank Clients</h3>
+        </td>
+        <td width=1900>
+          <div class="search" class="searchBoxAlignment">Search
+            <input type="text" (blur)="searchClient($event)" placeholder="Search...">
+          </div>
+        </td>
+      </tr>
+    </table>
+    <form>
+      <div id="clientListSecID" class="containder clientListAlignment">
 
-      <mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
+        <mat-icon>create_new_folder</mat-icon> <a href="#" routerLink="/client">Create new client</a><br><br><br>
       </div>
-      <div *ngIf="clientsList &&  clientsList.length > 0">
-            <div *ngFor="let client of clientsList; let i = index">
+      <div id="clientListID" class="scrollbar" *ngIf="clientsList &&  clientsList.length > 0; else msg">
+        <div *ngFor="let client of clientsList; let i = index">
 
-                  <mat-radio-button  [value]="client.name"  (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button><br><br><br>
-                  <div *ngIf="clnt.checked">
-                    <table>
-                      <tr>
-                          <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
-                          <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]" >Client Details</button></td>
-                          <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
-                      </tr>
-                  </table><br><br><br>
+          <mat-radio-button [value]="client.name" (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button>
+          <br><br><br>
+          <div *ngIf="clnt.checked">
+            <table>
+              <tr>
+                <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
+                <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]">Client
+                    Details</button></td>
+                <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+              </tr>
+            </table><br><br><br>
 
-            </div>
+          </div>
+        </div>
       </div>
-      </div>
-
-      </form>
-</div>
+      <ng-template #msg><div style="text-align: center;font-weight: 500;">No Records found.</div></ng-template>
+    </form>
+  </div>

@@ -36,8 +36,6 @@
 }
 
 input {
-
-    padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -47,7 +45,6 @@ input {
 .radio {
     border: 1px solid #ccc;
     box-sizing: border-box;
-
 }
 
 .analysis,
@@ -66,3 +63,22 @@ td{
 h8{
 margin-top: 110px;
 }
+
+.scrollbar {
+  height: 300px;
+  margin-top: 20px;
+  width: 980px;
+  overflow-y: scroll;
+  min-height: 450px;
+}
+
+.client{
+  text-align: left;
+}
+
+.searchBoxAlignment{
+  text-align: right;
+}
+
+
+

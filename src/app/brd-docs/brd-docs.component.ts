@@ -4,6 +4,8 @@ import { ClientFields } from '../client/client.component';
 import { BrdFields } from '../brd/brd.component';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { Router } from '@angular/router';
+import { SearchService } from '../shared/search.service';
+
 
 @Component({
   selector: 'app-brd-docs',
@@ -16,7 +18,7 @@ export class BrdDocsComponent implements OnInit {
   clientFields : ClientFields;
   isLoading : boolean
   constructor(private documentService : DocumentService, private store : LocalStorageService,
-    private route : Router) { }
+    private route : Router, private searchService : SearchService) { }
 
   ngOnInit() {
      this.clientFields = JSON.parse(this.store.getClientDetails());
@@ -33,23 +35,47 @@ export class BrdDocsComponent implements OnInit {
     this.route.navigate(['brd'],{queryParams:{fileName:fileName}})
  }
 
-  deleteBrd(clientName,fileName){
-    this.documentService.deleteBrdDocument(clientName,fileName).subscribe(
-      response =>{
-        console.log(response)
-       // this.route.navigate(['docrepo'])
-       this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
-        this.documentService.clientsBrdDocs = data.brdDocs;
-        if(this.documentService.clientsBrdDocs != undefined ){
-          console.log("brd docs available");
-          this.brdDocs  = this.documentService.clientsBrdDocs;
-          this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);
-        }
-      })
-      }
-    )
-  }
+ deleteBrd(clientName,fileName){
+  this.documentService.deleteBrdDocument(clientName,fileName).subscribe(
+    response =>{
+      console.log(response)
+      this.fetchDocuments();
+    }
+  )
+}
 
+searchDocuments(event : any){
+  console.log(event.target.value);
+  if(event.target.value==null || event.target.value==""){
+    this.fetchDocuments();
+  } 
+  else{
+    this.fetchDocumentsUsingSearchCriteria(event)    
+  }
+     
+}
+
+fetchDocuments(){
+  this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
+    this.documentService.clientsBrdDocs = data.brdDocs;
+    if(this.documentService.clientsBrdDocs != undefined ){
+      console.log("brd docs available");
+      this.brdDocs  = this.documentService.clientsBrdDocs;
+      this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
+    }
+  })
+}
+
+fetchDocumentsUsingSearchCriteria(event : any){
+    this.searchService.retrieveDocumentSearchResults(event.target.value).subscribe( data => {
+    this.searchService.brdDocs = data;
+    if(this.searchService.brdDocs != undefined ){
+      console.log("brd docs available");
+      this.brdDocs  = this.searchService.brdDocs;
+      this.store.setBrdDocsDetails(this.searchService.brdDocs);  
+    }
+  })
+}
   fetchClientDocuments(){
     this.isLoading = true
     this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
@@ -69,4 +95,6 @@ export class BrdDocsComponent implements OnInit {
         
     })
   }
+
+
 }
