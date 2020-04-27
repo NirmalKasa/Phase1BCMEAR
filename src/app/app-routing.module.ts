@@ -23,9 +23,10 @@ import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
 import { FolderResolverService } from './folder/folder.resolver.service';
-import { ClientDetailResolver } from './clientdetails/clientdetails.resolver';
+import { ClientDetailResolver } from './clientdetails/clientdetails.resolver.service';
 import { DocumentComponent } from './document/document.component';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
+
 
 
 

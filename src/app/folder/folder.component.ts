@@ -32,7 +32,6 @@ export class FolderComponent implements OnInit {
         console.log(data);
         this.clientsList = data
         this.clientServices.clientsList= data;
-
       },
       error =>{
         console.log(error);

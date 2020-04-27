@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ClientServices } from '../shared/client.service';
 import { ClientFields } from '../client/client.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { Subscription } from 'rxjs';
 
@@ -15,11 +15,12 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
   clientsList : ClientFields[]
   subscription : any
   isLoading : boolean;
-  constructor(private clientServices: ClientServices, private route : Router,
+  constructor(private clientServices: ClientServices, private route : Router,private router : ActivatedRoute,
      private localStorageService : LocalStorageService) { }
 
   ngOnInit() {
     this.isLoading= true;
+   // this.clientsList = this.router.snapshot.data['clientsList']
     this.subscription = setInterval(() => {
                      this.fetchClientListDetails();
                 }, 1000);
@@ -33,7 +34,6 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
 
   fetchClientListDetails(){
     this.clientsList = this.clientServices.clientsList
-
     this.isLoading= false;
 
     this.clearSubscription();
