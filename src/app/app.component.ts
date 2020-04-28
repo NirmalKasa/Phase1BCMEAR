@@ -31,7 +31,7 @@ export class AppComponent {
     let entry: any;
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        if (event.url !== '/') {
+        if (event.url !== '/' && event.url.toString().length > 1) {
           console.log(event);
           this.currentMappingUrls.clear();
           for (entry of this.totalUrl.entries()) {
@@ -45,7 +45,7 @@ export class AppComponent {
 
         }
 
-        if (this.currentMappingUrls.size > 0) {
+        if (this.currentMappingUrls.size > 0 && event.url.length > 1) {
           this.currentOrderMappingUrls.clear();
           for (let newEntry of this.totalUrl.entries()) {
             if (event.url == newEntry[1][0]) {
@@ -56,14 +56,12 @@ export class AppComponent {
           }
           console.log(this.currentOrderMappingUrls);
 
-        }else{
+        } else {
           this.currentOrderMappingUrls.clear();
-          if (event.url !== '/') {
-          this.currentOrderMappingUrls.set(0, this.totalUrl.get(0));
+          if (event.url !== '/' && event.url.toString().length > 1) {
+            this.currentOrderMappingUrls.set(0, this.totalUrl.get(0));
           }
         }
-      
-
       }
     })
   }

@@ -1,19 +1,12 @@
 <app-header></app-header>
-<table>
-  <tr>
-    <td width=500>
-      <h2 class="clientNameStyle">
-        {{clientFields.name}}
-      </h2>
-    </td>
-    <td width=1150>
-      <div class="search searchBoxAlignment">Search
-        <input type="text" (blur)="searchDocuments($event)">
-      </div>
-    </td>
-  </tr>
-</table>
-<form id="DocumentSecID" style="width:1650px;">
+<div class="search">
+  <span class="fa fa-search"></span>
+  <input type="text" (blur)="searchDocuments($event)" placeholder="Search">
+</div>
+<h2 class="clientNameStyle">
+  {{clientFields.name}}
+</h2>
+<form id="DocumentSecID" class="brdDocAlign">
   <h4>BRD Documents</h4><br>
   <div>
     <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br>
@@ -35,12 +28,15 @@
       </table>
     </div>
   </div>
-  <ng-template #msg><div style="text-align: center;font-weight: 500;">No Records found.</div></ng-template>
+  <ng-template #msg>
+    <div style="text-align: center;font-weight: 500;">No Records found.</div>
+  </ng-template>
   <div style="background-color:#f1f1f1">
     <table>
 
       <tr>
-        <td width="500"><button type="button" class="btn btn-dark docRepoBtnStyl" routerLink="/docrepo">Document
+        <td width="100"><button type="button" class="btn btn-dark docRepoBtnStyl" style="margin-left:420px;"
+            routerLink="/docrepo">Document
             Repo</button></td>
       </tr>
     </table>

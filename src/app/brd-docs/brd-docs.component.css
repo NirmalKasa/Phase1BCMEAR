@@ -1,48 +1,88 @@
-  form {
-    border: 3px solid #f1f1f1;
-    margin-top: 30px;
-  }
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+form {
+  border: 3px solid #f1f1f1;
+  margin-top: 30px;
+}
 
-  .button{
-    display: flex;
-    padding: 0 16px;
-    max-width: 960px;
-  }
-  
-  .docs{
-    width: 100%;
-    margin: 8px 0;
-    display: list-item;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  td{ 
-    text-align:center;   
-  }
+.button {
+  display: flex;
+  padding: 0 16px;
+  max-width: 960px;
+}
 
-  .scrollbar {
-    height: 300px;
-    margin-top: 20px;
-    width: 1645px;
-    overflow-y: scroll;
-  }
-  
-  .force-overflow {
-    min-height: 450px;
-  }
+.docs {
+  width: 100%;
+  margin: 8px 0;
+  display: list-item;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-  .clientNameStyle{
-    text-align: left;
-    margin-top: 120px;
-  }
+td {
+  text-align: center;
+}
 
-  .searchBoxAlignment{
-    margin-top:100px;
-    text-align: right;
-  }
+.scrollbar {
+  height: 300px;
+  margin-top: 20px;
+  width: 1645px;
+  overflow-y: scroll;
+}
 
-  .docRepoBtnStyl{
-    margin-left: 700px; 
-    width: 150px;
-  }
- 
+.force-overflow {
+  min-height: 450px;
+}
+
+.clientNameStyle {
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 300px;
+}
+
+.searchBoxAlignment {
+  margin-top: 100px;
+  text-align: right;
+}
+
+.docRepoBtnStyl {
+  margin-left: 700px;
+  width: 150px;
+}
+
+body {
+  margin: 30px;
+}
+
+.brdDocAlign {
+  width: 1050px;
+  margin-left: 300px;
+}
+
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+  text-align: right;
+  margin-top: 55px;
+  margin-right: 8px;
+}
+
+.search input {
+  width: 250px;
+  height: 32px;
+  background: #fcfcfc;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15p;
+}
+
+.search input {
+  text-indent: 32px;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  padding-left: 1445px;
+}

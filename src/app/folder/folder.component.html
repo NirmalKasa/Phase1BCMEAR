@@ -1,24 +1,16 @@
 <app-header></app-header>
+<div class="search">
+  <span class="fa fa-search"></span>
+  <input type="text" (blur)="searchClient($event)" placeholder="Search">
+</div>
 
-<div class="row topalign">
-  <div class="col-md-4">
+<div class="row ">
+  <div class="col-md-2">
     <!-- <h3><p>maindashboard links!</p></h3> -->
-    <app-maindashboard></app-maindashboard>
+    <!-- <app-maindashboard></app-maindashboard> -->
   </div>
-  <div class="col-md-7">
-
-    <table>
-      <tr>
-        <td width=500 class="client">
-          <h3>Bank Clients</h3>
-        </td>
-        <td width=1900>
-          <div class="search" class="searchBoxAlignment">Search
-            <input type="text" (blur)="searchClient($event)" placeholder="Search...">
-          </div>
-        </td>
-      </tr>
-    </table>
+  <div class="col-md-7 clntDetails">
+    <h3>Bank Clients</h3>
     <form>
       <div id="clientListSecID" class="containder clientListAlignment">
 
@@ -42,6 +34,8 @@
           </div>
         </div>
       </div>
-      <ng-template #msg><div style="text-align: center;font-weight: 500;">No Records found.</div></ng-template>
+      <ng-template #msg>
+        <div style="text-align: center;font-weight: 500;">No Records found.</div>
+      </ng-template>
     </form>
   </div>

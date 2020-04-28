@@ -1,30 +1,20 @@
-<app-header-login></app-header-login>
-  
-  
-  <h3>Login </h3>
-  <form>
+<!-- <app-header-login></app-header-login> -->
+<h3>Login </h3>
+<form>
+  <div class="container" style="width: 530px;">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Username" name="uname" [(ngModel)]="username" required>
 
-
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Password" name="psw" [(ngModel)]="password" required>
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Username" name="uname" [(ngModel)]="username" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Password" name="psw" [(ngModel)]="password" required>
-      <div class="container">
-        <button type="reset" class="btn btn-danger ">Reset</button>
-        <button type="submit" (click)="checkLogin()" class="btn btn-success float-right">Login</button>
-        
-      </div>
+      <button type="reset" class="btn btn-danger ">Reset</button>
+      <button type="submit" (click)="checkLogin()" class="btn btn-success float-right">Login</button>
     </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <span class="psw"> <a href="#" routerLink="/signup">Sign Up</a></span>
-      <span class="psw"> <a href="#" routerLink="/changepwd">Reset password</a></span>
-      <span class="psw"> <a href="#" routerLink="/forgotpwd">Forgot password?</a></span>
-    </div>
-  </form>
- 
-
-
-
+  </div>
+  <div class="container" style="background-color:#f1f1f1;padding-left: 300px;">
+    <span class="psw"> <a href="#" routerLink="/signup">Sign Up</a></span>
+    <span class="psw"> <a href="#" routerLink="/changepwd">Reset password</a></span>
+    <span class="psw"> <a href="#" routerLink="/forgotpwd">Forgot password?</a></span>
+  </div>
+</form>

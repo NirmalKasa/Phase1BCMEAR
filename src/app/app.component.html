@@ -1,13 +1,23 @@
-
-
 <div class="contentt" role="main">
-    <div  class="row" >
-        <nav class="navbar navbar-light">
+    <div class="toolbar" role="banner">
+        <img width="80" alt="EY Logo" src="./assets/EY.PNG" />
+        <span>
+            <h1>EY Automated Requirement Framework</h1>
+        </span>
+        <!-- <div *ngIf="logoutRender()"> -->
+        <a routerLink="/">
+            <div class="logoutAlign">Logout</div>
+        </a>
+        <!-- </div> -->
+    </div><br><br>
+    <div class="row rowAlign">
+        <nav class="navbar navbar-light navBarAlign">
             <ol class="nav nav-tabs" class="nav justify-content-start">
-                <li *ngFor="let item of currentOrderMappingUrls | keyvalue " >
-                    <a routerLink={{item.value[0]}} class="nav-link navbar-brand mb-0 h1" routerLinkActive><u>{{item.value[1]}}</u><b>></b> </a>
+                <li *ngFor="let item of currentOrderMappingUrls | keyvalue ">
+                    <a routerLink={{item.value[0]}} class="nav-link" routerLinkActive><u>{{item.value[1]}}</u><b>></b>
+                    </a>
                 </li>
             </ol>
-            </nav>
-      </div>
-<router-outlet></router-outlet>
+        </nav>
+    </div>
+    <router-outlet></router-outlet>
