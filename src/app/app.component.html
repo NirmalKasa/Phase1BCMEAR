@@ -4,11 +4,11 @@
         <span>
             <h1>EY Automated Requirement Framework</h1>
         </span>
-        <!-- <div *ngIf="logoutRender()"> -->
-        <a routerLink="/">
+        <div  *ngIf="this.router.url !== '/'">
+        <a routerLink="/" >
             <div class="logoutAlign">Logout</div>
         </a>
-        <!-- </div> -->
+        </div>
     </div><br><br>
     <div class="row rowAlign">
         <nav class="navbar navbar-light navBarAlign">
