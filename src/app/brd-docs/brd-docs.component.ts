@@ -31,7 +31,7 @@ export class BrdDocsComponent implements OnInit {
     console.log("selected file==>"+index);
     this.route.navigate(['brd'],{queryParams:{id:index}})
   }
-  editBrd(clientName,fileName){
+  editBrd(fileName){
     this.route.navigate(['brd'],{queryParams:{fileName:fileName}})
  }
 

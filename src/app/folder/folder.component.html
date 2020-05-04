@@ -28,6 +28,7 @@
                 <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]">Client
                     Details</button></td>
                 <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+                <td width=200><button type="button" class="btn btn-dark" (click)="selectedclientForDelete(i)">Delete Client</button></td>
               </tr>
             </table><br><br><br>
 

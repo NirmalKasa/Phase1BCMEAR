@@ -41,5 +41,24 @@ export class ClientServices {
     return this.clientsList[id];
   }
 
+  public updateClientDetails(id  : String,clientfields: ClientFields){
+    console.log(JSON.stringify({clientfields}));
+    const headers = { 'Content-Type': 'application/json' }
+    let paramURL = clientFetchUrl+id;
+    console.log(paramURL + " const url");
+    this.http.put<ClientFields>(paramURL,
+      JSON.stringify(clientfields), {headers}
+       ).subscribe(data => {
+         console.log(data);
+        })
+  }
 
+  public deleteClient(id: String){
+    let paramURL = clientFetchUrl+id;
+    console.log(paramURL + " const url");
+    this.http.delete<ClientFields>(paramURL).subscribe(data => {
+         console.log(data);
+         this.fetchClientDetails();
+        })
+  }
 }

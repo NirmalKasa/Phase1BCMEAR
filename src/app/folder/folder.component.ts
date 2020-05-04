@@ -56,4 +56,13 @@ export class FolderComponent implements OnInit {
       }
     ) 
   }
+
+  selectedclientForDelete(index : number) {
+    console.log("client selected ==>"+this.clientsList[index].name)
+    const clientInfo = this.clientsList[index];
+    this.clientServices.deleteClient(clientInfo._id);
+    location.reload();
+   
+  }
+
 }

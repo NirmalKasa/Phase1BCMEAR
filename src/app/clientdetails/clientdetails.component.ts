@@ -11,47 +11,52 @@ import { LocalStorageService } from '../shared/localstorage.service';
 })
 export class ClientdetailsComponent implements OnInit {
 
-  id : number
+  id: number
   clientInfo: ClientFields
-  constructor(private route:ActivatedRoute,private clientService: ClientServices,private store: LocalStorageService) { }
+  constructor(private route: ActivatedRoute, private clientService: ClientServices, private store: LocalStorageService,
+    private _router : Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(
-      (params: Params) =>{
-       this.id=  +params['id']
-       this.displayClientInfo()
-      //  console.log("selected index= "+this.id);
-      //   this.clientInfo = this.clientService.getClientInfo(this.id);
-      //   console.log(this.clientInfo);
+      (params: Params) => {
+        this.id = +params['id']
+        this.displayClientInfo()
+        //  console.log("selected index= "+this.id);
+        //   this.clientInfo = this.clientService.getClientInfo(this.id);
+        //   console.log(this.clientInfo);
       }
     )
   }
 
-  displayClientInfo(){
+  displayClientInfo() {
 
-      if(this.clientService.clientsList &&  this.clientService.clientsList.length > 0){
-        console.log("client list is not null");
-        this.clientInfo = this.clientService.getClientInfo(this.id);
-       console.log(this.clientInfo);
-      }
-      else{
-        console.log("fetching client details");
-        this.clientService.getClientDetails().subscribe(
-          data => {
-            console.log(data);
-            this.clientService.clientsList= data;
-            this.clientInfo = this.clientService.clientsList[this.id];
-            console.log(this.clientInfo);
-          },
-          error =>{
-            console.log(error);
-          }
-        )
-      }
+    if (this.clientService.clientsList && this.clientService.clientsList.length > 0) {
+      console.log("client list is not null");
+      this.clientInfo = this.clientService.getClientInfo(this.id);
+      console.log(this.clientInfo);
+    }
+    else {
+      console.log("fetching client details");
+      this.clientService.getClientDetails().subscribe(
+        data => {
+          console.log(data);
+          this.clientService.clientsList = data;
+          this.clientInfo = this.clientService.clientsList[this.id];
+          console.log(this.clientInfo);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
 
-     // sessionStorage.setItem('clientFields', JSON.stringify(this.clientInfo));
-      this.store.setClientDetails(this.clientInfo)
-     console.log(JSON.parse(this.store.getClientDetails()));
-      }
+    // sessionStorage.setItem('clientFields', JSON.stringify(this.clientInfo));
+    this.store.setClientDetails(this.clientInfo)
+    console.log(JSON.parse(this.store.getClientDetails()));
+  }
 
+  editClientDetails(){
+    console.log(this.clientInfo._id);
+    this._router.navigate(['/client', this.id]);
+  }
 }
