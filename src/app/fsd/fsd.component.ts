@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, FormArray, FormControl, ValidatorFn } from "@angular/forms";
+import { Country} from './country';
 import { BrdFields } from '../brd/brd.component';
 import {MatTableModule} from '@angular/material/table';
 
