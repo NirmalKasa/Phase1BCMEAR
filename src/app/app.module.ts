@@ -38,19 +38,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material';
-import { AuthService, FacebookLoginProvider,GoogleLoginProvider, SocialUser, AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { FacebookLoginProvider,GoogleLoginProvider, SocialUser, AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import {MatTableModule} from '@angular/material/table';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 
- const config = new AuthServiceConfig([
-   {
-     id: GoogleLoginProvider.PROVIDER_ID,
-     provider: new GoogleLoginProvider("652072882206-ma98fm53k7s6kk0s6k438eallhcu8016.apps.googleusercontent.com")
-   }
- ]);
- export function provideConfig() {
-   return config;
- }
+
 
 @NgModule({
   declarations: [
@@ -104,13 +96,13 @@ import { MaindashboardComponent } from './maindashboard/maindashboard.component'
     PDFExportModule,
     NgbModule,
     SocialLoginModule,
-    MatTableModule
+    MatTableModule,
     MatExpansionModule
   ],
   providers: [MatDialog,
     {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
+      provide: AuthServiceConfig
+      
    }
 ],
   bootstrap: [AppComponent]
