@@ -21,8 +21,9 @@
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=320><mat-radio-button name="analysisphase" value="BRD">Business Requirement (BRD)</mat-radio-button>
-                    </td>
+                    <td width=320><mat-radio-button name="analysisphase" value="BRD" (click)="onSelection('/brd')">Business Requirement (BRD)</mat-radio-button></td>
+                    <td width=320><mat-radio-button name="analysisphase" value="FSD"  (click)="onSelection('/fsd')">Functional Specification (FSD)</mat-radio-button></td>
+                    
                 </tr>
             </table>
         </div>
@@ -31,7 +32,7 @@
             <table>
                 <tr>
                     
-                    <td width=320><mat-radio-button name="devphase" value="FSD"  >Functional Specification (FSD)</mat-radio-button></td>
+                    
                     <td width=300><mat-radio-button name="devphase" value="TSD" >Technical Specification (TSD) </mat-radio-button></td>
                 </tr>
             </table>
@@ -57,7 +58,7 @@
             <tr>
                 <td width=300><button type="button" class="btn btn-dark" routerLink="/client">Previous</button></td>
                 <td width=300><button type="button" class="btn btn-dark" routerLink="/folder">Cancel</button></td>
-                <td width=300><button type="button"  class="btn btn-dark" routerLink="/brd">Next</button></td>
+                <td width=300><button type="button"  class="btn btn-dark"  (click)="navigate()">Next</button></td>
             </tr>
         </table>
         </div>

@@ -1,2 +1,126 @@
 <app-header></app-header>
-<h2>Phase 2 implementation</h2>
+<h3>Functional Requirement</h3>
+
+<form #f="ngForm">
+    <div class="container">
+
+         <label for="module"><b>FSD Name</b></label>
+        <input type="text" placeholder=" FSD Name" [(ngModel)]="frdFields.module" name="module">
+
+        <label for="intro"><b>Introduction</b></label>
+        <textarea maxlenght=250 placeholder=" Introduction" [(ngModel)]="frdFields.introduction" name="Introduction"></textarea>
+
+        <label for="purpose"><b>Purpose</b></label>
+        <textarea maxlenght=250 placeholder=" Purpose" [(ngModel)]="frdFields.purpose" name="Purpose"></textarea>
+
+        <label for="projectScope"><b>Project Scope</b></label>
+        <textarea maxlenght=250 placeholder=" Project Scope"  [(ngModel)]="frdFields.projectScope" name="ProjectScope"></textarea>
+
+        <label for="documentScope"><b>Document Scope</b></label>
+        <textarea maxlenght=250 placeholder=" Document Scope" [(ngModel)]="frdFields.documentScope" name="DocumentScope"></textarea>
+
+        <label for="relatedDoc"><b>Related Documents</b></label>
+        <input type="file" [(ngModel)]="frdFields.relatedFiles">
+
+        <label for="acr"><b>Acronyms and Definitions</b></label>
+        <textarea maxlenght=250 placeholder=" Acronyms and Definitions"  [(ngModel)]="frdFields.acr" name="acr"></textarea>
+       
+        <label for="riskassumption"><b>Risks & Assumptions</b></label>
+        <textarea maxlenght=250 placeholder=" Risks & Assumptions"  [(ngModel)]="frdFields.riskassumption" name="riskassumption"></textarea>
+        
+        <label for="solutionOverview"><b>Solution Overview</b></label>
+        <textarea maxlenght=250 placeholder=" Solution Overview"  [(ngModel)]="frdFields.solutionOverview" name="solutionOverview"></textarea>
+
+        <label for="depImpact"><b>Dependencies & Change Impact</b></label>
+        <textarea maxlenght=250 placeholder=" Dependencies & Change Impact"  [(ngModel)]="frdFields.depImpact" name="depImpact"></textarea>
+
+        <label for="name"><b>Modules Impacted</b></label>
+        <select formControlName="orders" id="orders" >
+            
+            <option *ngFor="let country of orders; let i = index" [value]= "orders[i].id">
+              {{orders[i].name}}
+            </option>
+          </select>
+<br>
+<br>
+
+    <h6 style="text-align: center; color:red">Functional Requirement</h6>
+    <h6 style="text-align: center;">System Requirements</h6>
+    <table class="table table-striped table-hover">
+      <thead >
+        <tr>
+          <th>T24 Customization Type</th>
+          <th>Customization Type Name</th>
+          <th>Field Requirements</th>
+          <th>Validation Requirements</th>
+          <th>Routines</th>
+          <th>Batch</th>
+          <th>Delivery</th>
+        </tr>
+      </thead>
+       <tbody>
+        <tr *ngFor="let functionReq of systemRequirement" class="clickable">
+          <select>
+            <option *ngFor="let custom of functionReq.customizationType" [selected]="custom.name == 'back'">{{custom}} </option>
+            </select>
+          <td >{{functionReq.customizationTypename}}</td>
+          <td >{{functionReq.fieldRequirement}}</td>
+          <td >{{functionReq.validationRequirement}}</td>
+          <select>
+            <option *ngFor="let routine of functionReq.routines" [selected]="routine.name == 'back'">{{routine}} </option>
+            </select>                  
+          <td >{{functionReq.batch}}</td>
+          <td >{{functionReq.delivery}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <h6 style="text-align: center;">Other System Requirements</h6>
+    <table class="table table-striped table-hover">
+      <thead >
+        <tr>
+          <th>Financial Reporting</th>
+          <th>Compliance Reporting</th>
+          <th>Integration</th>
+          <th>Data Migration</th>
+          <th>Channel</th>
+          <th>Misc Requirements</th>
+          
+        </tr>
+      </thead>
+       <tbody>
+        <tr >          
+          <td >{{""}}</td>
+          <td >{{""}}</td>
+          <td >{{""}}</td>
+          <td >{{""}}</td>
+          <td >{{""}}</td>
+          <td >{{""}}</td>
+                           
+        </tr>
+      </tbody>
+    </table>
+
+    <label for="refdocs"><b>Reference Documents</b></label>
+    <input type="file" [(ngModel)]="frdFields.refdocs" name="refdocs">
+
+    <label for="openIssues"><b>Open Issues</b></label>
+    <textarea maxlenght=250 placeholder=" Open Issues"  [(ngModel)]="frdFields.openIssues" name="openIssues"></textarea>
+    
+    <label for="revHistory"><b>Revision History</b></label>
+    <textarea maxlenght=250 placeholder="Revision History"  [(ngModel)]="frdFields.revHistory" name="revHistory"></textarea>
+
+    </div>
+    
+ 
+    <div style="background-color:#f1f1f1">
+        <table>
+          <tr>
+            <td width=300><input class="btn btn-dark" type="reset"></td>
+            <td width=300><button class="btn btn-dark" type="button" routerLink="/folder">Home</button></td>
+            <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage()"  routerLink="/preview">Preview</button></td>
+    
+          </tr>
+        </table>
+      </div>
+</form>

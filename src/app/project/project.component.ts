@@ -9,17 +9,19 @@ import { Router } from '@angular/router';
 export class ProjectComponent implements OnInit {
   
   selection : any;
-
+  navigateTo: string;
   constructor(private router : Router) { }
 
   ngOnInit() {
   }
 
+  onSelection( type :string){
+    this.navigateTo = type
+  }
   navigate(){
 
-    if(this.selection=="BRD")
-    {
-      this.router.navigate(['/brd']);
+        {
+      this.router.navigate([this.navigateTo]);
     }
     
 
