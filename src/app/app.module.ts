@@ -7,10 +7,11 @@ import { LogInComponent } from './log-in/log-in.component';
 import { HeaderComponent } from './header/header.component';
 import { FolderComponent } from './folder/folder.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from "@angular/forms";
+import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 
-import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule, MatFormFieldControl, } from '@angular/material';
+
+import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule,MatSelectModule, MatFormFieldControl, } from '@angular/material';
 import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
@@ -34,7 +35,23 @@ import { RtmDocsComponent } from './rtm-docs/rtm-docs.component';
 import { TestDocsComponent } from './test-docs/test-docs.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { ClientdetailsComponent } from './clientdetails/clientdetails.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material';
+import { AuthService, FacebookLoginProvider,GoogleLoginProvider, SocialUser, AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import {MatTableModule} from '@angular/material/table';
 
+
+ const config = new AuthServiceConfig([
+   {
+     id: GoogleLoginProvider.PROVIDER_ID,
+     provider: new GoogleLoginProvider("652072882206-ma98fm53k7s6kk0s6k438eallhcu8016.apps.googleusercontent.com")
+   }
+ ]);
+ export function provideConfig() {
+   return config;
+ }
 
 @NgModule({
   declarations: [
@@ -78,11 +95,23 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails.component'
     MatIconModule,
     MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    HttpClientModule,
+    PDFExportModule,
+    NgbModule,
+    SocialLoginModule,
+    MatTableModule
   ],
-  providers: [],
+  providers: [MatDialog,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+   }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

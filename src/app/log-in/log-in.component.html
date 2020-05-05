@@ -2,27 +2,23 @@
   
   
   <h3>Login </h3>
-  <form>
+  <form name="login">
 
 
     <div class="container">
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Username" name="uname" [(ngModel)]="username" required>
+      <input type="text" placeholder="Username" name="email" [(ngModel)]="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Password" name="psw" [(ngModel)]="password" required>
+      <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
       <div class="container">
         <button type="reset" class="btn btn-danger ">Reset</button>
-        <button type="submit" (click)="checkLogin()" class="btn btn-success float-right">Login</button>
-        
+        <button type="submit"  class="btn btn-success float-right"  (click)="socialSignIn('google')" #loginRef>Login with Google</button>
+        <button type="submit"  class="btn btn-success float-center"  (click)="CheckCredentials(email,password)" #loginRef>Login with EY Credentials</button>
       </div>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <span class="psw"> <a href="#" routerLink="/signup">Sign Up</a></span>
-      <span class="psw"> <a href="#" routerLink="/changepwd">Reset password</a></span>
-      <span class="psw"> <a href="#" routerLink="/forgotpwd">Forgot password?</a></span>
-    </div>
+    
   </form>
  
 
