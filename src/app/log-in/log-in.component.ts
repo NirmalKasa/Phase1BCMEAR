@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-//import { AuthService, FacebookLoginProvider,GoogleLoginProvider, SocialUser, AuthServiceConfig } from 'angularx-social-login';
+
 import { HttpClient } from '@angular/common/http';
 
 
@@ -72,10 +72,10 @@ export class LogInComponent implements OnInit {
    this.cred.password = password1;
     const headers = { 'Content-Type': 'application/json' }
    // const body ={"name":"Temenos"}
-    this.http.post<credentials>(ldapURL,
+    this.http.post<any>(ldapURL,
     JSON.stringify(this.cred), {headers}
      ).subscribe(data => {
-       console.log("data value is"+JSON.stringify(data));
+       console.log("data value is"+JSON.stringify(data.data));
        if(data.status == "200")
        {
          console.log("success")
@@ -96,20 +96,7 @@ export class LogInComponent implements OnInit {
 
 
 
-  // public socialSignIn(socialProvider: string) {      
-  //   let socialPlatformProvider;  
-  //   if (socialProvider === 'facebook') {  
-  //     socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;  
-  //   } else if (socialProvider === 'google') {  
-  //     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;  
-  //   }  
-  //   this.authService.signIn(socialPlatformProvider).then(socialusers => {  
-  //     console.log(socialProvider, socialusers);  
-  //     console.log(socialusers); 
-  //     this.router.navigate([`/folder`]); 
-  //     //this.Savesresponse(socialusers);  
-  //   });  
-  // }
+  
 }
 
 

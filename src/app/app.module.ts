@@ -42,7 +42,7 @@ import { MatDialog } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 
-
+ 
 
 @NgModule({
   declarations: [
