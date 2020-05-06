@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 
 const clientSaveDocumentUrl= 'http://localhost:8081/files/save-client-files';
-const clientFetchDocumentUrl= 'http://localhost:8081/clientdetails/';
+const clientFetchDocumentUrl= 'http://localhost:8081/clientdetails/getByClient';
 const deleteBrdDocumentUrl = 'http://localhost:8081/brd-docs/delete-brd';
 const getBrdDocumentUrl ='http://localhost:8081/brd-docs/getBrdDoc';
 
@@ -37,27 +37,45 @@ export class DocumentService {
        console.log("saving the client files end");
   }
 
-  fetchClientDocuments(name : string): Observable<any>{
-    console.log("fetching client docs");
- const params = new HttpParams()
-      .set('client_name', name)
+//   fetchClientDocuments(name : string): Observable<any>{
+//     //console.log("fetching client docs");
+// //  const params = new HttpParams()
+// //       .set('client_name', name)
 
-    const headers = { 'Content-Type': 'application/json' }
-   return  this.httpClient.get<any>(clientFetchDocumentUrl+name, {params, headers})
-    // .subscribe(
-    //   data => {
-    //     console.log(data);
-    //     return data;
-    //   }
-    // )
+// //     const headers = { 'Content-Type': 'application/json' }
+// //    return  this.httpClient.get<any>(clientFetchDocumentUrl, {params, headers})
+//     // .subscribe(
+//     //   data => {
+//     //     console.log(data);
+//     //     return data;
+//     //   }
+//     // )
+
+//     let paramURL = clientFetchDocumentUrl + name;
+//    return this.httpClient.get<any>(paramURL);
+//   }
+
+  fetchClientDocuments(name: string,loggedInUser: string): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('name', name);
+    params = params.append('loggedInUser', loggedInUser);
+   return this.httpClient.get<any>(clientFetchDocumentUrl,{params: params});
   }
 
-  deleteBrdDocument(clientName :string, fileName:string): Observable<any>{
-     return this.httpClient.delete(`${deleteBrdDocumentUrl}/${clientName}/${fileName}`);
+  deleteBrdDocument(clientName :string, fileName:string, loggedInUser:string): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('clientName', clientName);
+    params = params.append('fileName', fileName);
+    params = params.append('loggedInUser', loggedInUser);
+     return this.httpClient.delete(deleteBrdDocumentUrl,{params: params});
   }
 
-  getBrdDocument(clientName :string, fileName:string): Observable<any>{
-    return this.httpClient.get(`${getBrdDocumentUrl}/${clientName}/${fileName}`);
+  getBrdDocument(clientName :string, fileName:string,loggedInUser:string): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('clientName', clientName);
+    params = params.append('fileName', fileName);
+    params = params.append('loggedInUser', loggedInUser);
+    return this.httpClient.get(getBrdDocumentUrl,{params: params});
  }
 
 

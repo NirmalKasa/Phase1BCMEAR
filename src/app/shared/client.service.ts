@@ -5,6 +5,7 @@ import { ClientFields } from '../client/client.component';
 
 const clientSaveUrl= 'http://localhost:8081/clientdetails/save-client';
 const clientFetchUrl= 'http://localhost:8081/clientdetails/';
+const getClientByUnserNameUrl= 'http://localhost:8081/clientdetails/getClients/';
 
 @Injectable({providedIn:'root'})
 export class ClientServices {
@@ -60,5 +61,10 @@ export class ClientServices {
          console.log(data);
          this.fetchClientDetails();
         })
+  }
+
+  getClientByUserName(userName: String): Observable<ClientFields[]>{
+    let paramURL = getClientByUnserNameUrl + userName;
+   return this.http.get<ClientFields[]>(paramURL);
   }
 }

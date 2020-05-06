@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientServices } from '../shared/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoggedInUser } from '../log-in/log-in.component';
+import { LocalStorageService } from '../shared/localstorage.service';
 
 
 
@@ -13,9 +15,9 @@ export class ClientComponent implements OnInit {
 
   clientFields = new ClientFields();
   id : number;
-
+  loggedInUser = new LoggedInUser();
   constructor(private clientServices: ClientServices, private route: ActivatedRoute, private clientService: ClientServices,
-    private _router : Router) {
+    private _router : Router,private store:LocalStorageService) {
    }
 
   ngOnInit() {
@@ -26,11 +28,15 @@ export class ClientComponent implements OnInit {
   }
 
   updateSessionStorage(){
-    sessionStorage.setItem('clientFields', JSON.stringify(this.clientFields));
+    //Commented by Uma
+   // sessionStorage.setItem('clientFields', JSON.stringify(this.clientFields));
+    this.store.setClientDetails(this.clientFields);
   }
 
   saveClientDetails(){
     console.log("client details=="+ JSON.stringify(this.clientFields));
+    this.loggedInUser = JSON.parse(this.store.getLoggedInUser()) ;
+   this.clientFields.loggedInUserName = this.loggedInUser.username;
     this.clientServices.saveClientDetails(this.clientFields);
     this.updateSessionStorage();
   }
@@ -68,5 +74,5 @@ export class ClientFields {
   manager : string;
   remarks : any;
   _id : String;
-
+  loggedInUserName :string;
 }

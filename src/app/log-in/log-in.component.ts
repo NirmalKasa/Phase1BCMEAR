@@ -1,8 +1,8 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { LocalStorageService } from '../shared/localstorage.service';
 
 const ldapURL= 'http://localhost:8081/ldap/login';
 
@@ -17,11 +17,12 @@ export class LogInComponent implements OnInit {
 
  
   cred: credentials;
-  
- 
+  loginForm: FormGroup;
+  submitted = false;
+  loggedInUser = new LoggedInUser()
 
   @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
-  constructor(private router : Router,private http: HttpClient) {
+  constructor(private router : Router,private http: HttpClient,private store: LocalStorageService, private formBuilder: FormBuilder) {
     
    }
 
@@ -31,7 +32,13 @@ export class LogInComponent implements OnInit {
   invalidLogin = false
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
+
+  get f() { return this.loginForm.controls; }
 
   checkLogin(){
     if(this.username == "admin" && this.password == "admin"){
@@ -67,6 +74,10 @@ export class LogInComponent implements OnInit {
   {
     // this.email = email;
     // this.password = password;
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+  }
    this.cred = new credentials();
    this.cred.email = email1;
    this.cred.password = password1;
@@ -79,6 +90,8 @@ export class LogInComponent implements OnInit {
        if(data.status == "200")
        {
          console.log("success")
+         this.loggedInUser.username = this.cred.email;
+        this.store.setLoggedInUser(this.loggedInUser)
          this.router.navigate(['/folder'])
         }
         else
@@ -91,17 +104,18 @@ export class LogInComponent implements OnInit {
   }
 
   
-
-
-
-
-
-  
+onReset() {
+    this.submitted = false;
+    this.loginForm.reset();
+} 
 }
-
 
 export class credentials
 {
   email: string;
+  password: string;
+}
+export class LoggedInUser {
+  username: string;
   password: string;
 }

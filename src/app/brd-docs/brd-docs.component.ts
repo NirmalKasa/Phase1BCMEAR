@@ -22,8 +22,8 @@ export class BrdDocsComponent implements OnInit {
 
   ngOnInit() {
      this.clientFields = JSON.parse(this.store.getClientDetails());
-     this.fetchClientDocuments()
-    // this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
+    // this.fetchClientDocuments()
+     this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
     // console.log("in brd docs=="+this.brdDocs);
   }
 
@@ -36,10 +36,14 @@ export class BrdDocsComponent implements OnInit {
  }
 
  deleteBrd(clientName,fileName){
-  this.documentService.deleteBrdDocument(clientName,fileName).subscribe(
+  this.documentService.deleteBrdDocument(clientName,fileName,this.clientFields.loggedInUserName).subscribe(
     response =>{
       console.log(response)
       this.fetchDocuments();
+    },
+    error=> {
+        console.log("there is an error");
+        
     }
   )
 }
@@ -56,13 +60,17 @@ searchDocuments(event : any){
 }
 
 fetchDocuments(){
-  this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
+  this.documentService.fetchClientDocuments( this.clientFields.name,this.clientFields.loggedInUserName).subscribe( data => {
     this.documentService.clientsBrdDocs = data.brdDocs;
     if(this.documentService.clientsBrdDocs != undefined ){
       console.log("brd docs available");
       this.brdDocs  = this.documentService.clientsBrdDocs;
       this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
     }
+  },
+  error=> {
+      console.log("there is an error");
+      
   })
 }
 
@@ -74,11 +82,15 @@ fetchDocumentsUsingSearchCriteria(event : any){
       this.brdDocs  = this.searchService.brdDocs;
       this.store.setBrdDocsDetails(this.searchService.brdDocs);  
     }
+  },
+  error=> {
+      console.log("there is an error");
+      
   })
 }
   fetchClientDocuments(){
     this.isLoading = true
-    this.documentService.fetchClientDocuments( this.clientFields.name).subscribe( data => {
+    this.documentService.fetchClientDocuments( this.clientFields.name,this.clientFields.loggedInUserName).subscribe( data => {
       console.log(data);
       this.documentService.clientsBrdDocs = data.brdDocs;
       this.brdDocs = data.brdDocs;

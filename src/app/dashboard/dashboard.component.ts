@@ -25,9 +25,8 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchClientDocuments() {
-    this.documentService.fetchClientDocuments(this.clientFields.name).subscribe(data => {
-
-      console.log(data);
+    this.documentService.fetchClientDocuments(this.clientFields.name,this.clientFields.loggedInUserName).subscribe(data => {
+   console.log(data);
       this.documentService.clientsBrdDocs = data.brdDocs;
       if (this.documentService.clientsBrdDocs != undefined) {
         console.log("brd docs available");

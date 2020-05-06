@@ -45,11 +45,15 @@ export class BrdComponent implements OnInit {
       res = res[0].split('_', 5);
       console.log(+res[4] + 1)
       this.version = +res[4] + 1
-      this.documentService.getBrdDocument(this.clientFields.name, this.fileName).subscribe(
+      this.documentService.getBrdDocument(this.clientFields.name, this.fileName,this.clientFields.loggedInUserName).subscribe(
         data => {
           console.log(data);
           this.brdFields = data;
           this.moduleName = this.brdFields.module;
+        },
+        error=> {
+            console.log("there is an error");
+            
         }
       )
       this.isReadonly = true;
@@ -194,5 +198,5 @@ export class BrdFields {
   rev: string;
   pdfId: string;
   fileName: string;
-
+  loggedInUserName : String;
 }

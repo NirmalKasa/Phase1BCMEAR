@@ -7,6 +7,7 @@ export class LocalStorageService {
 
   private clientStorageName : string = "CLIENT_DETAILS";
   private BrdDocsStorageName : string = "BRD_DOCS_DETAILS";
+  private loggedInUserStorageName: string ="LOGGEDIN_USER"
 
   brdDocsList : BrdFields[]
   setClientDetails(data : any){
@@ -28,5 +29,12 @@ export class LocalStorageService {
   getBrdDocItembyIndex(index : number){
     this.brdDocsList = JSON.parse(this.getBrdDocsDetails())
     return this.brdDocsList[index]
+  }
+  setLoggedInUser(data : any){
+    localStorage.setItem(this.loggedInUserStorageName, JSON.stringify(data));
+  }
+
+  getLoggedInUser(){
+    return localStorage.getItem(this.loggedInUserStorageName);
   }
 }

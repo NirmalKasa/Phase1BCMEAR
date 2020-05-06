@@ -1,25 +1,34 @@
 <!-- <app-header-login></app-header-login> -->
-  
-  
-  <h3>Login </h3>
-  <form name="login">
 
 
-    <div class="container" style="width: 530px;">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Username" name="email" [(ngModel)]="email" required>
+<h3>Login </h3>
+<form name="login" [formGroup]="loginForm" (ngSubmit)="CheckCredentials(email,password)">
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
-      <div class="container">
-        <button type="reset" class="btn btn-danger ">Reset</button>
-       <button type="submit"  class="btn btn-success float-right"  (click)="CheckCredentials(email,password)" #loginRef>Login</button>
+
+  <div class="container" style="width: 530px;">
+    <div class="form-group">
+      <label for="uname"><b>Email</b></label>
+      <input type="text" placeholder="Enter EY Email" name="email" [(ngModel)]="email" formControlName="email"
+        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
       </div>
     </div>
+    <div class="form-group">
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter windows password" name="password" [(ngModel)]="password" formControlName="password"
+        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+    </div>
+    <div class="container">
+      <button type="reset" class="btn btn-danger " (click)="onReset()">Reset</button>
 
-    
-  </form>
- 
+      <button type="submit" class="btn btn-success float-right" #loginRef>Login</button>
+    </div>
+  </div>
 
 
-
+</form>

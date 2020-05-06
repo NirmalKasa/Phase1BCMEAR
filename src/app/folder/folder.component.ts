@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClientServices } from '../shared/client.service';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { SearchService } from '../shared/search.service';
+import { LoggedInUser } from '../log-in/log-in.component';
 
 @Component({
   selector: 'app-folder',
@@ -13,11 +14,14 @@ import { SearchService } from '../shared/search.service';
 export class FolderComponent implements OnInit {
 
   clientsList : ClientFields[]
+  loggedInUser = new LoggedInUser()
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
     private localStorageService : LocalStorageService, private searchService : SearchService) { }
 
   ngOnInit() {
-    this.getClientsList();
+    //this.getClientsList();
+    this.loggedInUser = JSON.parse(this.localStorageService.getLoggedInUser()) 
+    this.getClientByUser(this.loggedInUser.username)
   }
 
   selectedclient(index : number) {
@@ -63,6 +67,19 @@ export class FolderComponent implements OnInit {
     this.clientServices.deleteClient(clientInfo._id);
     location.reload();
    
+  }
+
+  getClientByUser(userName){
+    this.clientServices.getClientByUserName(userName).subscribe(
+      data => {
+        console.log(data);
+        this.clientsList = data
+        this.clientServices.clientsList= data;
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 
 }
