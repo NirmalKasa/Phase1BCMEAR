@@ -1,10 +1,7 @@
 <!-- <app-header-login></app-header-login> -->
-
-
-<h3>Login </h3>
+<!-- <body>
 <form name="login" [formGroup]="loginForm" (ngSubmit)="CheckCredentials(email,password)">
-
-
+  <h3>Login </h3>
   <div class="container" style="width: 530px;">
     <div class="form-group">
       <label for="uname"><b>Email</b></label>
@@ -32,3 +29,45 @@
 
 
 </form>
+</body> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign In</h5>
+          <form class="form-signin" name="login" [formGroup]="loginForm" (ngSubmit)="CheckCredentials(email,password)">
+            <div class="form-group">
+              <label for="uname"><b>Email</b></label>
+              <input type="text" placeholder="Enter EY Email" name="email" [(ngModel)]="email" formControlName="email"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter windows password" name="password" [(ngModel)]="password" formControlName="password"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="reset" (click)="onReset()">Reset</button>
+            <!-- <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                class="fab fa-google mr-2"></i> Sign in with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
