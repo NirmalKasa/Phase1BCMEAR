@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="row topalign">
   <div class="col-md-4">
-           
+
   </div>
   <div class="col-md-4">
                 <h2>
@@ -21,8 +21,9 @@
                     <table width="400">
                       <tr>
                         <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
-                        <td> <mat-icon vertical-align="center" (click)="editBrd(clientFields.name,docs.fileName)" style="cursor: pointer;">edit</mat-icon> </td>
+                        <td> <mat-icon vertical-align="center" (click)="editBrd(clientFields.name,docs.fileName)" style="cursor: pointer;">editt</mat-icon> </td>
                         <td> <mat-icon style="cursor: pointer;" type="button" (click)="deleteBrd(clientFields.name,docs.fileName)">delete</mat-icon></td>
+                        <td> <mat-icon style="cursor: pointer;"  type="button" (click)="downloadBrd(clientFields.name,docs.pdfId,docs.fileName)">vertical_align_bottom</mat-icon></td>
                       </tr>
                     </table>
                   <!-- <div class="docs"><a href="#" >{{docs.fileName}}</a><mat-icon vertical-align="center">edit</mat-icon><mat-icon>delete</mat-icon></div> -->
@@ -37,7 +38,7 @@
                       </table>
                     </div>
                   </ng-template>
-              
+
               </form>
               </div>
 </div>

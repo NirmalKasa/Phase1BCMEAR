@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { ClientFields } from '../client/client.component';
+import { environment } from '../../environments/environment'
 
-const clientSaveUrl= 'http://localhost:8081/clientdetails/save-client';
-const clientFetchUrl= 'http://localhost:8081/clientdetails/';
+const clientSaveUrl=  environment.apiUrl+'/clientdetails/save-client';
+const clientFetchUrl= environment.apiUrl+'/clientdetails/';
 
 @Injectable({providedIn:'root'})
 export class ClientServices {
@@ -12,7 +13,7 @@ export class ClientServices {
   clientsList : ClientFields[]
 
   constructor(private http: HttpClient){
-
+    console.log("Current API URL:", environment.apiUrl);
   }
 
   public saveClientDetails(clientfields: ClientFields){

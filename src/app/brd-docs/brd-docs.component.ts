@@ -60,13 +60,29 @@ export class BrdDocsComponent implements OnInit {
       // not req to store in localstorage, added db calls instead.
       if(this.documentService.clientsBrdDocs != undefined ){
         console.log("set the client brd docs")
-        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
+        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);
       }
       console.log( this.documentService.clientsBrdDocs )
     },
     error=> {
         console.log("there is an error");
-        
+
     })
+  }
+
+  downloadBrd(clientName: string, pdfId: string, pdfFileName: string){
+    console.log(clientName);
+    console.log(pdfId);
+    this.documentService.downloadDocument(pdfId).subscribe (
+      (data : any)=> {
+        const blob = new Blob([data], {type: 'application/pdf'});
+
+        var downloadURL = window.URL.createObjectURL(data);
+        var link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = pdfFileName;
+        link.click();
+      }
+    )
   }
 }

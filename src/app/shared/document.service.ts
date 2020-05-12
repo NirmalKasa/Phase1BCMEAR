@@ -5,11 +5,21 @@ import { ClientFields } from '../client/client.component';
 import { BrdFields } from '../brd/brd.component';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment'
 
-const clientSaveDocumentUrl= 'http://localhost:8081/files/save-client-files';
-const clientFetchDocumentUrl= 'http://localhost:8081/clientdetails/';
-const deleteBrdDocumentUrl = 'http://localhost:8081/brd-docs/delete-brd';
-const getBrdDocumentUrl ='http://localhost:8081/brd-docs/getBrdDoc';
+//for Local configuration
+// const clientSaveDocumentUrl= 'http://localhost:8081/files/save-client-files';
+// const clientFetchDocumentUrl= 'http://localhost:8081/clientdetails/';
+// const deleteBrdDocumentUrl = 'http://localhost:8081/brd-docs/delete-brd';
+// const getBrdDocumentUrl ='http://localhost:8081/brd-docs/getBrdDoc';
+// const downloadDocumentUrl= 'http://localhost:8081/files/download-pdf-file';
+
+//for docker
+const clientSaveDocumentUrl= environment.apiUrl+'/files/save-client-files';
+const clientFetchDocumentUrl= environment.apiUrl+'/clientdetails/';
+const deleteBrdDocumentUrl = environment.apiUrl+'/brd-docs/delete-brd';
+const getBrdDocumentUrl =environment.apiUrl+'/brd-docs/getBrdDoc';
+const downloadDocumentUrl= environment.apiUrl+'/files/download-pdf-file';
 
 @Injectable({providedIn:"root"})
 export class DocumentService {
@@ -17,7 +27,7 @@ export class DocumentService {
 
   clientsBrdDocs : BrdFields[];
   constructor(private httpClient: HttpClient,private router:Router){
-
+    console.log("Current API URL:", environment.apiUrl);
   }
 
   saveClientDocument(blob: Blob,document_type : string, clnt_name:string){
@@ -61,6 +71,16 @@ export class DocumentService {
  }
 
 
+ downloadDocument(id:string){
+  const httpOptions = {
+    responseType: 'blob' as 'json',
+    headers: new HttpHeaders({
+      Accept : 'application/pdf',
+      observe : 'response'
+    })
+  };
+   return this.httpClient.get(`${downloadDocumentUrl}/${id}`,httpOptions);
+ }
 
 }
 

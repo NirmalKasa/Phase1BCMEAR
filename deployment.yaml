@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-deployment
+  labels:
+    app: angular
+spec:
+
+  selector:
+    matchLabels:
+      app: angular
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+      - name: angular
+        image: bcmearregistry.azurecr.io/bcm-ear:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 750m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-deployment
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: angular-deployment
