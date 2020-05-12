@@ -1,14 +1,14 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div class="search">
   <span class="fa fa-search"></span>
   <input type="text" (blur)="searchClient($event)" placeholder="Search">
 </div>
 
 <div class="row ">
-  <div class="col-md-2">
+  <div class="col-md-2"> -->
     <!-- <h3><p>maindashboard links!</p></h3> -->
     <!-- <app-maindashboard></app-maindashboard> -->
-  </div>
+  <!-- </div>
   <div class="col-md-7 clntDetails">
     <h3>Bank Clients</h3>
     <form>
@@ -23,9 +23,9 @@
           <br><br><br>
           <div *ngIf="clnt.checked">
             <table>
-              <tr>
+              <tr> -->
                 <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
-                <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]">Client
+                <!-- <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]">Client
                     Details</button></td>
                 <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
                 <td width=200><button type="button" class="btn btn-dark" (click)="selectedclientForDelete(i)">Delete
@@ -40,4 +40,62 @@
         <div style="text-align: center;font-weight: 500;">No Records found.</div>
       </ng-template>
     </form>
+  </div> -->
+  <nav class="navbar text-white bg-secondary mb-3">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <mat-icon>create_new_folder</mat-icon><a  class="navbar-brand" href="#" routerLink="/client"   style="color: aliceblue;" >Create New Client</a>
+      </li>
+       </ul>
+     
+  
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0"(blur)="searchClient($event)">Search</button>
+    </form>
+  </nav>
+
+
+<!-- 
+  <div class="search">
+  <span class="fa fa-search"></span>
+  <input type="text" (blur)="searchClient($event)" placeholder="Search">
+</div> -->
+
+<div class="row ">
+  <div class="col-md-2">
+
   </div>
+  <div class="col-md-7 clntDetails">
+  
+  
+    <h3 style="text-align: left;">Bank Clients</h3>
+    <form>
+
+      
+ 
+      <div id="clientListID"  *ngIf="clientsList &&  clientsList.length > 0; else msg">
+        <cdk-virtual-scroll-viewport itemSize="10" class="example-viewport">
+          <div *cdkVirtualFor="let client of clientsList; let i = index" class="example-item"> <mat-radio-button [value]="client.name" (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button>
+     
+        
+          <div *ngIf="clnt.checked">
+            <table>
+              <tr> 
+                <!-- <td width=200><button type="button" class="btn btn-dark" routerLink="/clientdetails/" >Client Details</button></td> -->
+              <td width=200><button type="button" class="btn btn-dark" [routerLink]="['/clientdetails', i]">Client
+                    Details</button></td>
+                <td width=200><button type="button" class="btn btn-dark" routerLink="/docrepo">Doc Repo</button></td>
+                <td width=200><button type="button" class="btn btn-dark" (click)="selectedclientForDelete(i)">Delete Client</button></td>
+              </tr>
+            </table><br><br><br>
+
+          </div>
+        </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <ng-template #msg>
+        <div style="text-align: center;font-weight: 500;">No Records found.</div>
+      </ng-template>
+    </form>
+  </div> 

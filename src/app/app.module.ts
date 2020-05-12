@@ -42,6 +42,7 @@ import { MatDialog } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ScrollDispatchModule, ScrollingModule } from '@angular/cdk/scrolling';
 
  
 
@@ -99,7 +100,9 @@ import { DialogComponent } from './dialog/dialog.component';
     NgbModule,
     MatTableModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    ScrollDispatchModule,
+    ScrollingModule
   ],
   providers: [MatDialog],
   bootstrap: [AppComponent],
