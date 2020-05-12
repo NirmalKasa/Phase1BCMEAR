@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 
-import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule, MatFormFieldControl, MatExpansionModule, MatSelectModule, } from '@angular/material';
+import { MatSliderModule,MatToolbarModule,MatSidenavModule,MatListModule,MatIconModule,MatRadioModule,MatCardModule, MatFormFieldModule, MatInputModule, MatFormFieldControl, MatExpansionModule, MatSelectModule, MatDialogModule, } from '@angular/material';
 import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectComponent } from './project/project.component';
@@ -41,6 +41,7 @@ import { MatDialog } from '@angular/material';
 //import { FacebookLoginProvider,GoogleLoginProvider, SocialUser, AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import {MatTableModule} from '@angular/material/table';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
+import { DialogComponent } from './dialog/dialog.component';
 
  
 
@@ -73,7 +74,8 @@ import { MaindashboardComponent } from './maindashboard/maindashboard.component'
     TestDocsComponent,
     ForgotPwdComponent,
     ClientdetailsComponent,
-    MaindashboardComponent
+    MaindashboardComponent,
+    DialogComponent
 
   ],
   imports: [
@@ -96,9 +98,11 @@ import { MaindashboardComponent } from './maindashboard/maindashboard.component'
     PDFExportModule,
     NgbModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ],
   providers: [MatDialog],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

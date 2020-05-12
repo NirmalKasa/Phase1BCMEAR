@@ -57,10 +57,7 @@ export class ClientServices {
   public deleteClient(id: String){
     let paramURL = clientFetchUrl+id;
     console.log(paramURL + " const url");
-    this.http.delete<ClientFields>(paramURL).subscribe(data => {
-         console.log(data);
-         this.fetchClientDetails();
-        })
+    return this.http.delete(paramURL)
   }
 
   getClientByUserName(userName: String): Observable<ClientFields[]>{

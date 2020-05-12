@@ -5,6 +5,9 @@ import { ClientServices } from '../shared/client.service';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { SearchService } from '../shared/search.service';
 import { LoggedInUser } from '../log-in/log-in.component';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DailogService } from '../shared/dailog.service';
 
 @Component({
   selector: 'app-folder',
@@ -16,7 +19,8 @@ export class FolderComponent implements OnInit {
   clientsList : ClientFields[]
   loggedInUser = new LoggedInUser()
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
-    private localStorageService : LocalStorageService, private searchService : SearchService) { }
+    private localStorageService : LocalStorageService, private searchService : SearchService, private dialog: MatDialog,
+    private dialogService : DailogService) { }
 
   ngOnInit() {
     //this.getClientsList();
@@ -63,10 +67,21 @@ export class FolderComponent implements OnInit {
 
   selectedclientForDelete(index : number) {
     console.log("client selected ==>"+this.clientsList[index].name)
-    const clientInfo = this.clientsList[index];
-    this.clientServices.deleteClient(clientInfo._id);
-    location.reload();
-   
+    this.dialogService.openConfirmDialog('Are you sure to delete this record ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        const clientInfo = this.clientsList[index];
+        this.clientServices.deleteClient(clientInfo._id).subscribe(
+          data => {
+            console.log(data);
+            this.getClientsList();         },
+          error =>{
+            console.log(error);
+          }
+        )
+
+      }
+    });
   }
 
   getClientByUser(userName){
@@ -81,5 +96,4 @@ export class FolderComponent implements OnInit {
       }
     )
   }
-
 }
