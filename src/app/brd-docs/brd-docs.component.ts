@@ -14,98 +14,99 @@ import { SearchService } from '../shared/search.service';
 })
 export class BrdDocsComponent implements OnInit {
 
-  brdDocs : BrdFields[]
-  clientFields : ClientFields;
-  isLoading : boolean
-  constructor(private documentService : DocumentService, private store : LocalStorageService,
-    private route : Router, private searchService : SearchService) { }
+  brdDocs: BrdFields[]
+  clientFields: ClientFields;
+  isLoading: boolean
+  constructor(private documentService: DocumentService, private store: LocalStorageService,
+    private route: Router, private searchService: SearchService) { }
 
   ngOnInit() {
-     this.clientFields = JSON.parse(this.store.getClientDetails());
+    this.clientFields = JSON.parse(this.store.getClientDetails());
     // this.fetchClientDocuments()
-     this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
+    this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
     // console.log("in brd docs=="+this.brdDocs);
   }
 
-  onSelect(index : number){
-    console.log("selected file==>"+index);
-    this.route.navigate(['brd'],{queryParams:{id:index}})
+  onSelect(index: number) {
+    console.log("selected file==>" + index);
+    this.route.navigate(['brd'], { queryParams: { id: index } })
   }
-  editBrd(fileName){
-    this.route.navigate(['brd'],{queryParams:{fileName:fileName}})
- }
+  editBrd(fileName) {
+    this.route.navigate(['brd'], { queryParams: { fileName: fileName } })
+  }
 
- deleteBrd(clientName,fileName){
-  this.documentService.deleteBrdDocument(clientName,fileName,this.clientFields.loggedInUserName).subscribe(
-    response =>{
-      console.log(response)
-      this.fetchDocuments();
-    },
-    error=> {
+  deleteBrd(clientName, fileName) {
+    this.documentService.deleteBrdDocument(clientName, fileName, this.clientFields.loggedInUserName).subscribe(
+      response => {
+        console.log(response)
+        this.fetchDocuments();
+      },
+      error => {
         console.log("there is an error");
-        
-    }
-  )
-}
 
-searchDocuments(event : any){
-  console.log(event.target.value);
-  if(event.target.value==null || event.target.value==""){
-    this.fetchDocuments();
-  } 
-  else{
-    this.fetchDocumentsUsingSearchCriteria(event)    
+      }
+    )
   }
-     
-}
 
-fetchDocuments(){
-  this.documentService.fetchClientDocuments( this.clientFields.name,this.clientFields.loggedInUserName).subscribe( data => {
-    this.documentService.clientsBrdDocs = data.brdDocs;
-    if(this.documentService.clientsBrdDocs != undefined ){
-      console.log("brd docs available");
-      this.brdDocs  = this.documentService.clientsBrdDocs;
-      this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
+  searchDocuments(event: any) {
+    console.log(event.target.value);
+    if (event.target.value == null || event.target.value == "") {
+      this.fetchDocuments();
     }
-  },
-  error=> {
-      console.log("there is an error");
-      
-  })
-}
+    else {
+      this.fetchDocumentsUsingSearchCriteria(event)
+    }
 
-fetchDocumentsUsingSearchCriteria(event : any){
-    this.searchService.retrieveDocumentSearchResults(event.target.value).subscribe( data => {
-    this.searchService.brdDocs = data;
-    if(this.searchService.brdDocs != undefined ){
-      console.log("brd docs available");
-      this.brdDocs  = this.searchService.brdDocs;
-      this.store.setBrdDocsDetails(this.searchService.brdDocs);  
-    }
-  },
-  error=> {
-      console.log("there is an error");
-      
-  })
-}
-  fetchClientDocuments(){
+  }
+
+  fetchDocuments() {
+    this.documentService.fetchClientDocuments(this.clientFields.name, this.clientFields.loggedInUserName).subscribe(data => {
+      this.documentService.clientsBrdDocs = data.brdDocs;
+      if (this.documentService.clientsBrdDocs != undefined) {
+        console.log("brd docs available");
+        this.brdDocs = this.documentService.clientsBrdDocs;
+        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);
+      }
+    },
+      error => {
+        console.log("there is an error");
+
+      })
+  }
+
+  fetchDocumentsUsingSearchCriteria(event: any) {
+    this.searchService.retrieveDocumentSearchResults(event.target.value, this.clientFields.name, this.clientFields.loggedInUserName).subscribe(data => {
+      this.searchService.brdDocs = data;
+      if (this.searchService.brdDocs != undefined) {
+        console.log("brd docs available");
+        this.brdDocs = this.searchService.brdDocs;
+        this.store.setBrdDocsDetails(this.searchService.brdDocs);
+      }
+    },
+      error => {
+        console.log("there is an error");
+
+      })
+  }
+
+  fetchClientDocuments() {
     this.isLoading = true
-    this.documentService.fetchClientDocuments( this.clientFields.name,this.clientFields.loggedInUserName).subscribe( data => {
+    this.documentService.fetchClientDocuments(this.clientFields.name, this.clientFields.loggedInUserName).subscribe(data => {
       console.log(data);
       this.documentService.clientsBrdDocs = data.brdDocs;
       this.brdDocs = data.brdDocs;
-      this.isLoading= false;
+      this.isLoading = false;
       // not req to store in localstorage, added db calls instead.
-      if(this.documentService.clientsBrdDocs != undefined ){
+      if (this.documentService.clientsBrdDocs != undefined) {
         console.log("set the client brd docs")
-        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);  
+        this.store.setBrdDocsDetails(this.documentService.clientsBrdDocs);
       }
-      console.log( this.documentService.clientsBrdDocs )
+      console.log(this.documentService.clientsBrdDocs)
     },
-    error=> {
+      error => {
         console.log("there is an error");
-        
-    })
+
+      })
   }
 
 

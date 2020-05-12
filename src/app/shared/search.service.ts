@@ -23,9 +23,12 @@ export class SearchService {
         return this.http.get<ClientFields[]>(paramURL);
     }
 
-    public retrieveDocumentSearchResults(searchCriteriaStr: String): Observable<any> {
+    public retrieveDocumentSearchResults(searchCriteriaStr: String, clientName : string, loggedInUserName : string): Observable<any> {
         let paramURL = documentsSearchCriteriaURL + searchCriteriaStr;
-        return this.http.get<any>(paramURL);
+        let params = new HttpParams();
+        params = params.append('clientName', clientName);
+        params = params.append('loggedInUserName', loggedInUserName);
+        return this.http.get<any>(paramURL,{params : params});
     }
 
 }
