@@ -19,6 +19,7 @@ export class FolderComponent implements OnInit {
   clientsList : ClientFields[]
   loggedInUser = new LoggedInUser()
   searchClientStr:String;
+  showSpinner : boolean = false;
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
     private localStorageService : LocalStorageService, private searchService : SearchService, private dialog: MatDialog,
     private dialogService : DailogService) { }
@@ -52,20 +53,26 @@ export class FolderComponent implements OnInit {
   searchClient(){
     console.log(this.searchClientStr);
     
-      
+    this.showSpinner=true;      
     if(this.searchClientStr==null || this.searchClientStr==""){
       this.getClientByUser(this.loggedInUser.username)
+      setTimeout(()=>{
+        this.showSpinner = false;
+      }, 1000)   
     }
     this.searchService.retrieveSearchResults(this.searchClientStr).subscribe(
       data => {
         console.log(data);
-        this.clientsList = data
+        this.clientsList = data    
         this.clientServices.clientsList= data;
+        setTimeout(()=>{
+          this.showSpinner = false;
+        }, 1000) 
       },
       error =>{
         console.log(error);
       }
-    ) 
+    )
   }
 
   selectedclientForDelete(index : number) {
