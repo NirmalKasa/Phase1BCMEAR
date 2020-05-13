@@ -30,7 +30,11 @@
       --input-padding-x: 1.5rem;
       --input-padding-y: .75rem;
     }
-    
+    .bg-image {
+      background-image: url('../../assets/EYLOGO.jpg');
+      background-size: cover;
+      background-position: center;
+    }
 
     
     .card-signin {

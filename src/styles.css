@@ -97,3 +97,8 @@ border-radius: 0px;
     margin-left: 15px;
 }
 /* Dialog Pop Styling ends */
+
+a.navbar-link{
+  color: aliceblue;
+  text-underline-position: below;
+}

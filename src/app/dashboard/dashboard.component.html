@@ -1,37 +1,40 @@
-<app-header></app-header>
 <h2>Document Repository</h2>
+<hr/>
 <form class="formAlign">
 
-  <h4>{{clientFields.name}} </h4> <br>
+  <h5>{{clientFields.name}} </h5> <br>
   <div>
-    <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/project">Create New Document</a><br><br>
+    <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/project" class="navbar-link" >Create New Document</a>
   </div>
   <div>
-
+    <br>
+    <br>
     <div class="container">
 
 
       <div class="docs" *ngIf="brdCount > 0">
-        <mat-icon>folder</mat-icon><a href="#" routerLink="/brddocs">BRD</a><br><br>
+        <mat-icon>folder</mat-icon><a class="navbar-link" href="#" routerLink="/brddocs">BRD</a><br><br>
       </div>
       <div class="docs" *ngIf="fsdCount > 0">
-        <mat-icon>folder</mat-icon><a href="#" routerLink="/fsddocs">FSD</a><br><br>
+        <mat-icon>folder</mat-icon><a class="navbar-link" href="#" routerLink="/fsddocs">FSD</a><br><br>
       </div>
       <div class="docs" *ngIf="tsdCount > 0">
-        <mat-icon>folder</mat-icon><a href="#" routerLink="/tsddocs">TSD</a><br><br>
+        <mat-icon>folder</mat-icon><a class="navbar-link" href="#" routerLink="/tsddocs">TSD</a><br><br>
       </div>
       <div class="docs" *ngIf="rtmCount > 0">
-        <mat-icon>folder</mat-icon><a href="#" routerLink="/rtmdocs">RTM</a><br><br>
+        <mat-icon>folder</mat-icon><a href="#" class="navbar-link" routerLink="/rtmdocs">RTM</a><br><br>
       </div>
       <div class="docs" *ngIf="testdocCount > 0">
-        <mat-icon>folder</mat-icon><a href="#" routerLink="/testdocs">Test Scenario</a><br><br>
+        <mat-icon>folder</mat-icon><a href="#" class="navbar-link" routerLink="/testdocs">Test Scenario</a><br><br>
       </div>
     </div>
-
-    <div style="background-color:#f1f1f1">
+    <br>
+    <br>
+    <div style="background-color: white;">
       <table>
         <tr>
-          <td width=900><button type="button" class="btn btn-dark" routerLink="/folder">Home</button></td>
+          <td width=450></td>
+          <td width=300><button type="button" class="btn btn-dark" routerLink="/folder">Home</button></td>
         </tr>
       </table>
     </div>

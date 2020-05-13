@@ -1,13 +1,64 @@
 <h3>{{clientInfo.name}}</h3>
 <form class="formAlign">
 <div class="clntDivAlign">
-    <b>Engagement Name :</b>{{clientInfo.engagement}}<br><br><br>
-    <b>Engagement code :</b> {{clientInfo.code}}<br><br><br>
-    <b>System :</b> {{clientInfo.sys}}<br><br><br>
-    <b>Banking Vertical :</b> {{clientInfo.vertical}}<br><br><br>
-    <b>Project Methodology :</b> {{clientInfo.method}}<br><br><br>
-    <b>Engagement Partner :</b> {{clientInfo.partner}}<br><br><br>
-    <b>Project Manager :</b> {{clientInfo.manager}}<br><br><br>
+    <table>
+        <tr>
+            <td>
+                <b>Engagement Name :</b>
+            </td>
+            <td>
+                {{clientInfo.engagement}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>Engagement code :</b>
+            </td>
+            <td>
+                {{clientInfo.code}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>System :</b>
+            </td>
+            <td>
+                {{clientInfo.sys}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>Banking Vertical :</b>
+            </td>
+            <td>
+                {{clientInfo.vertical}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>Project Methodology :</b>
+            </td>
+            <td>
+                {{clientInfo.method}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>Engagement Partner :</b>
+            </td>
+            <td>
+                {{clientInfo.partner}}
+            </td>
+        </tr><br>
+        <tr>
+            <td>
+                <b>Project Manager :</b>
+            </td>
+            <td>
+                {{clientInfo.manager}}
+            </td>
+        </tr><br>
+    </table>
 </div>
 <div style="background-color:#f1f1f1">
     <button class="btn btn-dark" type="button" style="margin-left: 450px;" (click)="editClientDetails()">Edit</button>
