@@ -18,6 +18,7 @@ export class FolderComponent implements OnInit {
 
   clientsList : ClientFields[]
   loggedInUser = new LoggedInUser()
+  searchClientStr:String;
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
     private localStorageService : LocalStorageService, private searchService : SearchService, private dialog: MatDialog,
     private dialogService : DailogService) { }
@@ -35,25 +36,27 @@ export class FolderComponent implements OnInit {
 
   }
 
-  getClientsList(){
-    this.clientServices.getClientDetails().subscribe(
-      data => {
-        console.log(data);
-        this.clientsList = data
-        this.clientServices.clientsList= data;
-      },
-      error =>{
-        console.log(error);
-      }
-    )
-  }
+  // getClientsList(){
+  //   this.clientServices.getClientDetails().subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.clientsList = data
+  //       this.clientServices.clientsList= data;
+  //     },
+  //     error =>{
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
-  searchClient(event : any){
-    console.log(event.target.value);
-    if(event.target.value==null || event.target.value==""){
-      this.getClientsList();
+  searchClient(){
+    console.log(this.searchClientStr);
+    
+      
+    if(this.searchClientStr==null || this.searchClientStr==""){
+      this.getClientByUser(this.loggedInUser.username)
     }
-    this.searchService.retrieveSearchResults(event.target.value).subscribe(
+    this.searchService.retrieveSearchResults(this.searchClientStr).subscribe(
       data => {
         console.log(data);
         this.clientsList = data
@@ -74,7 +77,7 @@ export class FolderComponent implements OnInit {
         this.clientServices.deleteClient(clientInfo._id).subscribe(
           data => {
             console.log(data);
-            this.getClientsList();         },
+            this.getClientByUser(this.loggedInUser.username)     },
           error =>{
             console.log(error);
           }
