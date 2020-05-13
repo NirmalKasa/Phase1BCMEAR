@@ -1,68 +1,96 @@
-/* 
-.createfol {
-    
-    position: absolute; left: 0;
-    }
-  
-    .tp-container { 
-     
-      float:left;
-  }
-  .tp-section {
-    
-    width: 100px;
-    height: 160px;
-    overflow: auto;
-    border: 1px solid #555;
-     
-  }
-  form {
-    
-    margin-top: 30px;
-   
-  }
-
-  h2{
-    margin-top: 100px;
-  }
-   */
-
-   
-
-
-   form {
-    border: 3px solid #f1f1f1;
-    margin-top: 30px;
-}
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+/* form {
+  border: 3px solid #f1f1f1;
+  margin-top: 30px;
+} */
 
 input {
-
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+  margin: 3px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .radio {
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-.analysis,
-.development,
-.testing {
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    padding: 12px 20px;
-    margin: 8px 0;
-
-}
-td{
-    text-align: center;
+.analysis, .development, .testing {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  margin: 8px 0;
 }
 
-h8{
-margin-top: 110px;
+/* td {
+  text-align: center;
+}
+
+h8 {
+  margin-top: 110px;
+}
+
+.scrollbar {
+  height: 300px;
+  margin-top: 20px;
+  width: 870px;
+  overflow-y: scroll;
+  min-height: 450px;
+}
+
+.client {
+  text-align: left;
+}
+
+.searchBoxAlignment {
+  text-align: right;
+}
+
+body {
+  margin: 30px;
+}
+
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+  text-align: right;
+  margin-top: 50px;
+  padding-right: 10px;
+}
+
+.search input {
+  width: 250px;
+  height: 32px;
+  background: #fcfcfc;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15p;
+}
+
+.search input {
+  text-indent: 32px;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding-left: 1260px;
+}
+
+.clntDetails {
+  width: 900px;
+  margin-left: 100px;
+} */
+
+.example-viewport {
+  height: 400px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.example-item {
+  height: 100px;
 }

@@ -1,44 +1,47 @@
 <app-header></app-header>
-<div class="row topalign">
-  <div class="col-md-4">
-
-  </div>
-  <div class="col-md-4">
-                <h2>
-                {{clientFields.name}}
-              </h2>
-              <p *ngIf="isLoading">Loading...</p>
-              <form>
-                  <h4>BRD Documents</h4><br>
-                  <div>
-                      <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br>
-                  </div>
-                  <div *ngIf="brdDocs.length == 0; else docList">
-                            <h4> <mark>No Records Found </mark></h4>
-                  </div>
-                  <ng-template #docList>
-                  <div class="container" *ngFor="let docs of brdDocs; let i= index" >
-                    <table width="400">
-                      <tr>
-                        <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
-                        <td> <mat-icon vertical-align="center" (click)="editBrd(clientFields.name,docs.fileName)" style="cursor: pointer;">editt</mat-icon> </td>
-                        <td> <mat-icon style="cursor: pointer;" type="button" (click)="deleteBrd(clientFields.name,docs.fileName)">delete</mat-icon></td>
-                        <td> <mat-icon style="cursor: pointer;"  type="button" (click)="downloadBrd(clientFields.name,docs.pdfId,docs.fileName)">vertical_align_bottom</mat-icon></td>
-                      </tr>
-                    </table>
-                  <!-- <div class="docs"><a href="#" >{{docs.fileName}}</a><mat-icon vertical-align="center">edit</mat-icon><mat-icon>delete</mat-icon></div> -->
-                  <!-- <div class="docs"><a href="#" >ABC_Customer_BRD_V0.2.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div>
-                  <div class="docs"><a href="#" >ABC_Customer_BRD_V0.3.pdf</a><mat-icon>edit</mat-icon><mat-icon>delete</mat-icon></div><br><br> -->
-                  </div>
-                  <div style="background-color:#f1f1f1">
-                      <table>
-                        <tr>
-                          <td width="500"><button type="button" class="btn btn-dark" routerLink="/docrepo">Document Repo</button></td>
-                        </tr>
-                      </table>
-                    </div>
-                  </ng-template>
-
-              </form>
-              </div>
+<div class="search">
+  <span class="fa fa-search"></span>
+  <input type="text" (blur)="searchDocuments($event)" placeholder="Search">
 </div>
+<h2 class="clientNameStyle">
+  {{clientFields.name}}
+</h2>
+<form id="DocumentSecID" class="brdDocAlign">
+  <h4>BRD Documents</h4><br>
+  <div>
+    <mat-icon>create_new_folder</mat-icon><a href="#" routerLink="/brd">Create New Document</a><br><br>
+  </div>
+  <div id="docListID" class="scrollbar" *ngIf="brdDocs &&  brdDocs.length > 0; else msg">
+    <div class="container" *ngFor="let docs of brdDocs; let i= index">
+      <table width="400">
+        <tr>
+          <td> <a href="#" vertical-align="left">{{docs.fileName}}</a></td>
+          <td>
+            <mat-icon vertical-align="center" (click)="editBrd(docs.fileName)"
+              style="cursor: pointer;">edit</mat-icon>
+          </td>
+          <td>
+            <mat-icon style="cursor: pointer;" type="button" (click)="deleteBrd(clientFields.name,docs.fileName)">delete
+            </mat-icon>
+          </td>
+          <td> <mat-icon style="cursor: pointer;"  type="button" (click)="downloadBrd(clientFields.name,docs.pdfId,docs.fileName)">vertical_align_bottom</mat-icon></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <ng-template #msg>
+    <div style="text-align: center;font-weight: 500;">No Records found.</div>
+  </ng-template>
+  <div style="background-color:#f1f1f1">
+    <table>
+
+      <tr>
+        <td width="100"><button type="button" class="btn btn-dark docRepoBtnStyl" style="margin-left:420px;"
+            routerLink="/docrepo">Document
+            Repo</button></td>
+      </tr>
+    </table>
+  </div>
+
+
+</form>

@@ -1,5 +1,6 @@
-  h2{
+  h2 {
     margin-top: 100px;
+    padding-left: 350px;
   }
 
   form {
@@ -7,7 +8,7 @@
     margin-top: 30px;
   }
 
-  .button{
+  .button {
     margin: 16px, 0;
     display: flex;
     margin: 32px auto;
@@ -15,15 +16,19 @@
     max-width: 960px;
   }
 
-  .docs{
+  .docs {
     width: 100%;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
   }
-  td{
- 
-    text-align:center; 
-  
+
+  td {
+    text-align: center;
+  }
+
+  .formAlign {
+    width: 950px;
+    margin-left: 350px;
   }

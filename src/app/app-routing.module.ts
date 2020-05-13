@@ -54,8 +54,8 @@ const routes: Routes = [
   {path:'rtmdocs', component:RtmDocsComponent},
   {path:'testdocs', component:TestDocsComponent},
   {path:'forgotpwd', component:ForgotpwdComponent},
-  {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver}}
-
+  {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver}},
+  { path: 'client/:id', component: ClientComponent},
 ]
 
 @NgModule({

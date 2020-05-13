@@ -3,6 +3,11 @@ import { ClientFields } from '../client/client.component';
 import { ActivatedRoute } from '@angular/router';
 import { ClientServices } from '../shared/client.service';
 import { LocalStorageService } from '../shared/localstorage.service';
+import { SearchService } from '../shared/search.service';
+import { LoggedInUser } from '../log-in/log-in.component';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DailogService } from '../shared/dailog.service';
 
 @Component({
   selector: 'app-folder',
@@ -12,11 +17,15 @@ import { LocalStorageService } from '../shared/localstorage.service';
 export class FolderComponent implements OnInit {
 
   clientsList : ClientFields[]
+  loggedInUser = new LoggedInUser()
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
-    private localStorageService : LocalStorageService) { }
+    private localStorageService : LocalStorageService, private searchService : SearchService, private dialog: MatDialog,
+    private dialogService : DailogService) { }
 
   ngOnInit() {
-    this.getClientsList();
+    //this.getClientsList();
+    this.loggedInUser = JSON.parse(this.localStorageService.getLoggedInUser()) 
+    this.getClientByUser(this.loggedInUser.username)
   }
 
   selectedclient(index : number) {
@@ -28,6 +37,55 @@ export class FolderComponent implements OnInit {
 
   getClientsList(){
     this.clientServices.getClientDetails().subscribe(
+      data => {
+        console.log(data);
+        this.clientsList = data
+        this.clientServices.clientsList= data;
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+
+  searchClient(event : any){
+    console.log(event.target.value);
+    if(event.target.value==null || event.target.value==""){
+      this.getClientsList();
+    }
+    this.searchService.retrieveSearchResults(event.target.value).subscribe(
+      data => {
+        console.log(data);
+        this.clientsList = data
+        this.clientServices.clientsList= data;
+      },
+      error =>{
+        console.log(error);
+      }
+    ) 
+  }
+
+  selectedclientForDelete(index : number) {
+    console.log("client selected ==>"+this.clientsList[index].name)
+    this.dialogService.openConfirmDialog('Are you sure to delete this record ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        const clientInfo = this.clientsList[index];
+        this.clientServices.deleteClient(clientInfo._id).subscribe(
+          data => {
+            console.log(data);
+            this.getClientsList();         },
+          error =>{
+            console.log(error);
+          }
+        )
+
+      }
+    });
+  }
+
+  getClientByUser(userName){
+    this.clientServices.getClientByUserName(userName).subscribe(
       data => {
         console.log(data);
         this.clientsList = data

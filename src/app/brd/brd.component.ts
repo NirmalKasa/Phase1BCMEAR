@@ -7,7 +7,7 @@ import { PreviewService } from '../preview/preview.service';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { DocumentService } from '../shared/document.service';
-import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -25,11 +25,11 @@ export class BrdComponent implements OnInit {
   selectedId: number
   isReadonly = false
   closeResult: string;
-  moduleName :string;
+  moduleName: string;
   formBrdFields = new BrdFields();
   fileToUpload: string;
   isDuplicate = false
-  brdDocs : BrdFields[]
+  brdDocs: BrdFields[]
   constructor(private previewService: PreviewService, private router: ActivatedRoute,
     private route: Router,
     private store: LocalStorageService,
@@ -45,11 +45,15 @@ export class BrdComponent implements OnInit {
       res = res[0].split('_', 5);
       console.log(+res[4] + 1)
       this.version = +res[4] + 1
-      this.documentService.getBrdDocument(this.clientFields.name, this.fileName).subscribe(
+      this.documentService.getBrdDocument(this.clientFields.name, this.fileName,this.clientFields.loggedInUserName).subscribe(
         data => {
           console.log(data);
           this.brdFields = data;
           this.moduleName = this.brdFields.module;
+        },
+        error=> {
+            console.log("there is an error");
+
         }
       )
       this.isReadonly = true;
@@ -62,13 +66,13 @@ export class BrdComponent implements OnInit {
   updateSessionStorage(form: NgForm) {
     this.formBrdFields = form.value;
     ///this.relatedFiles = this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, this.sanitizer.bypassSecurityTrustResourceUrl(this.selectedFile));
-     if(this.formBrdFields.module === this.moduleName){
+    if (this.formBrdFields.module === this.moduleName) {
       //this.brdFields = form.value;
-    }else{
+    } else {
       this.brdFields.fileName = "";
     }
     sessionStorage.setItem('brdFields', JSON.stringify(this.brdFields));
-    if(!this.isReadonly){
+    if (!this.isReadonly) {
       this.isDuplicateModule(this.formBrdFields.module)
     }
     this.route.navigate(['preview'])
@@ -76,51 +80,51 @@ export class BrdComponent implements OnInit {
 
   saveBrdDocument(form: NgForm) {
     this.formBrdFields = form.value;
-    if(this.brdFields.module === this.formBrdFields.module){
+    if (this.brdFields.module === this.formBrdFields.module) {
       this.brdFields = form.value;
-    }else{
+    } else {
       this.brdFields.fileName = "";
     }
     this.generatePdf();
   }
 
   toggleReadOnly() {
-   this.isReadonly = !this.isReadonly;
+    this.isReadonly = !this.isReadonly;
   }
-  url:any;
+  url: any;
   handleFileInput(event) {
-  // if (event.target.files && event.target.files[0]) {
-  //   var reader = new FileReader();
+    // if (event.target.files && event.target.files[0]) {
+    //   var reader = new FileReader();
 
-  //   reader.onload = (event: ProgressEvent) => {
-  //     this.url = (<FileReader>event.target).result;
-  //     console.log("in handle fileinput :"+this.url);
-  //     this.sanitizer.bypassSecurityTrustUrl(this.url);
-  //   }
-  //   reader.readAsDataURL(event.target.files[0]);
-  // }
-  this.fileToUpload = event.target.files[0].name
-  var selectedFile = event.target.files[0]
-  console.log(event);
-  var file = event.target.files[0]
-  let reader = new FileReader();
-  reader.addEventListener("load", function () {
-    var dataString = reader.result;
-    //this.url = reader.result as string;
-    console.log(dataString);
- }, false);
-   //this.sanitizer.bypassSecurityTrustUrl(file)
-  // this.sanitizer.bypassSecurityTrustResourceUrl(file);
- // this.brdFields.relatedFiles = this.fileToUpload;
-//  this.sanitizer.bypassSecurityTrustResourceUrl(file)
- reader.readAsDataURL(file);
- console.log(reader);
- 
-}
+    //   reader.onload = (event: ProgressEvent) => {
+    //     this.url = (<FileReader>event.target).result;
+    //     console.log("in handle fileinput :"+this.url);
+    //     this.sanitizer.bypassSecurityTrustUrl(this.url);
+    //   }
+    //   reader.readAsDataURL(event.target.files[0]);
+    // }
+    this.fileToUpload = event.target.files[0].name
+    var selectedFile = event.target.files[0]
+    console.log(event);
+    var file = event.target.files[0]
+    let reader = new FileReader();
+    reader.addEventListener("load", function () {
+      var dataString = reader.result;
+      //this.url = reader.result as string;
+      console.log(dataString);
+    }, false);
+    //this.sanitizer.bypassSecurityTrustUrl(file)
+    // this.sanitizer.bypassSecurityTrustResourceUrl(file);
+    // this.brdFields.relatedFiles = this.fileToUpload;
+    //  this.sanitizer.bypassSecurityTrustResourceUrl(file)
+    reader.readAsDataURL(file);
+    console.log(reader);
+
+  }
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       this.toggleReadOnly();
       this.version = 1;
@@ -130,14 +134,16 @@ export class BrdComponent implements OnInit {
   }
 
   isDuplicateModule(moduleName) {
-    this.brdDocs.some(brdDoc =>{
-      if(brdDoc.module === moduleName && moduleName !== this.moduleName){
-        this.isDuplicate = true;
-        return true
-      }else{
-        this.isDuplicate = false;
-      }
-    });
+    if (this.brdDocs !== null) {
+      this.brdDocs.some(brdDoc => {
+        if (brdDoc.module === moduleName && moduleName !== this.moduleName) {
+          this.isDuplicate = true;
+          return true
+        } else {
+          this.isDuplicate = false;
+        }
+      });
+    }
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -145,7 +151,7 @@ export class BrdComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
   generatePdf() {
@@ -166,7 +172,7 @@ export class BrdComponent implements OnInit {
 
   }
 }
-  
+
 export class BrdFields {
   module: string;
   introduction: string;
@@ -192,5 +198,5 @@ export class BrdFields {
   rev: string;
   pdfId: string;
   fileName: string;
-
+  loggedInUserName : String;
 }

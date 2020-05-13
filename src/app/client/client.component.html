@@ -1,6 +1,5 @@
-<app-header></app-header>
 <div class = "container">
-<h3>Client Information</h3>
+<h2>Client Information</h2>
 <form #f="ngForm">
 
   <div class="container">
@@ -61,7 +60,7 @@
 
   </div>
 
-  <div style="background-color:#f1f1f1">
+  <div *ngIf="renderSaveBtn(); else updateBtn" style="background-color:#f1f1f1">
     <table>
       <tr>
         <td width=300><input class="btn btn-dark" type="reset"></td>
@@ -71,5 +70,15 @@
       </tr>
     </table>
   </div>
+  <ng-template #updateBtn>
+    <div style="background-color:#f1f1f1">
+      <table>
+        <tr>
+          <td width=300><button class="btn btn-dark" style="margin-left: 400px;" type="button" (click)="updateClientDetails()">Update</button></td>
+          <td width=300><button class="btn btn-dark" style="margin-right: 100px;" type="button" [routerLink]="['/clientdetails', id]">Cancel</button></td>
+        </tr>
+      </table>
+    </div>  
+  </ng-template>
 </form>
 </div>

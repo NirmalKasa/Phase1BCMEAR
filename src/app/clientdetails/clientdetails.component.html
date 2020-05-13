@@ -1,7 +1,6 @@
-<app-header></app-header>
 <h3>{{clientInfo.name}}</h3>
-<form>
-<div>
+<form class="formAlign">
+<div class="clntDivAlign">
     <b>Engagement Name :</b>{{clientInfo.engagement}}<br><br><br>
     <b>Engagement code :</b> {{clientInfo.code}}<br><br><br>
     <b>System :</b> {{clientInfo.sys}}<br><br><br>
@@ -9,5 +8,8 @@
     <b>Project Methodology :</b> {{clientInfo.method}}<br><br><br>
     <b>Engagement Partner :</b> {{clientInfo.partner}}<br><br><br>
     <b>Project Manager :</b> {{clientInfo.manager}}<br><br><br>
+</div>
+<div style="background-color:#f1f1f1">
+    <button class="btn btn-dark" type="button" style="margin-left: 450px;" (click)="editClientDetails()">Edit</button>
 </div>
 </form>
