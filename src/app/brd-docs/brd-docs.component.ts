@@ -17,6 +17,7 @@ export class BrdDocsComponent implements OnInit {
   brdDocs: BrdFields[]
   clientFields: ClientFields;
   isLoading: boolean
+  searchClientStr:String
   constructor(private documentService: DocumentService, private store: LocalStorageService,
     private route: Router, private searchService: SearchService) { }
 
@@ -48,13 +49,14 @@ export class BrdDocsComponent implements OnInit {
     )
   }
 
-  searchDocuments(event: any) {
-    console.log(event.target.value);
-    if (event.target.value == null || event.target.value == "") {
+  searchDocuments() {
+   console.log(this.searchClientStr);
+   
+    if (this.searchClientStr== null || this.searchClientStr == "") {
       this.fetchDocuments();
     }
     else {
-      this.fetchDocumentsUsingSearchCriteria(event)
+      this.fetchDocumentsUsingSearchCriteria();
     }
 
   }
@@ -74,8 +76,8 @@ export class BrdDocsComponent implements OnInit {
       })
   }
 
-  fetchDocumentsUsingSearchCriteria(event: any) {
-    this.searchService.retrieveDocumentSearchResults(event.target.value, this.clientFields.name, this.clientFields.loggedInUserName).subscribe(data => {
+  fetchDocumentsUsingSearchCriteria() {
+    this.searchService.retrieveDocumentSearchResults(this.searchClientStr, this.clientFields.name, this.clientFields.loggedInUserName).subscribe(data => {
       this.searchService.brdDocs = data;
       if (this.searchService.brdDocs != undefined) {
         console.log("brd docs available");

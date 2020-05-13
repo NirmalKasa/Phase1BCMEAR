@@ -44,13 +44,13 @@
   <nav class="navbar text-white bg-secondary mb-3">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <mat-icon>create_new_folder</mat-icon><a  class="navbar-brand" href="#" routerLink="/client"  >Create New Client</a>
+        <mat-icon>create_new_folder</mat-icon><a  class="navbar-link" href="#" routerLink="/client"  >Create New Client</a>
       </li>
        </ul>
      
   
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="text"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
+      <input class="form-control mr-sm-2" type="search"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0"  (click)="searchClient()">Search</button>
     </form>
   </nav>
@@ -69,7 +69,8 @@
   <div class="col-md-7 clntDetails">
   
   
-    <h3 style="text-align: left;">Bank Clients</h3>
+    <h2 style="text-align: left;">Bank Clients</h2>
+    
     <form>
 
       
