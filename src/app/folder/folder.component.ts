@@ -26,7 +26,8 @@ export class FolderComponent implements OnInit {
 
   ngOnInit() {
     //this.getClientsList();
-    this.loggedInUser = JSON.parse(this.localStorageService.getLoggedInUser()) 
+    this.loggedInUser = JSON.parse(this.localStorageService.getLoggedInUser())
+    this.showSpinner=true;
     this.getClientByUser(this.loggedInUser.username)
   }
 
@@ -51,14 +52,11 @@ export class FolderComponent implements OnInit {
   // }
 
   searchClient(){
-    console.log(this.searchClientStr);
-    
-    this.showSpinner=true;      
+    console.log(this.searchClientStr);   
+    this.showSpinner=true;   
+    document.getElementById("overlay").style.display = "block";   
     if(this.searchClientStr==null || this.searchClientStr==""){
       this.getClientByUser(this.loggedInUser.username)
-      setTimeout(()=>{
-        this.showSpinner = false;
-      }, 1000)   
     }
     this.searchService.retrieveSearchResults(this.searchClientStr).subscribe(
       data => {
@@ -67,6 +65,7 @@ export class FolderComponent implements OnInit {
         this.clientServices.clientsList= data;
         setTimeout(()=>{
           this.showSpinner = false;
+          document.getElementById("overlay").style.display = "none";
         }, 1000) 
       },
       error =>{
@@ -95,11 +94,17 @@ export class FolderComponent implements OnInit {
   }
 
   getClientByUser(userName){
+    document.getElementById("overlay").style.display = "block";   
     this.clientServices.getClientByUserName(userName).subscribe(
       data => {
         console.log(data);
         this.clientsList = data
         this.clientServices.clientsList= data;
+        setTimeout(()=>{
+          this.showSpinner = false;
+          document.getElementById("overlay").style.display = "none";   
+
+        }, 1000)     
       },
       error =>{
         console.log(error);
