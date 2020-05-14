@@ -47,11 +47,23 @@
         <mat-icon>create_new_folder</mat-icon><a  class="navbar-link" href="#" routerLink="/client"  >Create New Client</a>
       </li>
        </ul>
-       <div class="lds-default" *ngIf="showSpinner" style="top: 50px;right: 200px;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>   
-  
-    <form class="form-inline">
+       <!-- <div class="lds-default" *ngIf="showSpinner" style="top: 50px;right: 200px;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>    -->
+       
+       <div class="d-flex align-items-center" style="margin-right: 240px;" *ngIf="showSpinner">
+        <strong>Loading...</strong>
+        <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+      </div>
+       <div id="overlay"  >
+        <span id="nav" class="overlay" *ngIf="showSpinner">
+            <div class="spinner" style="display: block; position: fixed">
+            </div>
+        </span>
+      </div>
+            
+       <form class="form-inline">
       <input class="form-control mr-sm-2" type="search"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0"  (click)="searchClient()">Search</button>
+     
     </form>
     <!-- <mat-spinner class="lds-facebook" *ngIf="showSpinner" ></mat-spinner>  -->
   </nav>
@@ -67,14 +79,11 @@
 
   </div>
   <div class="col-md-7 clntDetails">
-  
-  
     <h2 style="text-align: left;">Bank Clients</h2>
     <form>
 
     
       <div id="clientListID"  *ngIf="clientsList &&  clientsList.length > 0; else msg">
- 
         <cdk-virtual-scroll-viewport itemSize="10" class="example-viewport">
           <div *cdkVirtualFor="let client of clientsList; let i = index" class="example-item"> <mat-radio-button [value]="client.name" (change)="selectedclient(i)" #clnt>{{client.name}}</mat-radio-button>
 
@@ -90,11 +99,14 @@
                 <td width=200><button type="button" class="btn btn-dark" (click)="selectedclientForDelete(i)">Delete Client</button></td>
               </tr>
             </table><br><br><br>
-
+            
           </div>
         </div>
         </cdk-virtual-scroll-viewport>
+       
       </div>
+     
+        
       <ng-template #msg>
         <div style="text-align: center;font-weight: 500;">No Records found.</div>
       </ng-template>
