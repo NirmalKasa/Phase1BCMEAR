@@ -2,12 +2,27 @@
   <span class="fa fa-search"></span>
   <input type="text" (blur)="searchDocuments($event)" placeholder="Search">
 </div> -->
-<h2 class="clientNameStyle">
-  {{clientFields.name}}
-</h2>
+
+<nav class="navbar text-white bg-secondary mb-3">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <h2 class="clientNameStyle">
+        {{clientFields.name}}
+      </h2>
+    </li>
+     </ul>
+   
+
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0"  (click)="searchDocuments()">Search</button>
+  </form>
+</nav>
 <hr/>
+
 <form id="DocumentSecID" class="brdDocAlign">
   <h5>BRD Documents</h5>
+  
   <!-- <div>
     <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New Document</a><br><br>
   </div> -->
@@ -17,13 +32,7 @@
         <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New Document</a><br><br>
       </li>
        </ul>
-     
-  
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0"  (click)="searchDocuments()">Search</button>
-    </form>
-  </nav>
+    </nav>
   <div id="docListID" class="scrollbar" *ngIf="brdDocs &&  brdDocs.length > 0; else msg">
     <div class="container" *ngFor="let docs of brdDocs; let i= index">
       <table width="400">
@@ -42,9 +51,13 @@
     </div>
   </div>
   <ng-template #msg>
-    <div style="text-align: center;font-weight: 500;">No Records found.</div>
+    <div style="text-align: center;font-weight: 500;">No Records Found.</div>
   </ng-template>
+
+  <br/>
+    <br/>
   <div style="background-color:#f1f1f1">
+       
     <table>
 
       <tr>
