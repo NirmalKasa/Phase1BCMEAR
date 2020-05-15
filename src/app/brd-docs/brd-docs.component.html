@@ -10,40 +10,50 @@
         {{clientFields.name}}
       </h2>
     </li>
-     </ul>
-   
+  </ul>
+  <div class="d-flex align-items-center" style="margin-right: 40px;" *ngIf="showSpinner">
+    <strong>Loading...</strong>
+    <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+  </div>
+   <div id="overlay"  >
+    <span id="nav" class="overlay" *ngIf="showSpinner">
+        <div class="spinner" style="display: block; position: fixed">
+        </div>
+    </span>
+  </div>
+ 
 
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search"  [(ngModel)]="searchClientStr" name="search"  aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0"  (click)="searchDocuments()">Search</button>
+    <input class="form-control mr-sm-2" type="search" [(ngModel)]="searchClientStr" name="search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchDocuments()">Search</button>
   </form>
 </nav>
-<hr/>
+<hr />
 
 <form id="DocumentSecID" class="brdDocAlign">
   <h5>BRD Documents</h5>
 
-  <br/>
-  
-  
+  <br />
+
+
   <!-- <div>
     <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New Document</a><br><br>
   </div> -->
   <nav class="navbar text-white bg-secondary mb-3">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New Document</a><br><br>
+        <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New
+          Document</a><br><br>
       </li>
-       </ul>
-    </nav>
+    </ul>
+  </nav>
   <div id="docListID" class="scrollbar" *ngIf="brdDocs &&  brdDocs.length > 0; else msg">
     <div class="container" *ngFor="let docs of brdDocs; let i= index">
       <table width="400">
         <tr>
           <td> <a href="#" class="navbar-link" vertical-align="left">{{docs.fileName}}</a></td>
           <td>
-            <mat-icon vertical-align="center" (click)="editBrd(docs.fileName)"
-              style="cursor: pointer;">edit</mat-icon>
+            <mat-icon vertical-align="center" (click)="editBrd(docs.fileName)" style="cursor: pointer;">edit</mat-icon>
           </td>
           <td>
             <mat-icon style="cursor: pointer;" type="button" (click)="deleteBrd(clientFields.name,docs.fileName)">delete
@@ -57,24 +67,17 @@
     <div style="text-align: center;font-weight: 500;">No Records Found.</div>
   </ng-template>
 
-  <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
   <div style="background-color:#f1f1f1">
-       
-    <table>
 
-      <tr>
-        <td width="450"></td>
-            <td ><button type="button" class="btn btn-dark docRepoBtnStyl" 
-              routerLink="/docrepo">Document
-              Repo</button></td>
-      </tr>
-    </table>
+    <button type="button" class="btn btn-dark docRepoBtnStyl" style="margin-left: 340px;" routerLink="/docrepo">Document
+      Repo</button>
   </div>
 
 
