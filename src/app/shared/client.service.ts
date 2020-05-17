@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ClientFields } from '../client/client.component';
 import { environment } from '../../environments/environment'
 
@@ -13,6 +13,7 @@ const getClientByUserNameUrl= environment.apiUrl+'/clientdetails/getClients/';
 export class ClientServices {
 
   clientsList : ClientFields[]
+  getLatestClientsSubject$ = new Subject<String>();
 
   constructor(private http: HttpClient){
     console.log("Current API URL:", environment.apiUrl);

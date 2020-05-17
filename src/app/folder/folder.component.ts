@@ -52,21 +52,21 @@ export class FolderComponent implements OnInit {
   // }
 
   searchClient(){
-    console.log(this.searchClientStr);   
-    this.showSpinner=true;   
-    document.getElementById("overlay").style.display = "block";   
+    console.log(this.searchClientStr);
+    this.showSpinner=true;
+    document.getElementById("overlay").style.display = "block";
     if(this.searchClientStr==null || this.searchClientStr==""){
       this.getClientByUser(this.loggedInUser.username)
     }
     this.searchService.retrieveSearchResults(this.searchClientStr).subscribe(
       data => {
         console.log(data);
-        this.clientsList = data    
+        this.clientsList = data
         this.clientServices.clientsList= data;
         setTimeout(()=>{
           this.showSpinner = false;
           document.getElementById("overlay").style.display = "none";
-        }, 1000) 
+        }, 1000)
       },
       error =>{
         console.log(error);
@@ -83,7 +83,9 @@ export class FolderComponent implements OnInit {
         this.clientServices.deleteClient(clientInfo._id).subscribe(
           data => {
             console.log(data);
-            this.getClientByUser(this.loggedInUser.username)     },
+            this.getClientByUser(this.loggedInUser.username) ;
+
+        },
           error =>{
             console.log(error);
           }
@@ -94,17 +96,18 @@ export class FolderComponent implements OnInit {
   }
 
   getClientByUser(userName){
-    document.getElementById("overlay").style.display = "block";   
+    document.getElementById("overlay").style.display = "block";
     this.clientServices.getClientByUserName(userName).subscribe(
       data => {
         console.log(data);
         this.clientsList = data
         this.clientServices.clientsList= data;
+        this.clientServices.getLatestClientsSubject$.next('fetch');
         setTimeout(()=>{
           this.showSpinner = false;
-          document.getElementById("overlay").style.display = "none";   
+          document.getElementById("overlay").style.display = "none";
 
-        }, 1000)     
+        }, 1000)
       },
       error =>{
         console.log(error);

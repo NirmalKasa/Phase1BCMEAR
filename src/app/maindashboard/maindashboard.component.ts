@@ -15,6 +15,8 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
   clientsList : ClientFields[]
   subscription : any
   isLoading : boolean;
+  getLatestClientsSubscription: Subscription;
+
   constructor(private clientServices: ClientServices, private route : Router,private router : ActivatedRoute,
      private localStorageService : LocalStorageService) { }
 
@@ -24,8 +26,12 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
     this.subscription = setInterval(() => {
                      this.fetchClientListDetails();
                 }, 1000);
-
+    this.getLatestClientsSubscription = this.clientServices.getLatestClientsSubject$.subscribe( data => {
+      console.log("fetching client details");
+      this.fetchClientListDetails()
+    })
   }
+
   doNavigate(routeurl: string, index : number){
     console.log("client index="+index);
     this.localStorageService.setClientDetails(this.clientsList[index]);
@@ -45,6 +51,7 @@ export class MaindashboardComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(){
-
+    console.log("unsubscribe getLatestClientsSubscription");
+    this.getLatestClientsSubscription.unsubscribe();
   }
 }
