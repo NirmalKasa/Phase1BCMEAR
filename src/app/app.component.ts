@@ -13,7 +13,7 @@ export class AppComponent {
 
   currentOrderMappingUrls = new Map();
 
-  constructor(private router: Router,private route: ActivatedRoute) {
+  constructor(public router: Router,private route: ActivatedRoute) {
     this.totalUrlMapping();
     this.projectDirectoryNavigation(this.router,this.route);
   }

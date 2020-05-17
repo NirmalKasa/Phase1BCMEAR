@@ -57,16 +57,7 @@
 
 
 
-<main role="main" class="container">
     <div class="row">
-        <nav class="navbar navbar-light navBarAlign">
-            <ol class="nav nav-tabs" class="nav justify-content-start">
-                <li *ngFor="let item of currentOrderMappingUrls | keyvalue ">
-                    <a routerLink={{item.value[0]}} class="nav-link" routerLinkActive><u>{{item.value[1]}}</u><b>></b>
-                    </a>
-                </li>
-            </ol>
-        </nav>
     </div>
 
     <!-- <div class="card bg-light mb-3" >
@@ -84,12 +75,30 @@
       <div *ngIf="this.router.url == '/'">
         <router-outlet></router-outlet>
       </div>
-    <div *ngIf="this.router.url !== '/'" class="card bg-secondary mb-3">
+      <main role="main" class="container">
+    <div class="row">
+        <div *ngIf="this.router.url == '/folder'" class="col-md-2" style="right: 220px;">
+            <app-maindashboard></app-maindashboard>
+        </div>
+        <div *ngIf="this.router.url != '/folder'" class="col-md-2" style="right: 220px;">
+       </div>
+        <div class="col-md-9">
+      <div *ngIf="this.router.url !== '/'" class="card text-white bg-secondary mb-3">
+        <nav class="navbar navbar-light navBarAlign">
+            <ol class="nav nav-tabs" class="nav justify-content-start">
+                <li *ngFor="let item of currentOrderMappingUrls | keyvalue ">
+                    <a routerLink={{item.value[0]}} class="nav-link" routerLinkActive><u>{{item.value[1]}}</u><b>></b>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+
         <div class="card-body">
             <router-outlet></router-outlet>
         </div>
     </div>
-
+</div>
+    </div>
 
 
 

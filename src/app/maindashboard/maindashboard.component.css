@@ -21,3 +21,7 @@
   height: 600px; /* real height of the content */
   width: 400px; /* real width of the content */
 }
+
+li:hover{
+  background-color: rgba(211, 208, 208, 0.952);
+}

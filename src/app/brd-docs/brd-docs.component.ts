@@ -18,14 +18,15 @@ export class BrdDocsComponent implements OnInit {
   clientFields: ClientFields;
   isLoading: boolean
   searchClientStr:String
+  showSpinner :boolean = false;
   constructor(private documentService: DocumentService, private store: LocalStorageService,
     private route: Router, private searchService: SearchService) { }
 
   ngOnInit() {
     this.clientFields = JSON.parse(this.store.getClientDetails());
     // this.fetchClientDocuments()
-    this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
-    // console.log("in brd docs=="+this.brdDocs);
+    this.fetchDocuments()
+     // console.log("in brd docs=="+this.brdDocs);
   }
 
   onSelect(index: number) {
@@ -51,12 +52,18 @@ export class BrdDocsComponent implements OnInit {
 
   searchDocuments() {
    console.log(this.searchClientStr);
-   
+    this.showSpinner=true;
+    document.getElementById("overlay").style.display = "block";   
     if (this.searchClientStr== null || this.searchClientStr == "") {
       this.fetchDocuments();
+      setTimeout(()=>{
+        this.showSpinner = false;
+        document.getElementById("overlay").style.display = "none";
+      }, 1000) 
     }
     else {
       this.fetchDocumentsUsingSearchCriteria();
+
     }
 
   }
@@ -84,6 +91,10 @@ export class BrdDocsComponent implements OnInit {
         this.brdDocs = this.searchService.brdDocs;
         this.store.setBrdDocsDetails(this.searchService.brdDocs);
       }
+      setTimeout(()=>{
+        this.showSpinner = false;
+        document.getElementById("overlay").style.display = "none";
+      }, 1000) 
     },
       error => {
         console.log("there is an error");
