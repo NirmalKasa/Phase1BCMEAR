@@ -13,7 +13,6 @@ const getClientByUserNameUrl= environment.apiUrl+'/clientdetails/getClients/';
 export class ClientServices {
 
   clientsList : ClientFields[]
-  getLatestClientsSubject$ = new Subject<String>();
 
   constructor(private http: HttpClient){
     console.log("Current API URL:", environment.apiUrl);

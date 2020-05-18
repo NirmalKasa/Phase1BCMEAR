@@ -4,54 +4,56 @@ import { ClientFields } from '../client/client.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { Subscription } from 'rxjs';
+import { FolderComponent } from '../folder/folder.component';
+import { ClientinteractorService } from '../shared/clientinteractor.service';
 
 @Component({
   selector: 'app-maindashboard',
   templateUrl: './maindashboard.component.html',
   styleUrls: ['./maindashboard.component.css']
 })
-export class MaindashboardComponent implements OnInit,OnDestroy {
-  listItems = ['BRD','FSD','Template','FRD']
-  clientsList : ClientFields[]
-  subscription : any
-  isLoading : boolean;
-  getLatestClientsSubscription: Subscription;
-
-  constructor(private clientServices: ClientServices, private route : Router,private router : ActivatedRoute,
-     private localStorageService : LocalStorageService) { }
+export class MaindashboardComponent implements OnInit, OnDestroy {
+  listItems = ['BRD', 'FSD', 'Template', 'FRD']
+  clientsList: ClientFields[]
+  subscription: any
+  subscribe : Subscription
+  isLoading: boolean;
+  constructor(private clientServices: ClientServices, private route: Router, private router: ActivatedRoute,
+    private localStorageService: LocalStorageService, private clientInterator : ClientinteractorService) { }
 
   ngOnInit() {
-    this.isLoading= true;
-   // this.clientsList = this.router.snapshot.data['clientsList']
+    this.isLoading = true;
+    // this.clientsList = this.router.snapshot.data['clientsList']
     this.subscription = setInterval(() => {
-                     this.fetchClientListDetails();
-                }, 1000);
-    this.getLatestClientsSubscription = this.clientServices.getLatestClientsSubject$.subscribe( data => {
-      console.log("fetching client details");
-      this.fetchClientListDetails()
-    })
-  }
+      this.fetchClientListDetails();
+    }, 1000)
 
-  doNavigate(routeurl: string, index : number){
-    console.log("client index="+index);
+    this.subscribe = this.clientInterator.updateClientSub
+      .subscribe(
+        (clientsList: ClientFields[]) => {
+          this.clientsList = clientsList;
+        }
+      )
+  }
+  doNavigate(routeurl: string, index: number) {
+    console.log("client index=" + index);
     this.localStorageService.setClientDetails(this.clientsList[index]);
-    this.route.navigate(['/'+routeurl]);
+    this.route.navigate(['/' + routeurl]);
   }
 
-  fetchClientListDetails(){
+  fetchClientListDetails() {
     this.clientsList = this.clientServices.clientsList
-    this.isLoading= false;
+    this.isLoading = false;
 
     this.clearSubscription();
   }
 
-  clearSubscription(){
+  clearSubscription() {
     clearInterval(this.subscription);
     console.log("cleared interval subscription");
   }
 
-  ngOnDestroy(){
-    console.log("unsubscribe getLatestClientsSubscription");
-    this.getLatestClientsSubscription.unsubscribe();
+  ngOnDestroy() {
+    this.subscribe.unsubscribe();
   }
 }
