@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ClientFields } from '../client/client.component';
 import { ActivatedRoute } from '@angular/router';
 import { ClientServices } from '../shared/client.service';
@@ -8,6 +8,7 @@ import { LoggedInUser } from '../log-in/log-in.component';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DailogService } from '../shared/dailog.service';
+import { ClientinteractorService } from '../shared/clientinteractor.service';
 
 @Component({
   selector: 'app-folder',
@@ -20,9 +21,11 @@ export class FolderComponent implements OnInit {
   loggedInUser = new LoggedInUser()
   searchClientStr:String;
   showSpinner : boolean = false;
+  updatedClientList = new EventEmitter<ClientFields[]>();
+
   constructor(private clientServices :ClientServices,private activatedRoute : ActivatedRoute,
     private localStorageService : LocalStorageService, private searchService : SearchService, private dialog: MatDialog,
-    private dialogService : DailogService) { }
+    private dialogService : DailogService, private clientInteractor : ClientinteractorService) { }
 
   ngOnInit() {
     //this.getClientsList();
@@ -83,7 +86,8 @@ export class FolderComponent implements OnInit {
         this.clientServices.deleteClient(clientInfo._id).subscribe(
           data => {
             console.log(data);
-            this.getClientByUser(this.loggedInUser.username)     },
+            this.getClientByUser(this.loggedInUser.username)  
+          },
           error =>{
             console.log(error);
           }
@@ -100,6 +104,7 @@ export class FolderComponent implements OnInit {
         console.log(data);
         this.clientsList = data
         this.clientServices.clientsList= data;
+        this.clientInteractor.sendupdatedClientList(this.clientsList)
         setTimeout(()=>{
           this.showSpinner = false;
           document.getElementById("overlay").style.display = "none";   
