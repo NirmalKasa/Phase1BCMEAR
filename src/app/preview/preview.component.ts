@@ -7,6 +7,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { exportPDF, Group, pdf } from '@progress/kendo-drawing';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { LoggedInUser } from '../log-in/log-in.component';
+import { StateManagerService } from '../shared/state-manager.service';
 
 @Component({
   selector: 'app-preview',
@@ -23,7 +24,7 @@ export class PreviewComponent implements OnInit {
   showMsg: boolean = false;
   loggedInUser = new LoggedInUser();
 
-  constructor(private previewService: PreviewService, private store :LocalStorageService) { }
+  constructor(private previewService: PreviewService, private store :LocalStorageService, private stateManager : StateManagerService) { }
 
   ngOnInit() {
 
@@ -54,5 +55,14 @@ export class PreviewComponent implements OnInit {
       this.previewService.saveClientDocument(base64, "BRD", this.clientFields.name, this.fileName, this.brdFields);
       this.showMsg= true;
     });
+  }
+
+  returnToUnsavedData(){
+    this.stateManager.enableFormRestoration = true;
+  }
+
+  clearLocalStorage(){
+    this.stateManager.removeBRDDocFormValues();
+    this.stateManager.removeProjectFormData();
   }
 }

@@ -8,6 +8,7 @@ import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../shared/localstorage.service';
 import { DocumentService } from '../shared/document.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { StateManagerService } from '../shared/state-manager.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -34,9 +35,15 @@ export class BrdComponent implements OnInit {
     private route: Router,
     private store: LocalStorageService,
     private documentService: DocumentService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private stateManager : StateManagerService) { }
 
   ngOnInit() {
+    if(this.stateManager.enableFormRestoration){
+      this.brdFields = JSON.parse(this.stateManager.getBrdDocFormValues());
+      this.stateManager.enableFormRestoration = false;
+    }
+    console.log(this.brdFields.fileName + " file name")
     this.clientFields = JSON.parse(this.store.getClientDetails());
     this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
     if (this.router.snapshot.queryParams['fileName']) {
@@ -71,6 +78,7 @@ export class BrdComponent implements OnInit {
     } else {
       this.brdFields.fileName = "";
     }
+    this.stateManager.setBrdDocFormValues(this.brdFields);
     sessionStorage.setItem('brdFields', JSON.stringify(this.brdFields));
     if (!this.isReadonly) {
       this.isDuplicateModule(this.formBrdFields.module)
@@ -171,6 +179,12 @@ export class BrdComponent implements OnInit {
     });
 
   }
+
+  returnToUnsavedData(){
+    this.stateManager.enableProjectFormRestoration = true;
+    this.stateManager.enableFormRestoration=true;
+    this.stateManager.setBrdDocFormValues(this.brdFields);
+  }
 }
 
 export class BrdFields {
@@ -198,5 +212,5 @@ export class BrdFields {
   rev: string;
   pdfId: string;
   fileName: string;
-  loggedInUserName : String;
+  loggedInUserName : string;
 }

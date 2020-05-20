@@ -5,20 +5,21 @@
             <div class="radio">
                 <table>
                     <tr>
-                        <td width=200><mat-radio-button  name="phase" value="analysis" #analysis>Analysis   </mat-radio-button>                     </td>
+                        <td width=200><mat-radio-button  name="phase" value="analysis" [checked]="isAnalysisSelected" #analysis>Analysis</mat-radio-button>                     </td>
                         <td width=200><mat-radio-button   name="phase"
-                                value="development" #development>Development </mat-radio-button></td>
-                        <td width=200><mat-radio-button   name="phase" value="testing" #testing>Testing</mat-radio-button></td>
+                                value="development" [checked]="isDevSelected"  #development>Development </mat-radio-button></td>
+                        <td width=200><mat-radio-button   name="phase" value="testing" [checked]="isTestingSelected"  #testing>Testing</mat-radio-button></td>
                     </tr>
                 </table>
             </div>
-            
-        <div class="analysis"*ngIf ="analysis.checked">
+          <div>{{analysis.value}}</div>  
+        <div class="analysis" *ngIf ="analysis.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=320><mat-radio-button name="analysisphase" value="BRD" (click)="onSelection('/brd')">Business Requirement (BRD)</mat-radio-button></td>
-                    <td width=320><mat-radio-button name="analysisphase" value="FSD"  (click)="onSelection('/fsd')">Functional Specification (FSD)</mat-radio-button></td>
+                    <td width=320><mat-radio-button name="analysisphase" value="BRD" [checked]="isBRDSelected" (change)="onSelection('/brd')">Business Requirement (BRD)</mat-radio-button></td>
+                    <td width=320><mat-radio-button name="analysisphase" value="FSD"  (change)="onSelection('/fsd')">Functional Specification (FSD)</mat-radio-button></td>
+                    <!-- <td width=320><mat-radio-button name="analysisphase" value="Vigu Docs"  (change)="testSelection('/fsd', $event.value)">Functional Specification (FSD)</mat-radio-button></td> -->
                     
                 </tr>
             </table>
