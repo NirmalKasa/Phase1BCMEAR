@@ -1,72 +1,73 @@
 <h3>{{clientInfo.name}}</h3>
-<hr/>
-<form >
-<div >
-    <table class= "table table-striped table-dark">
-        
-        <tbody>
+<hr />
+<form>
+    <div>
+        <table class="table  table-dark">
 
-       
-        <tr>
-            <td>
-                <b>Engagement Name :</b>
-            </td>
-            <td>
-                {{clientInfo.engagement}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Engagement code :</b>
-            </td>
-            <td>
-                {{clientInfo.code}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>System :</b>
-            </td>
-            <td>
-                {{clientInfo.sys}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Banking Vertical :</b>
-            </td>
-            <td>
-                {{clientInfo.vertical}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Project Methodology :</b>
-            </td>
-            <td>
-                {{clientInfo.method}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Engagement Partner :</b>
-            </td>
-            <td>
-                {{clientInfo.partner}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <b>Project Manager :</b>
-            </td>
-            <td>
-                {{clientInfo.manager}}
-            </td>
-        </tr>
-         </tbody>
-    </table>
-</div>
-<div style="background-color:#f1f1f1">
-    <button class="btn btn-dark" type="button" style="margin-left: 360px;" (click)="editClientDetails()">Edit</button>
-</div>
+            <tbody>
+
+
+                <tr>
+                    <td>
+                        <b>Engagement Name :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.engagement}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Engagement code :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.code}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>System :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.sys}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Banking Vertical :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.vertical}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Project Methodology :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.method}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Engagement Partner :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.partner}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Project Manager :</b>
+                    </td>
+                    <td>
+                        {{clientInfo.manager}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="background-color:#f1f1f1">
+        <button class="btn btn-dark" type="button" style="margin-left: 360px;"
+            (click)="editClientDetails()">Edit</button>
+    </div>
 </form>

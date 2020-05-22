@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%;  width:100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;background-color: #f0f0f0; } */
+body{font-family: "Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #f0f0f0;
+  height: 100% !important;
+  margin: 0;
+  padding: 0;}
 
 
 /* .topalign{
@@ -99,10 +107,12 @@ border-radius: 0px;
 /* Dialog Pop Styling ends */
 
 a.navbar-link{
-  color: aliceblue;
+  color:#369;;
   text-underline-position: below;
 }
-
+a:active, a:hover {
+  outline: 0;
+}
 .overlay {
   position: fixed;
   display: block;
@@ -116,3 +126,12 @@ a.navbar-link{
   z-index: 1000;
   cursor: pointer;
 }  
+.mat-icon{
+  color: goldenrod;
+
+}
+.nav li {
+  display: inline-table;
+  font-size: 20px;
+  padding: 20px;
+}

@@ -3,7 +3,7 @@
   <input type="text" (blur)="searchDocuments($event)" placeholder="Search">
 </div> -->
 
-<nav class="navbar text-white bg-secondary mb-3">
+<nav class="navbar">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
       <h2 class="clientNameStyle">
@@ -39,17 +39,17 @@
   <!-- <div>
     <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New Document</a><br><br>
   </div> -->
-  <nav class="navbar text-white bg-secondary mb-3">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+  <nav class="navbar text-white">
+    <ul class="nav">
+      <li>
         <mat-icon>create_new_folder</mat-icon><a href="#" class="navbar-link" routerLink="/brd">Create New
-          Document</a><br><br>
+          Document</a>
       </li>
     </ul>
   </nav>
   <div id="docListID" class="scrollbar" *ngIf="brdDocs &&  brdDocs.length > 0; else msg">
     <div class="container" *ngFor="let docs of brdDocs; let i= index">
-      <table width="400">
+      <table >
         <tr>
           <td> <a href="#" class="navbar-link" vertical-align="left">{{docs.fileName}}</a></td>
           <td>
