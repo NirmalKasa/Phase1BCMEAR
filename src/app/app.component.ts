@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
+import { IBreadCrum } from './ibread-crum';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,7 @@ import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
 export class AppComponent {
   title = 'EAR';
   previous: String;
+  public breadcrumbs: IBreadCrum[]
 
   totalUrl = new Map();
 
@@ -17,7 +20,19 @@ export class AppComponent {
   constructor(public router: Router,private route: ActivatedRoute) {
     this.totalUrlMapping();
     this.projectDirectoryNavigation(this.router, this.route);
+    this.breadcrumbs = this.buildBreadCrumb(this.route.root);
   }
+  ngOnInit(){
+    this.router.events.pipe(filter((event:Event) => event instanceof NavigationEnd),
+    distinctUntilChanged(),
+  ).subscribe(() => {
+    this.breadcrumbs = this.buildBreadCrumb(this.route.root);
+    
+  })
+  console.log(this.breadcrumbs);
+  }
+
+
 
   totalUrlMapping(): void {
     this.totalUrl.set(0, ["/folder", "DashBoard"]);
@@ -26,6 +41,56 @@ export class AppComponent {
     this.totalUrl.set(3, ["/brd", "Business Requirement"]);
     this.totalUrl.set(4, ["/preview", "Document Preview"]);
   }
+  public routesList = [
+
+    {
+      path: '',
+      component: 'LogInComponent',
+    },
+    {
+      path: 'folder',
+      component: 'FolderComponent',
+      data: {
+        breadcrumb: 'Dashboard',
+      },
+      children: [
+        {
+          path: 'client',
+          component: 'ClientComponent',
+          data: {
+            breadcrumb: 'Client Information',
+          },
+          children: [
+            {
+              path: 'project',
+              component: 'ProjectComponent',
+              data: {
+                breadcrumb: 'ProjectComponent',
+              },
+            }
+            ]
+         
+        },
+        {
+          path: 'clientdetails/:id',
+          component: 'ClientdetailsComponent',
+          data: {
+            breadcrumb: 'Client Details',
+          },
+        },
+        {
+          path: 'docrepo',
+          component: 'DashboardComponent',
+          data: {
+            breadcrumb: 'Document Repository',
+          },
+        }
+  
+  
+      ]
+  
+    }
+  ]
 
 
   projectDirectoryNavigation(router: Router, route: ActivatedRoute) {
@@ -124,5 +189,47 @@ export class AppComponent {
     }
 
   }
-
+  /**
+   * Recursively build breadcrumb according to activated route.
+   * @param route
+   * @param url
+   * @param breadcrumbs
+   */
+  buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadCrum[] = []): IBreadCrum[] {
+    console.log(breadcrumbs);
+   
+    
+    //If no routeConfig is avalailable we are on the root path
+    let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
+    let isClickable = route.routeConfig && route.routeConfig.data && route.routeConfig.data.isClickable;
+    let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
+  
+    // If the route is dynamic route such as ':id', remove it
+    const lastRoutePart = path.split('/').pop();
+    const isDynamicRoute = lastRoutePart.startsWith(':');
+    if(isDynamicRoute && !!route.snapshot) {
+      const paramName = lastRoutePart.split(':')[1];
+      path = path.replace(lastRoutePart, route.snapshot.params[paramName]);
+      label = route.snapshot.params[paramName];
+    }
+  
+    //In the routeConfig the complete path is not available,
+    //so we rebuild it each time
+    const nextUrl = path ? `${url}/${path}` : url;
+  
+    const breadcrumb: IBreadCrum = {
+        label: label,
+        url: nextUrl,
+    };
+    // Only adding route with non-empty label
+    const newBreadcrumbs = breadcrumb.label ? [ ...breadcrumbs, breadcrumb ] : [ ...breadcrumbs];
+    if (route.firstChild) {
+        //If we are not on our current path yet,
+        //there will be more children to look after, to build our breadcumb
+        return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
+    }
+    return newBreadcrumbs;
+  }
 }
+
+

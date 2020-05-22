@@ -37,10 +37,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+                <a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"></a>
+                <a class="nav-link disabled" href="#"></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#"></a>
@@ -56,48 +56,49 @@
 
 
 
+<!-- 
+<div class="row">
+</div> -->
 
-    <div class="row">
-    </div>
-
-    <!-- <div class="card bg-light mb-3" >
+<!-- <div class="card bg-light mb-3" >
               <div class="card-body">
             <router-outlet></router-outlet>
         </div>
       </div> -->
 
-    <!-- <div class="card text-white bg-dark mb-3">
+<!-- <div class="card text-white bg-dark mb-3">
 
         <div class="card-body">
             <router-outlet></router-outlet>
         </div>
       </div> -->
-      <div *ngIf="this.router.url == '/'">
-        <router-outlet></router-outlet>
-      </div>
-      <main role="main" class="container">
+<div *ngIf="this.router.url == '/'">
+    <router-outlet></router-outlet>
+</div>
+<main role="main" class="container-fluid">
     <div class="row">
-        <div *ngIf="this.router.url == '/folder'" class="col-md-2" style="right: 220px;">
+        <div *ngIf="this.router.url == '/folder'" class="col-md-3">
             <app-maindashboard></app-maindashboard>
         </div>
-        <div *ngIf="this.router.url != '/folder'" class="col-md-2" style="right: 220px;">
-       </div>
-        <div class="col-md-9">
-      <div *ngIf="this.router.url !== '/'" class="card text-white bg-secondary mb-3">
-        <nav class="navbar navbar-light navBarAlign">
-            <ol class="nav nav-tabs" class="nav justify-content-start">
-                <li *ngFor="let item of currentOrderMappingUrls | keyvalue ">
-                    <a routerLink={{item.value[0]}} class="nav-link text-white" routerLinkActive><u>{{item.value[1]}}</u><b>></b>
-                    </a>
-                </li>
-            </ol>
-        </nav>
+        <!-- <div *ngIf="this.router.url != '/folder'" class="col-md-2" style="right: 220px;">
+        </div> -->
+        <div  [ngClass]="this.router.url !== '/folder' ? 'col-md-12' : 'col-md-9'">
+            <div *ngIf="this.router.url !== '/'" class="card text-dark bg-white mb-3">
+                <nav class="navbar navbar-light navBarAlign">
+                    <ol class="nav nav-tabs" class="nav justify-content-start">
+                        <li *ngFor="let item of currentOrderMappingUrls | keyvalue ">
+                            <a routerLink={{item.value[0]}} class="navbar-link" routerLinkActive>{{item.value[1]}}<b>></b>
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
 
-        <div class="card-body">
-            <router-outlet></router-outlet>
+                <div class="card-body" >
+
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
     </div>
 
 
