@@ -3,6 +3,7 @@ import { ClientServices } from '../shared/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggedInUser } from '../log-in/log-in.component';
 import { LocalStorageService } from '../shared/localstorage.service';
+import { DailogService } from '../shared/dailog.service';
 
 
 
@@ -17,7 +18,8 @@ export class ClientComponent implements OnInit {
   id : number;
   loggedInUser = new LoggedInUser();
   constructor(private clientServices: ClientServices, private route: ActivatedRoute, private clientService: ClientServices,
-    private _router : Router,private store:LocalStorageService) {
+    private _router : Router,private store:LocalStorageService,
+    private dialogService : DailogService) {
    }
 
   ngOnInit() {
@@ -59,6 +61,15 @@ export class ClientComponent implements OnInit {
     if(this.clientFields._id!=null){
       this._router.navigate(['clientDetails', this.id]);
     }
+  }
+
+  stepBack(){
+    this.dialogService.openConfirmDialog('Data entered would be lost. Confirm whether to go back ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this._router.navigate(['folder']);
+      }
+    });
   }
 
 }

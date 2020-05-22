@@ -10,12 +10,12 @@
     <label for="eng"><b>Engagement Name</b></label>
     <input type="text" placeholder=" Engagement" [(ngModel)]="clientFields.engagement" name="engagement">
 
-    <label for="code"><b>Engagement code</b></label>
+    <label for="code"><b>Engagement Code</b></label>
     <input type="text" placeholder=" Client/Engagement code" [(ngModel)]="clientFields.code" name="code">
 
     <label for="sys"><b>System</b></label>
     <select name="sys" [(ngModel)]="clientFields.sys">
-
+      <option value="Empty"></option>
       <option value="CBS-FIS">CBS-FIS</option>
       <option value="CBS-Temenos">CBS-Temenos</option>
       <option value="others">Others</option>
@@ -25,7 +25,7 @@
 
     <label for="vertical"><b>Banking Vertical</b></label>
     <select name="vertical" [(ngModel)]="clientFields.vertical">
-
+      <option value="Empty"></option>
       <option value="retail">Retail</option>
       <option value="corporate">Corporate</option>
       <option value="payments">Payments</option>
@@ -39,7 +39,7 @@
 
     <label for="prj"><b>Project Methodology</b></label>
     <select name="method" [(ngModel)]="clientFields.method">
-
+      <option value="Empty"></option>
       <option value="waterfall">Waterfall</option>
       <option value="agile">Agile</option>
       <option value="others">Others</option>
@@ -65,7 +65,7 @@
     <table>
       <tr>
         <td width=300><input class="btn btn-dark" type="reset"></td>
-        <td width=300><button class="btn btn-dark" type="button" routerLink="/folder">Previous</button></td>
+        <td width=300><button class="btn btn-dark" type="button" (click)="stepBack()">Previous</button></td>
         <td width=300><button class="btn btn-dark" type="button" (click)="saveClientDetails()" routerLink="/project">Next</button></td>
 
       </tr>

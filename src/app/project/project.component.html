@@ -12,7 +12,6 @@
                     </tr>
                 </table>
             </div>
-          <div>{{analysis.value}}</div>  
         <div class="analysis" *ngIf ="analysis.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
@@ -53,7 +52,7 @@
         </table>
         <table>
             <tr>
-                <td width=300><button type="button" class="btn btn-dark" routerLink="/client">Previous</button></td>
+                <td width=300><button type="button" class="btn btn-dark" (click)="stepBack()">Previous</button></td>
                 <td width=300><button type="button" class="btn btn-dark" routerLink="/folder">Cancel</button></td>
                 <td width=300><button type="button"  class="btn btn-dark"  (click)="navigate()">Next</button></td>
             </tr>

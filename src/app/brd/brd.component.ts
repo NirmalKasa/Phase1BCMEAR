@@ -9,6 +9,7 @@ import { LocalStorageService } from '../shared/localstorage.service';
 import { DocumentService } from '../shared/document.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { StateManagerService } from '../shared/state-manager.service';
+import { DailogService } from '../shared/dailog.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -36,7 +37,8 @@ export class BrdComponent implements OnInit {
     private store: LocalStorageService,
     private documentService: DocumentService,
     private modalService: NgbModal,
-    private stateManager : StateManagerService) { }
+    private stateManager : StateManagerService,private dialogService : DailogService,
+    private _router : Router) { }
 
   ngOnInit() {
     if(this.stateManager.enableFormRestoration){
@@ -181,9 +183,15 @@ export class BrdComponent implements OnInit {
   }
 
   returnToUnsavedData(){
-    this.stateManager.enableProjectFormRestoration = true;
-    this.stateManager.enableFormRestoration=true;
-    this.stateManager.setBrdDocFormValues(this.brdFields);
+    this.dialogService.openConfirmDialog('Data entered would be lost. Confirm whether to go back ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.stateManager.enableProjectFormRestoration = true;
+        this.stateManager.enableFormRestoration=true;
+        this.stateManager.setBrdDocFormValues(this.brdFields);
+        this._router.navigate(['project']);
+      }
+    });
   }
 }
 

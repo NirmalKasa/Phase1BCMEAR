@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ClientFields } from '../client/client.component';
 import { BrdFields } from '../brd/brd.component';
 import { PreviewService } from './preview.service';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { exportPDF, Group, pdf } from '@progress/kendo-drawing';
 import { LocalStorageService } from '../shared/localstorage.service';
 import { LoggedInUser } from '../log-in/log-in.component';
 import { StateManagerService } from '../shared/state-manager.service';
+import { DailogService } from '../shared/dailog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preview',
@@ -24,7 +24,9 @@ export class PreviewComponent implements OnInit {
   showMsg: boolean = false;
   loggedInUser = new LoggedInUser();
 
-  constructor(private previewService: PreviewService, private store :LocalStorageService, private stateManager : StateManagerService) { }
+  constructor(private previewService: PreviewService, private store :LocalStorageService, 
+    private stateManager : StateManagerService, private dialogService : DailogService,
+    private _router : Router) { }
 
   ngOnInit() {
 
@@ -58,7 +60,13 @@ export class PreviewComponent implements OnInit {
   }
 
   returnToUnsavedData(){
-    this.stateManager.enableFormRestoration = true;
+    this.dialogService.openConfirmDialog('Data entered would be lost. Confirm whether to go back ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this.stateManager.enableFormRestoration=true;
+        this._router.navigate(['brd']);
+      }
+    });
   }
 
   clearLocalStorage(){

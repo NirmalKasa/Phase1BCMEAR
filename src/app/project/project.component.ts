@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StateManagerService } from '../shared/state-manager.service';
+import { DailogService } from '../shared/dailog.service';
 
 @Component({
   selector: 'app-project',
@@ -17,7 +18,8 @@ export class ProjectComponent implements OnInit {
   static BRDDoc : string = "brd"
   projectPhases : string[] = ["Analysis", "Development","Testing"]
 
-  constructor(private router : Router, private stateManager : StateManagerService ) { }
+  constructor(private router : Router, private stateManager : StateManagerService,private dialogService : DailogService,
+    private _router : Router ) { }
 
   ngOnInit() {
    if(this.stateManager.enableProjectFormRestoration) {this.onRentry()}; 
@@ -49,6 +51,15 @@ export class ProjectComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  stepBack(){
+    this.dialogService.openConfirmDialog('Data entered would be lost. Confirm whether to go back ?')
+    .afterClosed().subscribe(res =>{
+      if(res){
+        this._router.navigate(['client']);
+      }
+    });
   }
 
 }
