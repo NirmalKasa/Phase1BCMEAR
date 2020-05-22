@@ -64,6 +64,7 @@
   <div *ngIf="renderSaveBtn(); else updateBtn" style="background-color:#f1f1f1">
     <table>
       <tr>
+        <td width=100></td>
         <td width=300><input class="btn btn-dark" type="reset"></td>
         <td width=300><button class="btn btn-dark" type="button" (click)="stepBack()">Previous</button></td>
         <td width=300><button class="btn btn-dark" type="button" (click)="saveClientDetails()" routerLink="/project">Next</button></td>

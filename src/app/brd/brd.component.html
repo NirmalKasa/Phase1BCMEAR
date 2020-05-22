@@ -91,19 +91,21 @@
 
         <label for="rev"><b>Revision History</b></label>
         <textarea maxlenght=250 placeholder=" Revision History" [(ngModel)]="brdFields.rev"  name="rev"></textarea>
-
+        <div></div>
+        <div style="background-color:#f1f1f1;">
+          <table>
+            <tr>
+              <td width=150></td>
+              <td width=250><input class="btn btn-dark" type="reset"></td>
+              <td width=250><button class="btn btn-dark" type="button" (click)="returnToUnsavedData()">Previous</button></td>
+              <!-- <td width=300><button class="btn btn-dark" type="button" (click)="saveBrdDocument(f)">Save</button></td> -->
+              <td width=250><button class="btn btn-dark" type="button" (click)="updateSessionStorage(f)">Preview</button></td>
+  
+            </tr>
+          </table>
+        </div>
     </div>
-    <div style="background-color:#f1f1f1">
-        <table>
-          <tr>
-            <td width=300><input class="btn btn-dark" type="reset"></td>
-            <td width=300><button class="btn btn-dark" type="button" (click)="returnToUnsavedData()">Previous</button></td>
-            <!-- <td width=300><button class="btn btn-dark" type="button" (click)="saveBrdDocument(f)">Save</button></td> -->
-            <td width=300><button class="btn btn-dark" type="button" (click)="updateSessionStorage(f)">Preview</button></td>
-
-          </tr>
-        </table>
-      </div>
+   
 
       <ng-template #mymodal let-modal>
         <div class="modal-header">

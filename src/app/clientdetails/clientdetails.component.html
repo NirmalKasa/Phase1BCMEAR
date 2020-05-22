@@ -1,73 +1,81 @@
 <h3>{{clientInfo.name}}</h3>
 <hr />
 <form>
-    <div>
-        <table class="table  table-dark">
+    <div class="row">
+        <table class="table table-bordered col-md-10">
 
             <tbody>
 
 
                 <tr>
-                    <td>
-                        <b>Engagement Name :</b>
-                    </td>
+
+                    <th>
+                        <b>Engagement Name</b>
+                    </th>
+
+
                     <td>
                         {{clientInfo.engagement}}
                     </td>
+
+
                 </tr>
                 <tr>
-                    <td>
-                        <b>Engagement code :</b>
-                    </td>
+                    <th>
+                        <b>Engagement code</b>
+                    </th>
                     <td>
                         {{clientInfo.code}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <b>System :</b>
-                    </td>
+                    <th>
+                        <b>System</b>
+                    </th>
+                    
+                  
                     <td>
                         {{clientInfo.sys}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <b>Banking Vertical :</b>
-                    </td>
+                    <th>
+                        <b>Banking Vertical</b>
+                    </th>
                     <td>
                         {{clientInfo.vertical}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <b>Project Methodology :</b>
-                    </td>
+                    <th>
+                        <b>Project Methodology</b>
+                    </th>
                     <td>
                         {{clientInfo.method}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <b>Engagement Partner :</b>
-                    </td>
+                    <th>
+                        <b>Engagement Partner</b>
+                    </th>
                     <td>
                         {{clientInfo.partner}}
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <b>Project Manager :</b>
-                    </td>
+                    <th>
+                        <b>Project Manager</b>
+                    </th>
                     <td>
                         {{clientInfo.manager}}
                     </td>
                 </tr>
             </tbody>
         </table>
+      
     </div>
-    <div style="background-color:#f1f1f1">
-        <button class="btn btn-dark" type="button" style="margin-left: 360px;"
+    <div class=" col-md-10" style="background-color:#f1f1f1">
+        <button class="btn btn-dark" type="button" style="margin-left: 585px;"
             (click)="editClientDetails()">Edit</button>
     </div>
 </form>

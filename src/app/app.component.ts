@@ -35,7 +35,7 @@ export class AppComponent {
 
 
   totalUrlMapping(): void {
-    this.totalUrl.set(0, ["/folder", "DashBoard"]);
+    this.totalUrl.set(0, ["/folder", "Dashboard"]);
     this.totalUrl.set(1, ["/client", "Client Information"]);
     this.totalUrl.set(2, ["/project", "Project Details"]);
     this.totalUrl.set(3, ["/brd", "Business Requirement"]);

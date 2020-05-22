@@ -5,19 +5,20 @@
             <div class="radio">
                 <table>
                     <tr>
-                        <td width=200><mat-radio-button  name="phase" value="analysis" [checked]="isAnalysisSelected" #analysis>Analysis</mat-radio-button>                     </td>
-                        <td width=200><mat-radio-button   name="phase"
+                        <td width=300><mat-radio-button  name="phase" value="analysis" [checked]="isAnalysisSelected" #analysis>Analysis</mat-radio-button>                     </td>
+                        <td width=500><mat-radio-button   name="phase"
                                 value="development" [checked]="isDevSelected"  #development>Development </mat-radio-button></td>
-                        <td width=200><mat-radio-button   name="phase" value="testing" [checked]="isTestingSelected"  #testing>Testing</mat-radio-button></td>
+                        <td width=300><mat-radio-button   name="phase" value="testing" [checked]="isTestingSelected"  #testing>Testing</mat-radio-button></td>
                     </tr>
                 </table>
             </div>
+            <br><br>
         <div class="analysis" *ngIf ="analysis.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=320><mat-radio-button name="analysisphase" value="BRD" [checked]="isBRDSelected" (change)="onSelection('/brd')">Business Requirement (BRD)</mat-radio-button></td>
-                    <td width=320><mat-radio-button name="analysisphase" value="FSD"  (change)="onSelection('/fsd')">Functional Specification (FSD)</mat-radio-button></td>
+                    <td width=380><mat-radio-button name="analysisphase" value="BRD" [checked]="isBRDSelected" (change)="onSelection('/brd')">Business Requirement (BRD)</mat-radio-button></td>
+                    <td width=400><mat-radio-button name="analysisphase" value="FSD"  (change)="onSelection('/fsd')">Functional Specification (FSD)</mat-radio-button></td>
                     <!-- <td width=320><mat-radio-button name="analysisphase" value="Vigu Docs"  (change)="testSelection('/fsd', $event.value)">Functional Specification (FSD)</mat-radio-button></td> -->
                     
                 </tr>
@@ -29,31 +30,40 @@
                 <tr>
                     
                     
-                    <td width=300><mat-radio-button name="devphase" value="TSD" >Technical Specification (TSD) </mat-radio-button></td>
+                    <td width=380><mat-radio-button name="devphase" value="TSD" >Technical Specification (TSD) </mat-radio-button></td>
                 </tr>
             </table>
         </div>
-
+    
         <div class="testing"  *ngIf="testing.checked">
             <label for="doc"><b>Document Type</b></label>
             <table>
                 <tr>
-                    <td width=380><mat-radio-button name="testphase" value="RTM"  >Requirement Traceability Matrix (RTM)</mat-radio-button></td>
-                    <td width=300><mat-radio-button name="testphase" value="test"  >Test Scenario/Test Case </mat-radio-button></td>
+                    <td width=450><mat-radio-button name="testphase" value="RTM"  >Requirement Traceability Matrix (RTM)</mat-radio-button></td>
+                    <td width=230><mat-radio-button name="testphase" value="test"  >Test Scenario/Test Case </mat-radio-button></td>
 
 
                 </tr>
             </table>
         </div>
         </div>
+       
         <div>
-        <table > 
-            <tr  ><td width=900><input type="checkbox" name="changereq" value="changereq">Change Request</td></tr>
-        </table>
+            <table > 
+                <tr  >
+                    <td width=600></td>
+                    <td width=300><input type="checkbox" name="changereq" value="changereq">Change Request</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="container" style="background-color:#f1f1f1">
+      
         <table>
             <tr>
+              
                 <td width=300><button type="button" class="btn btn-dark" (click)="stepBack()">Previous</button></td>
-                <td width=300><button type="button" class="btn btn-dark" routerLink="/folder">Cancel</button></td>
+                <td width=500><button type="button" class="btn btn-dark" routerLink="/folder">Cancel</button></td>
                 <td width=300><button type="button"  class="btn btn-dark"  (click)="navigate()">Next</button></td>
             </tr>
         </table>
