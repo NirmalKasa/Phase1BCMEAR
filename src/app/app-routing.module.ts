@@ -26,36 +26,36 @@ import { FolderResolverService } from './folder/folder.resolver.service';
 import { ClientDetailResolver } from './clientdetails/clientdetails.resolver.service';
 import { DocumentComponent } from './document/document.component';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
-
+import { AuthGuard} from './auth.guard'
 
 
 
 const routes: Routes = [
-  { path: '', component: LogInComponent },
-  { path: 'maindashboard', component: MaindashboardComponent },
-  { path: 'folder', component: FolderComponent,resolve: { clntsInfo: FolderResolverService } },
-  { path: 'client', component: ClientComponent},
-  { path: 'docrepo', component: DashboardComponent},
-  { path: 'project', component: ProjectComponent},
-  { path : 'document', component : DocumentComponent},
-  { path: 'signup', component: SignupComponent},
-  { path: 'changepwd' , component: ChangepwdComponent},
-  { path: 'forgotpwd', component : ForgotpwdComponent},
-  {path: 'brd', component : BrdComponent},
-  {path: 'fsd', component : FsdComponent},
-  {path: 'tsd', component : TsdComponent},
-  {path: 'rtm', component : RtmComponent},
-  {path: 'test', component : TestComponent},
-  {path : 'preview', component : PreviewComponent},
-  { path: 'readme', component:ReadmeComponent},
-  {path :'brddocs', component:BrdDocsComponent},
-  {path:'fsddocs', component:FsdDocsComponent},
-  {path:'tsddocs', component:TsdDocsComponent},
-  {path:'rtmdocs', component:RtmDocsComponent},
-  {path:'testdocs', component:TestDocsComponent},
-  {path:'forgotpwd', component:ForgotpwdComponent},
-  {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver}},
-  { path: 'client/:id', component: ClientComponent},
+  { path: '', component: LogInComponent,pathMatch: 'full'},
+  { path: 'maindashboard', component: MaindashboardComponent,canActivate: [AuthGuard]  },
+  { path: 'folder', component: FolderComponent,resolve: { clntsInfo: FolderResolverService },canActivate: [AuthGuard] },
+  { path: 'client', component: ClientComponent,canActivate: [AuthGuard]},
+  { path: 'docrepo', component: DashboardComponent,canActivate: [AuthGuard]},
+  { path: 'project', component: ProjectComponent,canActivate: [AuthGuard]},
+  { path : 'document', component : DocumentComponent,canActivate: [AuthGuard]},
+  { path: 'signup', component: SignupComponent,canActivate: [AuthGuard]},
+  { path: 'changepwd' , component: ChangepwdComponent,canActivate: [AuthGuard]},
+  { path: 'forgotpwd', component : ForgotpwdComponent,canActivate: [AuthGuard]},
+  {path: 'brd', component : BrdComponent,canActivate: [AuthGuard]},
+  {path: 'fsd', component : FsdComponent,canActivate: [AuthGuard]},
+  {path: 'tsd', component : TsdComponent,canActivate: [AuthGuard]},
+  {path: 'rtm', component : RtmComponent,canActivate: [AuthGuard]},
+  {path: 'test', component : TestComponent,canActivate: [AuthGuard]},
+  {path : 'preview', component : PreviewComponent,canActivate: [AuthGuard]},
+  { path: 'readme', component:ReadmeComponent,canActivate: [AuthGuard]},
+  {path :'brddocs', component:BrdDocsComponent,canActivate: [AuthGuard]},
+  {path:'fsddocs', component:FsdDocsComponent,canActivate: [AuthGuard]},
+  {path:'tsddocs', component:TsdDocsComponent,canActivate: [AuthGuard]},
+  {path:'rtmdocs', component:RtmDocsComponent,canActivate: [AuthGuard]},
+  {path:'testdocs', component:TestDocsComponent,canActivate: [AuthGuard]},
+  {path:'forgotpwd', component:ForgotpwdComponent,canActivate: [AuthGuard]},
+  {path:'clientdetails/:id', component:ClientdetailsComponent, resolve : {clientInfo : ClientDetailResolver},canActivate: [AuthGuard]},
+  { path: 'client/:id', component: ClientComponent,canActivate: [AuthGuard]},
 ]
 
 @NgModule({

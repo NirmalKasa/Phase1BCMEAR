@@ -25,8 +25,11 @@ export class BrdDocsComponent implements OnInit {
   ngOnInit() {
     this.clientFields = JSON.parse(this.store.getClientDetails());
     // this.fetchClientDocuments()
+    console.log("Client details are"+this.clientFields.name)
+    //this.brdDocs = JSON.parse(this.store.getBrdDocsDetails());
     this.fetchDocuments()
-     // console.log("in brd docs=="+this.brdDocs);
+    console.log("brdDocs details are"+this.brdDocs.length)
+    // console.log("in brd docs=="+this.brdDocs);
   }
 
   onSelect(index: number) {

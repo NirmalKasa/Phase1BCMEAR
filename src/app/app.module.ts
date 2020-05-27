@@ -43,6 +43,8 @@ import {MatTableModule} from '@angular/material/table';
 import { MaindashboardComponent } from './maindashboard/maindashboard.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ScrollDispatchModule, ScrollingModule } from '@angular/cdk/scrolling';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
  
 
@@ -104,7 +106,7 @@ import { ScrollDispatchModule, ScrollingModule } from '@angular/cdk/scrolling';
     ScrollDispatchModule,
     ScrollingModule
   ],
-  providers: [MatDialog],
+  providers: [MatDialog,AuthService,AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })

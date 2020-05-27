@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../shared/localstorage.service';
-
+import {  AuthService} from '../auth.service';
 const ldapURL= 'http://localhost:8081/ldap/login';
 
 @Component({
@@ -15,14 +15,14 @@ export class LogInComponent implements OnInit {
 
   auth2: any;
 
- 
+  form;
   cred: credentials;
   loginForm: FormGroup;
   submitted = false;
   loggedInUser = new LoggedInUser()
 
   @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
-  constructor(private router : Router,private http: HttpClient,private store: LocalStorageService, private formBuilder: FormBuilder) {
+  constructor(private router : Router,private http: HttpClient,private store: LocalStorageService,private auth: AuthService, private formBuilder: FormBuilder) {
     
    }
 
@@ -77,6 +77,11 @@ export class LogInComponent implements OnInit {
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
+  }
+
+  if (this.loginForm.valid) {
+    this.auth.sendToken(this.loginForm.value.email)
+    this.router.navigate(["folder"]);
   }
    this.cred = new credentials();
    this.cred.email = email1;

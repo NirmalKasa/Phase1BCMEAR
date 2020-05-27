@@ -107,25 +107,16 @@ export class AppComponent {
           this.totalUrl.set(0, ["/folder", "DashBoard"]);
           this.totalUrl.set(1, ["/docrepo", "Document Repository"]);
           this.SplitProjectDirectory(event, this.totalUrl)
-        } else if (event.url.split("/", 2)[1] == 'clientdetails') {
+        } 
+        
+        else if (event.url.split("/",2)[1] == 'clientdetails') {
           this.totalUrl.clear();
           this.totalUrl.set(0, ["/folder", "DashBoard"]);
           this.totalUrl.set(1, [event.url, "ClientDetails"]);
           this.SplitProjectDirectory(event, this.totalUrl)
-        } else if (this.previous == '/docrepo' && (event.url == '/project' || event.url == '/preview')) {
-          this.totalUrl.set(0, ["/folder", "DashBoard"]);
-          this.totalUrl.set(1, ["/docrepo", "Document Repository"]);
-          this.totalUrl.set(2, ["/project", "Project Details"]);
-          this.totalUrl.set(3, ["/brd", "Business Requirement"]);
-          this.totalUrl.set(4, ["/preview", "Document Preview"]);
-          this.SplitProjectDirectory(event, this.totalUrl);
-        } else if (this.previous == '/docrepo' && event.url == '/brd') {
-          this.totalUrl.set(0, ["/folder", "DashBoard"]);
-          this.totalUrl.set(1, ["/docrepo", "Document Repository"]);
-          this.totalUrl.set(3, ["/brd", "Business Requirement"]);
-          this.totalUrl.set(4, ["/preview", "Document Preview"]);
-          this.SplitProjectDirectory(event, this.totalUrl);
-        } else {
+        } 
+        
+        else {
           isMatch = false;
 
 
