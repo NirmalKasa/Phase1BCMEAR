@@ -1,6 +1,6 @@
 FROM node:latest as node
 #ENV PORT 80
-#EXPOSE 8080
+EXPOSE 8080
 
 WORKDIR /app
 COPY package.json ./
