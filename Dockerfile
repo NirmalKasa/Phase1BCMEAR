@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 RUN npm run build
-CMD ng serve --host 0.0.0.0 --port 4200
+#CMD ng serve --host 0.0.0.0 --port 4200
 
 #stage 2
 FROM nginx:alpine
