@@ -7,8 +7,8 @@ COPY package.json ./
 RUN npm install
 
 COPY . .
-#RUN npm run build --prod
-RUN ng build --configuration production --output-path=/dist
+RUN npm run build --prod
+#RUN ng build --configuration production --output-path=/dist
 #CMD ng serve --host 0.0.0.0 --port 4200
 
 #stage 2
