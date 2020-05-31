@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../shared/localstorage.service';
 import {  AuthService} from '../auth.service';
-const ldapURL= 'http://localhost:8081/ldap/login';
+import { environment } from '../../environments/environment'
+const ldapURL= environment.apiUrl+'/ldap/login';
 
 @Component({
   selector: 'app-log-in',
