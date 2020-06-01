@@ -4,7 +4,7 @@ import { BrdFields } from '../brd/brd.component';
 
 import { environment } from '../../environments/environment'
 //const clientSaveDocumentUrl= 'http://localhost:8000/files/saveClientFiles';  // for testing
-"localhost"
+
 const saveClientBrdWithPDfUrl =environment.apiUrl+'/brd-docs/save-brd-pdf';
 
 @Injectable({providedIn:"root"})
