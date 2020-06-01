@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BrdFields } from '../brd/brd.component';
 
-
+import { environment } from '../../environments/environment'
 //const clientSaveDocumentUrl= 'http://localhost:8000/files/saveClientFiles';  // for testing
-const saveClientBrdWithPDfUrl ='http://localhost:8081/brd-docs/save-brd-pdf';
+"localhost"
+const saveClientBrdWithPDfUrl =environment.apiUrl+'/brd-docs/save-brd-pdf';
+
 @Injectable({providedIn:"root"})
 export class PreviewService {
 
